@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>RxJava</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="This is my blog about building software and solving problems. Sometimes I write about Java, Groovy, programming, etc.">
+    <meta name="author" content="Adam L. Davis">
+    <meta name="keywords" content="java,reactive,groovy,java8,rxjava">
+    <meta name="generator" content="JBake">
+
+    <!-- Le styles -->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/asciidoctor.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link href="../../css/prettify.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+    <link rel="shortcut icon" href="../../favicon.jpg">
+  </head>
+  <body onload="prettyPrint()">
+    <div id="wrap">
+	
+	<!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- a class="navbar-brand" href="../../">JBake</a -->
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="../../index.html">Home</a></li>
+            <li><a href="../../about.html">About</a></li>
+            <li><a href="../../feed.xml">Subscribe</a></li>
+            <li><a href="about.html">Books</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Links <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a rel=me href="//twitter.com/adamldavis">Me on Twitter</a></li>
+                <li><a rel=me href="//medium.com/@adamldavis#_=_">Me on Medium</a></li>
+                <li><a rel=me href="https://github.com/adamldavis">Me on Github</a></li>
+                <li><a rel=me href="https://bitbucket.org/adamldavis/">Me on Bitbucket</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Nonsense</li>
+                <li><a href="feed.xml">Atom feed</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    <div class="container">	
+	<div class="page-header">
+		<h1>RxJava</h1>
+	</div>
+
+	<p><em>15 November 2017</em></p>
+
+	<p><div id="preamble"> 
+ <div class="sectionbody"> 
+  <div class="paragraph"> 
+   <p><em>(This is an excerpt from <a href="https://leanpub.com/modernjavasecondedition">Modern Java: Second Edition</a>)</em></p> 
+  </div> 
+  <div class="paragraph"> 
+   <p><a href="https://github.com/ReactiveX/RxJava">RxJava</a> is the open-source library for reactive programming that is part of the ReactiveX project. ReactiveX includes implementations in several different languages including rxjs, RxRuby, RxSwift, RxPHP, RxGroovy and many more.</p> 
+  </div> 
+  <div class="paragraph"> 
+   <p>RxJava 2 was rebuilt to be compatible with the Reactive Streams specification and is preferable to RxJava 1.x since it is scheduled for end-of-life. There were many changes from version 1 to 2 that could be confusing. To avoid confusion we will focus on RxJava 2.</p> 
+  </div> 
+ </div> 
+</div> 
+<div class="sect1"> 
+ <h2 id="_flowable">Flowable</h2> 
+ <div class="sectionbody"> 
+  <div class="paragraph"> 
+   <p>The basic entry class in RxJava is <code>io.reactivex.Flowable</code>. It implements the Reactive-Streams Pattern and offers factory methods, intermediate operators and the ability to consume reactive dataflows.</p> 
+  </div> 
+  <div class="paragraph"> 
+   <p>The following example demonstrates using RxJava to do a simple calculation on a range of numbers:</p> 
+  </div> 
+  <div class="literalblock"> 
+   <div class="content"> 
+    <pre>public static List doSquares() {
+   List squares = new ArrayList();
+   Flowable.range(1, 64) //1
+       .observeOn(Schedulers.computation()) //2
+       .map(v -&gt; v * v) //3
+       .blockingSubscribe(squares::add); //4</pre> 
+   </div> 
+  </div> 
+  <div class="literalblock"> 
+   <div class="content"> 
+    <pre>   return squares;
+}</pre> 
+   </div> 
+  </div> 
+  <div class="olist arabic"> 
+   <ol class="arabic"> 
+    <li> <p>Create a range from 1 to 64.</p> </li> 
+    <li> <p>Call the method <code>observeOn</code> to determine which <code>Scheduler</code> to use. This determines on which Thread the flow will run.</p> </li> 
+    <li> <p>The <code>map</code> method transforms each value. In this case we calculate the square.</p> </li> 
+    <li> <p>Finally, we initiate the flow by calling a “subscribe” method. In this case, <code>blockingSubscribe</code> blocks until the entire flow has completed. This means that the <code>squares</code> list will be populated before the return statement. Otherwise the flow would run on a different thread and the values in the squares list would be unpredictable at any given time.</p> </li> 
+   </ol> 
+  </div> 
+  <div class="paragraph"> 
+   <p><em>(This is an excerpt from <a href="https://leanpub.com/modernjavasecondedition">Modern Java: Second Edition</a>)</em></p> 
+  </div> 
+ </div> 
+</div></p>
+
+	<hr />
+	
+		</div>
+		<div id="push"></div>
+    </div>
+    
+    <div id="footer">
+      <div class="container">
+        <p class="muted credit">&copy; 2014 | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.6.1</a></p>
+      </div>
+    </div>
+    
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../../js/jquery-1.11.1.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/prettify.js"></script>
+    
+  </body>
+</html>

@@ -1,0 +1,52 @@
+title=RxJava
+date=2017-11-15
+type=post
+tags=rxjava,java,leanpub
+status=published
+~~~~~~
+
+= RxJava
+
+_(This is an excerpt from https://leanpub.com/modernjavasecondedition[Modern Java: Second  Edition])_
+
+https://github.com/ReactiveX/RxJava[RxJava] is the open-source library for
+reactive programming that is part of the ReactiveX project. ReactiveX includes
+implementations in several different languages including rxjs, RxRuby, RxSwift,
+RxPHP, RxGroovy and many more.
+
+RxJava 2 was rebuilt to be compatible with the Reactive Streams specification and
+is preferable to RxJava 1.x since it is scheduled for end-of-life. There were many
+changes from version 1 to 2 that could be confusing.
+To avoid confusion we will focus on RxJava 2.
+
+== Flowable
+
+The basic entry class in RxJava is `io.reactivex.Flowable`.
+It implements the Reactive-Streams Pattern and offers factory methods,
+intermediate operators and the ability to consume reactive dataflows.
+
+The following example demonstrates using RxJava to do a simple calculation on a range of numbers:
+
+    public static List doSquares() {
+       List squares = new ArrayList();
+       Flowable.range(1, 64) //1
+           .observeOn(Schedulers.computation()) //2
+           .map(v -> v * v) //3
+           .blockingSubscribe(squares::add); //4
+
+       return squares;
+    }
+
+1. Create a range from 1 to 64.
+2. Call the method `observeOn` to determine which `Scheduler` to use.
+This determines on which Thread the flow will run.
+3. The `map` method transforms each value. In this case we calculate the square.
+4. Finally, we initiate the flow by calling a “subscribe” method.
+In this case, `blockingSubscribe` blocks until the entire flow has
+completed. This means that the `squares` list will be populated
+before the return statement. Otherwise the flow would run on a
+different thread and the values in the squares list would be
+unpredictable at any given time.
+
+_(This is an excerpt from https://leanpub.com/modernjavasecondedition[Modern Java: Second  Edition])_
+

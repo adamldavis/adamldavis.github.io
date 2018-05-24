@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>JBake</title>
+    <link>http://jbake.org</link>
+    <atom:link href="http://jbake.org/feed.xml" rel="self" type="application/rss+xml" />
+    <description>JBake Bootstrap Template</description>
+    <language>en-gb</language>
+    <pubDate>Thu, 24 May 2018 14:52:22 -0400</pubDate>
+    <lastBuildDate>Thu, 24 May 2018 14:52:22 -0400</lastBuildDate>
+
+    <item>
+      <title>Modern Java: 2nd Edition</title>
+      <link>http://jbake.org/blog/2018/04.html</link>
+      <pubDate>Thu, 7 Dec 2017 00:00:00 -0500</pubDate>
+      <guid isPermaLink="false">blog/2018/04.html</guid>
+      	<description>
+	&lt;div class=&quot;paragraph&quot;&gt; 
+ &lt;p&gt;In case you didn’t know, I’ve been working on &lt;a href=&quot;https://leanpub.com/modernjavasecondedition/&quot;&gt;Modern Java: 2nd Edition&lt;/a&gt; for more than a year now. Over that time I’ve decided to add Java 9 and cover more libraries and frameworks like Hibernate and RxJava. I’ve also fleshed out some existing sections more fully. After many distractions and other projects getting in the way, I finally feel like I’m coming close to finishing it! It’s now more of a full introduction to Java and the Java ecosystem from features of Java 8 and 9 all the way to testing, building, web frameworks, reactive streams, and a lot more.&lt;/p&gt; 
+&lt;/div&gt;
+	</description>
+    </item>
+    <item>
+      <title>RxJava</title>
+      <link>http://jbake.org/blog/2018/03.html</link>
+      <pubDate>Wed, 15 Nov 2017 00:00:00 -0500</pubDate>
+      <guid isPermaLink="false">blog/2018/03.html</guid>
+      	<description>
+	&lt;div id=&quot;preamble&quot;&gt; 
+ &lt;div class=&quot;sectionbody&quot;&gt; 
+  &lt;div class=&quot;paragraph&quot;&gt; 
+   &lt;p&gt;&lt;em&gt;(This is an excerpt from &lt;a href=&quot;https://leanpub.com/modernjavasecondedition&quot;&gt;Modern Java: Second Edition&lt;/a&gt;)&lt;/em&gt;&lt;/p&gt; 
+  &lt;/div&gt; 
+  &lt;div class=&quot;paragraph&quot;&gt; 
+   &lt;p&gt;&lt;a href=&quot;https://github.com/ReactiveX/RxJava&quot;&gt;RxJava&lt;/a&gt; is the open-source library for reactive programming that is part of the ReactiveX project. ReactiveX includes implementations in several different languages including rxjs, RxRuby, RxSwift, RxPHP, RxGroovy and many more.&lt;/p&gt; 
+  &lt;/div&gt; 
+  &lt;div class=&quot;paragraph&quot;&gt; 
+   &lt;p&gt;RxJava 2 was rebuilt to be compatible with the Reactive Streams specification and is preferable to RxJava 1.x since it is scheduled for end-of-life. There were many changes from version 1 to 2 that could be confusing. To avoid confusion we will focus on RxJava 2.&lt;/p&gt; 
+  &lt;/div&gt; 
+ &lt;/div&gt; 
+&lt;/div&gt; 
+&lt;div class=&quot;sect1&quot;&gt; 
+ &lt;h2 id=&quot;_flowable&quot;&gt;Flowable&lt;/h2&gt; 
+ &lt;div class=&quot;sectionbody&quot;&gt; 
+  &lt;div class=&quot;paragraph&quot;&gt; 
+   &lt;p&gt;The basic entry class in RxJava is &lt;code&gt;io.reactivex.Flowable&lt;/code&gt;. It implements the Reactive-Streams Pattern and offers factory methods, intermediate operators and the ability to consume reactive dataflows.&lt;/p&gt; 
+  &lt;/div&gt; 
+  &lt;div class=&quot;paragraph&quot;&gt; 
+   &lt;p&gt;The following example demonstrates using RxJava to do a simple calculation on a range of numbers:&lt;/p&gt; 
+  &lt;/div&gt; 
+  &lt;div class=&quot;literalblock&quot;&gt; 
+   &lt;div class=&quot;content&quot;&gt; 
+    &lt;pre&gt;public static List doSquares() {
+   List squares = new ArrayList();
+   Flowable.range(1, 64) //1
+       .observeOn(Schedulers.computation()) //2
+       .map(v -&amp;gt; v * v) //3
+       .blockingSubscribe(squares::add); //4&lt;/pre&gt; 
+   &lt;/div&gt; 
+  &lt;/div&gt; 
+  &lt;div class=&quot;literalblock&quot;&gt; 
+   &lt;div class=&quot;content&quot;&gt; 
+    &lt;pre&gt;   return squares;
+}&lt;/pre&gt; 
+   &lt;/div&gt; 
+  &lt;/div&gt; 
+  &lt;div class=&quot;olist arabic&quot;&gt; 
+   &lt;ol class=&quot;arabic&quot;&gt; 
+    &lt;li&gt; &lt;p&gt;Create a range from 1 to 64.&lt;/p&gt; &lt;/li&gt; 
+    &lt;li&gt; &lt;p&gt;Call the method &lt;code&gt;observeOn&lt;/code&gt; to determine which &lt;code&gt;Scheduler&lt;/code&gt; to use. This determines on which Thread the flow will run.&lt;/p&gt; &lt;/li&gt; 
+    &lt;li&gt; &lt;p&gt;The &lt;code&gt;map&lt;/code&gt; method transforms each value. In this case we calculate the square.&lt;/p&gt; &lt;/li&gt; 
+    &lt;li&gt; &lt;p&gt;Finally, we initiate the flow by calling a “subscribe” method. In this case, &lt;code&gt;blockingSubscribe&lt;/code&gt; blocks until the entire flow has completed. This means that the &lt;code&gt;squares&lt;/code&gt; list will be populated before the return statement. Otherwise the flow would run on a different thread and the values in the squares list would be unpredictable at any given time.&lt;/p&gt; &lt;/li&gt; 
+   &lt;/ol&gt; 
+  &lt;/div&gt; 
+  &lt;div class=&quot;paragraph&quot;&gt; 
+   &lt;p&gt;&lt;em&gt;(This is an excerpt from &lt;a href=&quot;https://leanpub.com/modernjavasecondedition&quot;&gt;Modern Java: Second Edition&lt;/a&gt;)&lt;/em&gt;&lt;/p&gt; 
+  &lt;/div&gt; 
+ &lt;/div&gt; 
+&lt;/div&gt;
+	</description>
+    </item>
+    <item>
+      <title>Gr8Conf US and other things…</title>
+      <link>http://jbake.org/blog/2018/02.html</link>
+      <pubDate>Sat, 5 Aug 2017 00:00:00 -0400</pubDate>
+      <guid isPermaLink="false">blog/2018/02.html</guid>
+      	<description>
+	&lt;div class=&quot;paragraph&quot;&gt; 
+ &lt;p&gt;I just back from &lt;a href=&quot;http://gr8conf.us&quot;&gt;Gr8Conf&lt;/a&gt; in Minneapolis last week and I had a great time. In case you missed it, I led a three hour workshop on Groovy and the &lt;a href=&quot;https://www.slideshare.net/AdamDavis30/learning-groovy-1-half-day-workshop&quot;&gt;slides&lt;/a&gt; and &lt;a href=&quot;https://github.com/adamldavis/2017-gr8conf-learning-groovy&quot;&gt;code&lt;/a&gt; are available (I did some practice screen-casts on youtube as well). Although I was pretty nervous leading up to it, I think it went really well. To those who attended: Thank you for listening and asking such great questions, I hope you enjoyed it! This was my first such workshop and everyone was super nice, so thank you again. I look forward to doing talks and/or workshops again in the future.&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;div class=&quot;paragraph&quot;&gt; 
+ &lt;p&gt;There were tons of great talks at Gr8Conf and although I didn’t get to go to all of them (I wish I could) I learned a lot and loved the energy from the conference in general. The “hallway discussions” and lunches were great as well.&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;div class=&quot;paragraph&quot;&gt; 
+ &lt;p&gt;In other news, “Learning Groovy” is now featured on the official &lt;a href=&quot;http://www.groovy-lang.org/learn.html&quot;&gt;Groovy website&lt;/a&gt;, and was featured in &lt;a href=&quot;http://groovycalamari.com/issues/91?#start&quot;&gt;&quot;Groovy Calamari&quot;&lt;/a&gt;! I can’t stress enough how thrilled I am about this! Meanwhile, thank you to my company the SDG for supporting me in all these endeavors as well as just being a great company.&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;div class=&quot;paragraph&quot;&gt; 
+ &lt;p&gt;&lt;a href=&quot;https://leanpub.com/modernjavasecondedition&quot;&gt;Modern Java: Second Edition&lt;/a&gt; is still in the works and I’ve expanded it to include Java 9. I’m sorry this one has been in production for so long. I hope to get it wrapped up before the final release of Java 9 in September. :-) There’s been a lot going on in the past year …but I won’t make excuses. The good thing is the final product is going to be great. With all the new stuff in Java 9, plus more experience with Java 8 and other things, it should be interesting. I’m also mulling over next books, but nothing to announce yet.&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;div class=&quot;paragraph&quot;&gt; 
+ &lt;p&gt;I met and talked with tons of people at Gr8Conf, but one in particular is Eric Helgeson @nulleric. If you’re at all interested in Grails 3, check out his book, &lt;a href=&quot;https://www.grails3book.com/&quot;&gt;Practical Grails 3&lt;/a&gt;. The cool thing about it is he’s selling his book completely on his own and the book covers the app he wrote to sell the book.&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;div class=&quot;paragraph&quot;&gt; 
+ &lt;p&gt;Also, I’m still working on &lt;a href=&quot;http://groocss.org&quot;&gt;GrooCSS&lt;/a&gt; and have tons of ideas for it.&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;div class=&quot;paragraph&quot;&gt; 
+ &lt;p&gt;Thanks for reading! Hopefully I’ll write again soon…&lt;/p&gt; 
+&lt;/div&gt;
+	</description>
+    </item>
+    <item>
+      <title>Groovy News!</title>
+      <link>http://jbake.org/blog/2018/01.html</link>
+      <pubDate>Thu, 28 Jul 2016 00:00:00 -0400</pubDate>
+      <guid isPermaLink="false">blog/2018/01.html</guid>
+      	<description>
+	&lt;p&gt;Great news everyone! &lt;/p&gt; 
+&lt;p&gt;I can now announce, &lt;a src=&quot;https://www.apress.com/us/book/9781484221167&quot;&gt;Learning Groovy&lt;/a&gt; is available for pre-order on Apress! They have been great to work with and it is much improved from the original version due to their feedback and the technical editor. &lt;/p&gt; 
+&lt;p&gt; &lt;a href=&quot;https://leanpub.com/modernjavasecondedition&quot;&gt;Modern Java: Second Edition&lt;/a&gt; is available in beta-mode on Leanpub! This book joins together my original Modern Java book, with all of the stuff on Java 8 and some new stuff will be coming soon! &lt;/p&gt; 
+&lt;p&gt;I’ve launched &lt;a src=&quot;//groocss.org&quot;&gt;GrooCSS&lt;/a&gt;, a little pet project of mine. More to come on this later. Check it out!&lt;/p&gt; 
+&lt;pre class=&quot;prettyprint&quot;&gt;
+&lt;code&gt;
+&lt;/code&gt;
+&lt;/pre&gt;
+	</description>
+    </item>
+
+  </channel> 
+</rss>

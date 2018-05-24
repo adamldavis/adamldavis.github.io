@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Adam L. Davis</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="This is my blog about building software and solving problems. Sometimes I write about Java, Groovy, programming, etc.">
+    <meta name="author" content="Adam L. Davis">
+    <meta name="keywords" content="java,reactive,groovy,java8,rxjava">
+    <meta name="generator" content="JBake">
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/asciidoctor.css" rel="stylesheet">
+    <link href="css/base.css" rel="stylesheet">
+    <link href="css/prettify.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+    <link rel="shortcut icon" href="favicon.jpg">
+  </head>
+  <body onload="prettyPrint()">
+    <div id="wrap">
+	
+	<!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- a class="navbar-brand" href="">JBake</a -->
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="feed.xml">Subscribe</a></li>
+            <li><a href="about.html">Books</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Links <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a rel=me href="//twitter.com/adamldavis">Me on Twitter</a></li>
+                <li><a rel=me href="//medium.com/@adamldavis#_=_">Me on Medium</a></li>
+                <li><a rel=me href="https://github.com/adamldavis">Me on Github</a></li>
+                <li><a rel=me href="https://bitbucket.org/adamldavis/">Me on Bitbucket</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Nonsense</li>
+                <li><a href="feed.xml">Atom feed</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    <div class="container">
+	<div class="page-header">
+		<h1>Adam L. Davis</h1>
+	</div>
+  			<a href="blog/2018/04.html"><h1>Modern Java: 2nd Edition</h1></a>
+  			<p>07 December 2017</p>
+  			<p><div class="paragraph"> 
+ <p>In case you didn’t know, I’ve been working on <a href="https://leanpub.com/modernjavasecondedition/">Modern Java: 2nd Edition</a> for more than a year now. Over that time I’ve decided to add Java 9 and cover more libraries and frameworks like Hibernate and RxJava. I’ve also fleshed out some existing sections more fully. After many distractions and other projects getting in the way, I finally feel like I’m coming close to finishing it! It’s now more of a full introduction to Java and the Java ecosystem from features of Java 8 and 9 all the way to testing, building, web frameworks, reactive streams, and a lot more.</p> 
+</div></p>
+  			<a href="blog/2018/03.html"><h1>RxJava</h1></a>
+  			<p>15 November 2017</p>
+  			<p><div id="preamble"> 
+ <div class="sectionbody"> 
+  <div class="paragraph"> 
+   <p><em>(This is an excerpt from <a href="https://leanpub.com/modernjavasecondedition">Modern Java: Second Edition</a>)</em></p> 
+  </div> 
+  <div class="paragraph"> 
+   <p><a href="https://github.com/ReactiveX/RxJava">RxJava</a> is the open-source library for reactive programming that is part of the ReactiveX project. ReactiveX includes implementations in several different languages including rxjs, RxRuby, RxSwift, RxPHP, RxGroovy and many more.</p> 
+  </div> 
+  <div class="paragraph"> 
+   <p>RxJava 2 was rebuilt to be compatible with the Reactive Streams specification and is preferable to RxJava 1.x since it is scheduled for end-of-life. There were many changes from version 1 to 2 that could be confusing. To avoid confusion we will focus on RxJava 2.</p> 
+  </div> 
+ </div> 
+</div> 
+<div class="sect1"> 
+ <h2 id="_flowable">Flowable</h2> 
+ <div class="sectionbody"> 
+  <div class="paragraph"> 
+   <p>The basic entry class in RxJava is <code>io.reactivex.Flowable</code>. It implements the Reactive-Streams Pattern and offers factory methods, intermediate operators and the ability to consume reactive dataflows.</p> 
+  </div> 
+  <div class="paragraph"> 
+   <p>The following example demonstrates using RxJava to do a simple calculation on a range of numbers:</p> 
+  </div> 
+  <div class="literalblock"> 
+   <div class="content"> 
+    <pre>public static List doSquares() {
+   List squares = new ArrayList();
+   Flowable.range(1, 64) //1
+       .observeOn(Schedulers.computation()) //2
+       .map(v -&gt; v * v) //3
+       .blockingSubscribe(squares::add); //4</pre> 
+   </div> 
+  </div> 
+  <div class="literalblock"> 
+   <div class="content"> 
+    <pre>   return squares;
+}</pre> 
+   </div> 
+  </div> 
+  <div class="olist arabic"> 
+   <ol class="arabic"> 
+    <li> <p>Create a range from 1 to 64.</p> </li> 
+    <li> <p>Call the method <code>observeOn</code> to determine which <code>Scheduler</code> to use. This determines on which Thread the flow will run.</p> </li> 
+    <li> <p>The <code>map</code> method transforms each value. In this case we calculate the square.</p> </li> 
+    <li> <p>Finally, we initiate the flow by calling a “subscribe” method. In this case, <code>blockingSubscribe</code> blocks until the entire flow has completed. This means that the <code>squares</code> list will be populated before the return statement. Otherwise the flow would run on a different thread and the values in the squares list would be unpredictable at any given time.</p> </li> 
+   </ol> 
+  </div> 
+  <div class="paragraph"> 
+   <p><em>(This is an excerpt from <a href="https://leanpub.com/modernjavasecondedition">Modern Java: Second Edition</a>)</em></p> 
+  </div> 
+ </div> 
+</div></p>
+  			<a href="blog/2018/02.html"><h1>Gr8Conf US and other things…</h1></a>
+  			<p>05 August 2017</p>
+  			<p><div class="paragraph"> 
+ <p>I just back from <a href="http://gr8conf.us">Gr8Conf</a> in Minneapolis last week and I had a great time. In case you missed it, I led a three hour workshop on Groovy and the <a href="https://www.slideshare.net/AdamDavis30/learning-groovy-1-half-day-workshop">slides</a> and <a href="https://github.com/adamldavis/2017-gr8conf-learning-groovy">code</a> are available (I did some practice screen-casts on youtube as well). Although I was pretty nervous leading up to it, I think it went really well. To those who attended: Thank you for listening and asking such great questions, I hope you enjoyed it! This was my first such workshop and everyone was super nice, so thank you again. I look forward to doing talks and/or workshops again in the future.</p> 
+</div> 
+<div class="paragraph"> 
+ <p>There were tons of great talks at Gr8Conf and although I didn’t get to go to all of them (I wish I could) I learned a lot and loved the energy from the conference in general. The “hallway discussions” and lunches were great as well.</p> 
+</div> 
+<div class="paragraph"> 
+ <p>In other news, “Learning Groovy” is now featured on the official <a href="http://www.groovy-lang.org/learn.html">Groovy website</a>, and was featured in <a href="http://groovycalamari.com/issues/91?#start">"Groovy Calamari"</a>! I can’t stress enough how thrilled I am about this! Meanwhile, thank you to my company the SDG for supporting me in all these endeavors as well as just being a great company.</p> 
+</div> 
+<div class="paragraph"> 
+ <p><a href="https://leanpub.com/modernjavasecondedition">Modern Java: Second Edition</a> is still in the works and I’ve expanded it to include Java 9. I’m sorry this one has been in production for so long. I hope to get it wrapped up before the final release of Java 9 in September. :-) There’s been a lot going on in the past year …but I won’t make excuses. The good thing is the final product is going to be great. With all the new stuff in Java 9, plus more experience with Java 8 and other things, it should be interesting. I’m also mulling over next books, but nothing to announce yet.</p> 
+</div> 
+<div class="paragraph"> 
+ <p>I met and talked with tons of people at Gr8Conf, but one in particular is Eric Helgeson @nulleric. If you’re at all interested in Grails 3, check out his book, <a href="https://www.grails3book.com/">Practical Grails 3</a>. The cool thing about it is he’s selling his book completely on his own and the book covers the app he wrote to sell the book.</p> 
+</div> 
+<div class="paragraph"> 
+ <p>Also, I’m still working on <a href="http://groocss.org">GrooCSS</a> and have tons of ideas for it.</p> 
+</div> 
+<div class="paragraph"> 
+ <p>Thanks for reading! Hopefully I’ll write again soon…</p> 
+</div></p>
+  			<a href="blog/2018/01.html"><h1>Groovy News!</h1></a>
+  			<p>28 July 2016</p>
+  			<p><p>Great news everyone! </p> 
+<p>I can now announce, <a src="https://www.apress.com/us/book/9781484221167">Learning Groovy</a> is available for pre-order on Apress! They have been great to work with and it is much improved from the original version due to their feedback and the technical editor. </p> 
+<p> <a href="https://leanpub.com/modernjavasecondedition">Modern Java: Second Edition</a> is available in beta-mode on Leanpub! This book joins together my original Modern Java book, with all of the stuff on Java 8 and some new stuff will be coming soon! </p> 
+<p>I’ve launched <a src="//groocss.org">GrooCSS</a>, a little pet project of mine. More to come on this later. Check it out!</p> 
+<pre class="prettyprint">
+<code>
+</code>
+</pre></p>
+	
+	<hr />
+	
+	<p>Older posts are available in the <a href="archive.html">archive</a>.</p>
+
+		</div>
+		<div id="push"></div>
+    </div>
+    
+    <div id="footer">
+      <div class="container">
+        <p class="muted credit">&copy; 2014 | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.6.1</a></p>
+      </div>
+    </div>
+    
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/prettify.js"></script>
+    
+  </body>
+</html>

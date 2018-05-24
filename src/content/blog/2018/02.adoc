@@ -1,0 +1,44 @@
+title=Gr8Conf US and other things…
+date=2017-08-05
+type=post
+tags=blog,gr8conf,groovy,grails,learningGroovy
+status=published
+~~~~~~
+
+I just back from http://gr8conf.us[Gr8Conf] in Minneapolis last week and I had a great time. In case you missed it, I led a three hour workshop on Groovy and the https://www.slideshare.net/AdamDavis30/learning-groovy-1-half-day-workshop[slides] and https://github.com/adamldavis/2017-gr8conf-learning-groovy[code] are available (I did some practice screen-casts on youtube as well). Although I was pretty nervous leading up to it, I think it went really well. To those who attended: Thank you for listening and asking such great questions, I hope you
+ enjoyed it! This was my first such workshop and everyone was super nice, so thank you again. I look forward to doing talks and/or
+ workshops again in the future.
+
+There were tons of great talks at Gr8Conf and although I didn’t get
+to go to all of them (I wish I could) I learned a lot and loved the
+ energy from the conference in general. The “hallway discussions” and lunches were great as well. 
+
+In other news, “Learning Groovy” is now featured on the official
+http://www.groovy-lang.org/learn.html[Groovy website],
+and was featured in http://groovycalamari.com/issues/91?#start["Groovy Calamari"]!
+I can’t stress enough how
+thrilled I am about this! Meanwhile, thank you to my company the
+SDG for supporting me in all these endeavors as well as just being
+a great company.
+
+https://leanpub.com/modernjavasecondedition[Modern Java: Second Edition]
+ is still in the works
+and I’ve expanded it to include Java 9. I’m sorry this one
+has been in production for so long. I hope to get it wrapped
+up before the final release of Java 9 in September. :-)
+There’s been a lot going on in the past year …but I won’t
+make excuses. The good thing is the final product is going to
+be great. With all the new stuff in Java 9, plus more experience
+with Java 8 and other things, it should be interesting.
+ I’m also mulling over next books, but nothing to announce yet.
+
+I met and talked with tons of people at Gr8Conf, but one in
+particular is Eric Helgeson @nulleric. If you’re at all interested
+in Grails 3, check out his book, https://www.grails3book.com/[Practical Grails 3].
+ The cool thing about it is he’s selling his book completely on his own
+and the book covers the app he wrote to sell the book.
+
+Also, I’m still working on http://groocss.org[GrooCSS]
+ and have tons of ideas for it.
+
+Thanks for reading! Hopefully I’ll write again soon…
