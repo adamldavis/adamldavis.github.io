@@ -10,6 +10,13 @@
   			<a href="${post.uri}"><h1><#escape x as x?xml>${post.title}</#escape></h1></a>
   			<p>${post.date?string("dd MMMM yyyy")}</p>
   			<p>${post.body}</p>
+  			<p>
+  			    <ul class="tags">
+                <#list post.tags as tag>
+                    <li><a href="tags/${tag}.html">${tag}</a></li>
+                </#list>
+  			    </ul>
+  			</p>
   		</#if>
   	</#list>
 	

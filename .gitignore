@@ -1,0 +1,7 @@
+src/.idea
+.idea
+*.iws
+*.iml
+*.bak
+*class
+

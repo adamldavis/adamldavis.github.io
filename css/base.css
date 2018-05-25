@@ -50,3 +50,13 @@ body {
 /*code {
   font-size: 80%;
 }*/
+
+.tags {
+    display: flex;
+}
+.tags li {
+    color: green;
+    padding: 1em;
+    list-style: none;
+}
+.tags li:hover { background: lightgray }

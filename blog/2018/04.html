@@ -58,6 +58,7 @@
                 <li class="divider"></li>
                 <li class="dropdown-header">Nonsense</li>
                 <li><a href="feed.xml">Atom feed</a></li>
+                <li><a href="tags.html">Tags</a></li>
               </ul>
             </li>
           </ul>
@@ -75,24 +76,40 @@
  <p>In case you didn’t know, I’ve been working on <a href="https://leanpub.com/modernjavasecondedition/">Modern Java: 2nd Edition</a> for more than a year now. Over that time I’ve decided to add Java 9 and cover more libraries and frameworks like Hibernate and RxJava. I’ve also fleshed out some existing sections more fully. After many distractions and other projects getting in the way, I finally feel like I’m coming close to finishing it! It’s now more of a full introduction to Java and the Java ecosystem from features of Java 8 and 9 all the way to testing, building, web frameworks, reactive streams, and a lot more.</p> 
 </div></p>
 
-	<hr />
-	
-		</div>
-		<div id="push"></div>
-    </div>
-    
-    <div id="footer">
-      <div class="container">
-        <p class="muted credit">&copy; 2014 | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.6.1</a></p>
-      </div>
-    </div>
-    
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../../js/jquery-1.11.1.min.js"></script>
-    <script src="../../js/bootstrap.min.js"></script>
-    <script src="../../js/prettify.js"></script>
-    
-  </body>
-</html>
+    <p>FreeMarker template error (DEBUG mode; use RETHROW in production!):
+The following has evaluated to null or missing:
+==> post  [in template "post.ftl" at line 13, column 10]
+
+----
+Tip: If the failing expression is known to legally refer to something that's sometimes null or missing, either specify a default value like myOptionalVar!myDefault, or use <#if myOptionalVar??>when-present<#else>when-missing</#if>. (These only cover the last step of the expression; to cover the whole expression, use parenthesis: (myOptionalVar.foo)!myDefault, (myOptionalVar.foo)??
+----
+
+----
+FTL stack trace ("~" means nesting-related):
+	- Failed at: ${post.tags}  [in template "post.ftl" at line 13, column 8]
+----
+
+Java stack trace (for programmers):
+----
+freemarker.core.InvalidReferenceException: [... Exception message was already printed; see it above ...]
+	at freemarker.core.InvalidReferenceException.getInstance(InvalidReferenceException.java:134)
+	at freemarker.core.UnexpectedTypeException.newDesciptionBuilder(UnexpectedTypeException.java:85)
+	at freemarker.core.UnexpectedTypeException.<init>(UnexpectedTypeException.java:48)
+	at freemarker.core.NonHashException.<init>(NonHashException.java:49)
+	at freemarker.core.Dot._eval(Dot.java:48)
+	at freemarker.core.Expression.eval(Expression.java:83)
+	at freemarker.core.DollarVariable.calculateInterpolatedStringOrMarkup(DollarVariable.java:100)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:63)
+	at freemarker.core.Environment.visit(Environment.java:330)
+	at freemarker.core.Environment.visit(Environment.java:336)
+	at freemarker.core.Environment.process(Environment.java:309)
+	at freemarker.template.Template.process(Template.java:384)
+	at org.jbake.template.FreemarkerTemplateEngine.renderDocument(FreemarkerTemplateEngine.java:47)
+	at org.jbake.template.DelegatingTemplateEngine.renderDocument(DelegatingTemplateEngine.java:61)
+	at org.jbake.app.Renderer.render(Renderer.java:212)
+	at org.jbake.render.DocumentsRenderer.render(DocumentsRenderer.java:50)
+	at org.jbake.app.Oven.bake(Oven.java:155)
+	at org.jbake.launcher.Baker.bake(Baker.java:20)
+	at org.jbake.launcher.Main.run(Main.java:97)
+	at org.jbake.launcher.Main.run(Main.java:82)
+	at org.jbake.launcher.Main.main(Main.java:36)
