@@ -9,7 +9,13 @@
     <meta name="keywords" content="java,reactive,groovy,java8,rxjava">
     <meta name="generator" content="JBake">
 
+    <style>pre,p{font-size: 120%;}.red{color: red}a:hover{transition: all 1s ease;}</style>
+    
     <!-- Le styles -->
+        <link href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>css/normalize.css" rel="stylesheet">
+        <link href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>css/style.css" rel="stylesheet">
+        <link href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>css/stylesheet.css" rel="stylesheet">
+        
     <link href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>css/bootstrap.min.css" rel="stylesheet">
     <link href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>css/asciidoctor.css" rel="stylesheet">
     <link href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>css/base.css" rel="stylesheet">

@@ -1,0 +1,22 @@
+title=Reactive Streams in Java
+date=2018-07-08
+type=post
+tags=reactive,streams,java9,java10,java11,books
+status=published
+~~~~~~
+
+image::images/reactivebooks.jpg[picture of books]
+
+So… I’m working on a thing, Reactive Streams in Java. This has been on my back burner for a long time, and I started work on it for real early this year. 
+
+Here’s the description from the book’s landing page:
+
+"Reactive Streams are a standard approach to handling concurrency in modern applications. The Java 9 release includes new support for reactive streams. This book attempts to provide an easy introduction to Reactive Streams in Java including in depth introductions to RxJava, Akka Streams, and Reactor and how they can be used."
+
+This book will cover everything you need to know about existing projects and how they translate in Java 9 (and 10 and 11). Mainly in Java 10 they’ve introduced “var” and this can be used for intermediate variables.
+
+This book uses a progressive publishing model. As the book grows, so does the price. This encourages early adopters, so… maybe think about buying it. I’m not expecting a lot of sales so I appreciate every reader. Feel free to ask me questions (or pester me to keep writing).
+
+This book has been picked up by a publisher - I’d rather not say who because I’m not sure I’m allowed to :) - and will be published in a complete, edited, and polished version later this year (winter 2018). However, the only way to get it right now is from leanpub. Thanks!
+
+

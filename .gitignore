@@ -4,4 +4,7 @@ src/.idea
 *.iml
 *.bak
 *class
+build/
+target/
+.gradle
 

@@ -1,0 +1,19 @@
+title=Gr8Conf EU 2019
+date=2019-06-28
+type=post
+tags=gr8conf,groovy,reactive,travel
+status=published
+~~~~~~
+
+I had the great privilege of leading a workshop and two talks at https://gr8conf.eu/[Gr8Conf EU] 2019 in Copenhagen, Denmark. This was also my first time attending Gr8Conf EU (I did attend Gr8Conf US 2017). My life has finally quieted down enough now that I can write about my experience.
+
+The conference was, in a word, great. I saw a few familiar faces, like Paul King, Jeff Scott Brown, Michael Carducci, Sergio del Amo Caballero, and Jeff Beck (all of whom I’ve seen before, mostly as just another audience member), and met some great new people whom I’ve never seen before but who certainly left a lasting impression that I won’t soon forget like Vladimír Oraný, Szymon Stepniak, Jennifer Strater, Charlotte Mays, and others. For an extremely introverted person such as myself, I don’t often talk to so many people at one time, and I’m grateful for the opportunity to converse and openness of everyone at this conference. (The coffee and food was great too!)
+
+There were too many great talks to list, but some highlights for me were Paul King’s keynote on Groovy 2.5, 3 and 4 (which is available https://www.youtube.com/watch?v=B05oJjtSEVQ[online]), Jesper Steen Møller’s talk, “Reactive Web APIs with Micronaut” (which brilliantly showed how to use Reactive Streams within a micronaut based microservice including a demo of how to use a backpressure strategy), and the “Running a developer’s blog” talk by Szymon Stepniak (I hope to use some of his suggestions in the future if I ever get the time).
+
+Oh and I did some talks too. Eventually these should make it onto youtube, but it might be many months. For now you can check out my github repo ( https://github.com/adamldavis/2019-gr8conf ) which has all of the code related to my talks/workshop plus a bit more. I tweeted out the slides at some point but it’s up to you to find them. Just kidding. Here ( https://www.slideshare.net/adam1davis/ ).
+
+It was a really great conference and Copenhagen is beautiful. I hope to return again next year (or maybe in two years if not next year).
+
+Meanwhile, I’m finished with the final updates to “Learning Groovy 3” which should be released later this year! I worked on this for several months this year and my technical reviewer gave me some great feedback so it should be a good one. In addition to updating the book for Groovy 3.0 and Grails 3.3, I’ve also updated and polished additional areas of the book based on my personal understanding of Groovy and things that have changed over the years.
+

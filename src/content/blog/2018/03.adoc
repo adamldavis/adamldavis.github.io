@@ -1,0 +1,17 @@
+title=Test Driven Design (TDD)
+date=2018-11-27
+type=post
+tags=tdd,junit
+status=published
+~~~~~~
+
+When I first started to learn programming, first on a TI-89 calculator and then QBASIC, and even later in Java, I had no idea what testing was all about. I thought testing was running the program and making sure it worked. Maybe even put some debug print statements here and there. It was years later I learned about automated testing and test frameworks like JUnit.
+
+As the years went by, mainly after starting to work, I learned the benefit of writing tests - not only to ensure the correctness of code, but also to enable future changes without the fear of breaking things. This is the strongest quality of tests: to enable change.
+
+Writing tests also helps you think the problem you’re trying to solve and clarifies your thinking. As you write the test you have to figure out what exactly your code does, what are the edges cases, and what could go wrong. With *TDD (Test Driven Development)*, it simply goes one step further: you write the tests first, then the code. Instead of blindly typing out the code for a solution you vaguely hold in your head, you specify what you want your code to do - the solution space - then go about making it happen - the implementation. It has the added benefit that your code is always well tested, since you wrote the tests first, rather than an after-thought.
+
+The last D in TDD could also stand for “Design” since when you write tests you are often forced to design the code to be more easily testable. This helps keep code clear and concise with a good separation of concerns. You should divide you logic into the smallest units possible and TDD helps you do this.
+
+I don’t always do TDD - many times the code is so simple that writing tests feels like repeating yourself - but when I do I find the resulting code to be clear, correct, and well designed. If you haven’t tried it, I highly suggest trying TDD today.
+

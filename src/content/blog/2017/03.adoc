@@ -27,13 +27,13 @@ intermediate operators and the ability to consume reactive dataflows.
 
 The following example demonstrates using RxJava to do a simple calculation on a range of numbers:
 
+[source,java]
     public static List doSquares() {
        List squares = new ArrayList();
        Flowable.range(1, 64) //1
            .observeOn(Schedulers.computation()) //2
            .map(v -> v * v) //3
            .blockingSubscribe(squares::add); //4
-
        return squares;
     }
 

@@ -1,0 +1,24 @@
+title=Upgrading to Java 11
+date=2018-12-11
+type=post
+tags=java9,java10,java11,books
+status=published
+~~~~~~
+
+
+
+So you want to upgrade to Java 11?
+
+Maybe you’ve put off upgrading Java for a while but are realizing that Oracle soon plans to stop supporting Java 8. Have no fear, since you’ve procrastinated, other people have gone through the pain already and shared what they learned!
+
+First of all, what’s new in Java 9, 10, and 11? The big things are JShell, modularity, local variable declarations (var), and in 11 the removal of JavaEE, xml, and corba among other things. Davide Angelocola shared a good summary of the new features, as well as his notes on upgrading to Java 11 here in this https://twitter.com/the_dfa/status/1052091536484298753[tweet (pdf)].
+
+In another post by http://jugsi.blogspot.com/2018/11/from-java-8-to-java-11-in-single-step.html[Giacomo Veneri] gives a good overview of features from 8 to 11 including creating immutable collections, new String methods, and more and comes with a handy chart.
+image
+
+Finally, https://winterbe.com/posts/2018/08/29/migrate-maven-projects-to-java-11-jigsaw/[Benjamin Winterberg gives a great overview] of how to upgrade to Java 11 with Maven.  The main takeaway is to update all your dependencies and add any missing libraries like jaxb and javax.annotations.
+
+Due to Oracle’s change in licensing it is highly recommended you use OpenJDK in production now (it’s mostly identical to Oracle Java and Oracle now charges for Oracle JDK in production). Other editions of Java exist or will exist in the future such as https://aws.amazon.com/corretto/[Amazon Coretto] due to the changes.
+
+Happy upgrading!
+

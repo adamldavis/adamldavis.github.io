@@ -1,0 +1,33 @@
+title=Beyond Java 9
+date=2018-07-18
+type=post
+tags=java9,java10,java11,conferences
+status=published
+~~~~~~
+
+I’m at UberConf this week - it’s going great. Last night I sat through a talk by Venkat Subramaniam called “Beyond Java 9″. I’ve always been curious about what’s coming up (and already here in Java 10) and Venkat always is a great speaker so I was excited to go to this one. Here are my notes:
+
+*CompleteableFuture* was added in Java 8. Many of us missed it because we were so focused on Streams. Java 9 added modules.
+
+Oracle has decided to start releasing a new major version of Java every 6 months.Not so much for the end developers, this is to make adding new features to language easier and less stressful for the teams behind Java.
+
+At the same time, Oracle is changing their support of previous versions to some degree. If you do not pay for service, this doesn’t effect you except that if you want to be using a “supported” version of Java at all times, you will have to upgrade every six months.
+
+If you do pay for standard support, you can get up to three years of support for long-term-service (LTS) versions of which Java 11 is the next one.
+
+The standard reliability of Java is not changing. Despite the appearance of faster releases, the actual development of the Java the language is not getting much faster. By changing to a major release every six months, the Java language features that are in development for years (sometimes more than ten years) don’t have the added pressure of fitting into one release every three or four years. This way each release can add one or two major features, rather than cramming tons of new features into each major release - as has been the case in the past.
+
+Meanwhile, Oracle is continuing to release OpenJDK as open source.
+This allows other companies, such as Azul, to modify it and provide their own support contracts, effectively creating a marketplace for JVMs (which is a good thing for many reasons). This allows some competition and is a force towards innovation.
+
+Which comes to one of the most important points I took from this talk:
+“Java will not innovate on language features. It will innovate on Implementation.”
+
+--
+
+Java has never been on the cutting edge of language features, instead the people behind Java take a long look at what works in other languages and takes time to implement these features in the best way possible. For example, Java 8 lambdas expressions use invoke-dynamic. The behind the scenes implementation allows lambdas to be extremely performant and at the same time allow for future improvements.
+
+Venkat then went on to talk about upcoming projects in Java: Project Panama, Project Valhalla, Project Amber, and Project Loom, which I will not go into right now. This talk was both entertaining and informative (Venkat uses metaphors and jokes sprinkled throughout his talks).
+
+Although this is a large change in the Java language development cycle, in the end this is a good thing because it will encourage Java developers to update more often and spread out new features over more time, not bundling them all at once.
+

@@ -2,126 +2,507 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>JBake</title>
-    <link>http://jbake.org</link>
-    <atom:link href="http://jbake.org/feed.xml" rel="self" type="application/rss+xml" />
+    <link>http://adamldavis.com</link>
+    <atom:link href="http://adamldavis.com/feed.xml" rel="self" type="application/rss+xml" />
     <description>JBake Bootstrap Template</description>
     <language>en-gb</language>
-    <pubDate>Fri, 25 May 2018 14:23:12 -0400</pubDate>
-    <lastBuildDate>Fri, 25 May 2018 14:23:12 -0400</lastBuildDate>
+    <pubDate>Sun, 4 Aug 2019 14:27:18 -0400</pubDate>
+    <lastBuildDate>Sun, 4 Aug 2019 14:27:18 -0400</lastBuildDate>
 
     <item>
+      <title>Gr8Conf EU 2019</title>
+      <link>http://adamldavis.com/blog/2019/03.html</link>
+      <pubDate>Fri, 28 Jun 2019 00:00:00 -0400</pubDate>
+      <guid isPermaLink="false">blog/2019/03.html</guid>
+      	<description>
+	&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;I had the great privilege of leading a workshop and two talks at &lt;a href=&quot;https://gr8conf.eu/&quot;&gt;Gr8Conf EU&lt;/a&gt; 2019 in Copenhagen, Denmark. This was also my first time attending Gr8Conf EU (I did attend Gr8Conf US 2017). My life has finally quieted down enough now that I can write about my experience.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;The conference was, in a word, great. I saw a few familiar faces, like Paul King, Jeff Scott Brown, Michael Carducci, Sergio del Amo Caballero, and Jeff Beck (all of whom I’ve seen before, mostly as just another audience member), and met some great new people whom I’ve never seen before but who certainly left a lasting impression that I won’t soon forget like Vladimír Oraný, Szymon Stepniak, Jennifer Strater, Charlotte Mays, and others. For an extremely introverted person such as myself, I don’t often talk to so many people at one time, and I’m grateful for the opportunity to converse and openness of everyone at this conference. (The coffee and food was great too!)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;There were too many great talks to list, but some highlights for me were Paul King’s keynote on Groovy 2.5, 3 and 4 (which is available &lt;a href=&quot;https://www.youtube.com/watch?v=B05oJjtSEVQ&quot;&gt;online&lt;/a&gt;), Jesper Steen Møller’s talk, “Reactive Web APIs with Micronaut” (which brilliantly showed how to use Reactive Streams within a micronaut based microservice including a demo of how to use a backpressure strategy), and the “Running a developer’s blog” talk by Szymon Stepniak (I hope to use some of his suggestions in the future if I ever get the time).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Oh and I did some talks too. Eventually these should make it onto youtube, but it might be many months. For now you can check out my github repo ( &lt;a href=&quot;https://github.com/adamldavis/2019-gr8conf&quot; class=&quot;bare&quot;&gt;https://github.com/adamldavis/2019-gr8conf&lt;/a&gt; ) which has all of the code related to my talks/workshop plus a bit more. I tweeted out the slides at some point but it’s up to you to find them. Just kidding. Here ( &lt;a href=&quot;https://www.slideshare.net/adam1davis/&quot; class=&quot;bare&quot;&gt;https://www.slideshare.net/adam1davis/&lt;/a&gt; ).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;It was a really great conference and Copenhagen is beautiful. I hope to return again next year (or maybe in two years if not next year).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Meanwhile, I’m finished with the final updates to “Learning Groovy 3” which should be released later this year! I worked on this for several months this year and my technical reviewer gave me some great feedback so it should be a good one. In addition to updating the book for Groovy 3.0 and Grails 3.3, I’ve also updated and polished additional areas of the book based on my personal understanding of Groovy and things that have changed over the years.&lt;/p&gt;
+&lt;/div&gt;
+	</description>
+    </item>
+    <item>
+      <title>Micronaut</title>
+      <link>http://adamldavis.com/blog/2019/02.html</link>
+      <pubDate>Sun, 31 Mar 2019 00:00:00 -0400</pubDate>
+      <guid isPermaLink="false">blog/2019/02.html</guid>
+      	<description>
+	&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;images/micronaut_mini.png&quot; alt=&quot;micronaut&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;https://micronaut.io/&quot;&gt;Micronaut&lt;/a&gt; was built by many of same people behind Grails. It uses compile-time annotation processing to build an application with a deadly fast startup time, has support for reactive streams, netty, and a reactive http client, among other things.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;It’s open-source (Apache 2) and supports applications written in Java, Groovy, or Kotlin.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Due to it’s non-reflective nature, it naturally enables applications to run on the GraalVM, which is described:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;literalblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre&gt;`&quot;GraalVM is a new universal virtual machine from Oracle that supports a
+polyglot runtime environment and the ability to compile Java
+applications down to native machine code.&quot;` –https://micronaut.io/&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;GraalVM compiles applications to native code allowing for incredibly fast application start-up speeds even for large applications, which makes it best suited for “serverless” applications, like AWS Lambdas or the like.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Even running on a vanilla JVM, Micronaut has very low overhead (in both memory and processor time) and has profiles for targeting different platforms: server, function (like AWS Lambda), or command-line applications.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;It came out not too long ago and I’ve only made a few applications with it but so far it looks really great!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;I’ve added an example of using micronaut with groocss and the asset-pipeline. Check it out.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/adamldavis/groocss/tree/master/micronaut-example&quot; class=&quot;bare&quot;&gt;https://github.com/adamldavis/groocss/tree/master/micronaut-example&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+	</description>
+    </item>
+    <item>
+      <title>Groovy 2.5 &amp; 3</title>
+      <link>http://adamldavis.com/blog/2019/01.html</link>
+      <pubDate>Wed, 13 Feb 2019 00:00:00 -0500</pubDate>
+      <guid isPermaLink="false">blog/2019/01.html</guid>
+      	<description>
+	&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;If you have followed me for any time, you know I’m a big fan of Groovy, the super-Java-like language that runs on the JVM. You’ve probably heard of it, maybe you even use it, but what is less known is that it’s constantly evolving and has some great new features coming soon (or already here).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Inspired by some recent news, here’s all about Groovy 2.5 and 3.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;_updates_in_groovy_2_5&quot;&gt;Updates in Groovy 2.5&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Groovy 2.5 added support for JDK9+, added 11 new AST transformations, and added the macro feature which makes writing AST transformations much easier.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;The annotations added in Groovy 2.5 include: @AutoFinal, @AutoImplement, @ImmutableBase, @ImmutableOptions, @MapConstructor, @NamedDelegate, @NamedParam, @NamedParams, @NamedVariant, @PropertyOptions, and @VisibilityOptions.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;@AutoImplement: Automatically implements missing abstract methods (such as those from an Interface). You can specify an Exception to throw from those methods such as UnsupportedOperationException. It can be useful for generating test stubs or when you only need to implement a subset of inherited abstract methods.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;@AutoFinal: Automatically adds final modifier to method parameters.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;@MapConstructor: Adds a constructor to your class that has one Map parameter and expects field-names as keys and sets the corresponding field values.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Also many annotations were improved with additional attributes. For example, @TupleConstructor now includes seven more attributes. The @Immutable annotation was updated to recognize the Date/time classes added in Java 8 are immutable, and to handle Optional.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;_updates_in_groovy_3&quot;&gt;Updates in Groovy 3&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Groovy 3 sports a completely rewritten parser that brings Groovy up to parity with the latest Java 11 syntax along with new Groovy-only features. It runs on JDK 8 minimum and has better support for JDK 9/10/11.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;The Java-like syntax now includes Java-style lambda expressions and method references, array initialization, and do/while loops, which have eluded Groovy for many years.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;&lt;em&gt;Edit: There is hope that in the near future after working out some issues. The new parser also compiles to “indy” by default which uses Java’s invokedynamic feature. This has been available for years, but was not the default before. This, along with other changes, makes Groovy code more performant.&lt;/em&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;_new_operators&quot;&gt;New Operators&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Identity: === can now be used to express identity-equal and !== and not identity-equal. Since Groovy interprets == as “.equals”, it used “.is” for identity-equals in the past. The support of “===” should avoid some confusion. This is similar to JavaScript’s === operator.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Negative variants of operators: !instanceof and !in are now supported. This will simplify the syntax in these situations. Before you would have to type !(x instanceof Date) whereas now you can simply type x !instanceof Date.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Elvis Assignment: You may be familiar with the elvis operator (?:) in Groovy. In many cases you would use this operation to provide a default when assigning a value. For example: name = name ?: ‘None’. Now you can shorten this expression to have the same meaning in Groovy 3 with the following: name ?= &apos;None’&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Safe indexing: Much like the safe-reference operator, there is now a safe-indexing operator, ?. This allows you to access an index of an array (or List), but if the array is null, it will return null instead of throwing an exception. For example the following would set the value to the first value of the array, or null if the array is null: value = array?[0]&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;_java_parity&quot;&gt;Java Parity&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Groovy 3 support new features added from Java 8 to 11, such as lambda expressions, method references, constructor references, and even local variables (var).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;All flavours of lambda expressions are supported (and currently compiled to Closures):&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;No parameters: () &amp;#8594; expression&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Single paramter: x &amp;#8594; expression&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Explicit return is optional: (x, y) &amp;#8594; { x * y }&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Types are allowed: (int x, int y) &amp;#8594; { return x + y }&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Default values are allowed: (int x, int y = 10) &amp;#8594; x+y&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;There’s much more….. in fact, I’m working on updating my book, &lt;strong&gt;Learning Groovy&lt;/strong&gt;, and releasing a second edition later this year, so stay tuned!&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;_conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;As you can see there’s a ton to be excited about with Groovy 3. Groovy 3.0.0-alpha-4 is available right now so go check it out.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Learn more at &lt;a href=&quot;http://groovy.apache.org&quot; class=&quot;bare&quot;&gt;http://groovy.apache.org&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+	</description>
+    </item>
+    <item>
+      <title>Upgrading to Java 11</title>
+      <link>http://adamldavis.com/blog/2018/04.html</link>
+      <pubDate>Tue, 11 Dec 2018 00:00:00 -0500</pubDate>
+      <guid isPermaLink="false">blog/2018/04.html</guid>
+      	<description>
+	&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;So you want to upgrade to Java 11?&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Maybe you’ve put off upgrading Java for a while but are realizing that Oracle soon plans to stop supporting Java 8. Have no fear, since you’ve procrastinated, other people have gone through the pain already and shared what they learned!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;First of all, what’s new in Java 9, 10, and 11? The big things are JShell, modularity, local variable declarations (var), and in 11 the removal of JavaEE, xml, and corba among other things. Davide Angelocola shared a good summary of the new features, as well as his notes on upgrading to Java 11 here in this &lt;a href=&quot;https://twitter.com/the_dfa/status/1052091536484298753&quot;&gt;tweet (pdf)&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;In another post by &lt;a href=&quot;http://jugsi.blogspot.com/2018/11/from-java-8-to-java-11-in-single-step.html&quot;&gt;Giacomo Veneri&lt;/a&gt; gives a good overview of features from 8 to 11 including creating immutable collections, new String methods, and more and comes with a handy chart.
+image&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Finally, &lt;a href=&quot;https://winterbe.com/posts/2018/08/29/migrate-maven-projects-to-java-11-jigsaw/&quot;&gt;Benjamin Winterberg gives a great overview&lt;/a&gt; of how to upgrade to Java 11 with Maven.  The main takeaway is to update all your dependencies and add any missing libraries like jaxb and javax.annotations.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Due to Oracle’s change in licensing it is highly recommended you use OpenJDK in production now (it’s mostly identical to Oracle Java and Oracle now charges for Oracle JDK in production). Other editions of Java exist or will exist in the future such as &lt;a href=&quot;https://aws.amazon.com/corretto/&quot;&gt;Amazon Coretto&lt;/a&gt; due to the changes.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Happy upgrading!&lt;/p&gt;
+&lt;/div&gt;
+	</description>
+    </item>
+    <item>
+      <title>Test Driven Design (TDD)</title>
+      <link>http://adamldavis.com/blog/2018/03.html</link>
+      <pubDate>Tue, 27 Nov 2018 00:00:00 -0500</pubDate>
+      <guid isPermaLink="false">blog/2018/03.html</guid>
+      	<description>
+	&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;When I first started to learn programming, first on a TI-89 calculator and then QBASIC, and even later in Java, I had no idea what testing was all about. I thought testing was running the program and making sure it worked. Maybe even put some debug print statements here and there. It was years later I learned about automated testing and test frameworks like JUnit.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;As the years went by, mainly after starting to work, I learned the benefit of writing tests - not only to ensure the correctness of code, but also to enable future changes without the fear of breaking things. This is the strongest quality of tests: to enable change.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Writing tests also helps you think the problem you’re trying to solve and clarifies your thinking. As you write the test you have to figure out what exactly your code does, what are the edges cases, and what could go wrong. With &lt;strong&gt;TDD (Test Driven Development)&lt;/strong&gt;, it simply goes one step further: you write the tests first, then the code. Instead of blindly typing out the code for a solution you vaguely hold in your head, you specify what you want your code to do - the solution space - then go about making it happen - the implementation. It has the added benefit that your code is always well tested, since you wrote the tests first, rather than an after-thought.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;The last D in TDD could also stand for “Design” since when you write tests you are often forced to design the code to be more easily testable. This helps keep code clear and concise with a good separation of concerns. You should divide you logic into the smallest units possible and TDD helps you do this.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;I don’t always do TDD - many times the code is so simple that writing tests feels like repeating yourself - but when I do I find the resulting code to be clear, correct, and well designed. If you haven’t tried it, I highly suggest trying TDD today.&lt;/p&gt;
+&lt;/div&gt;
+	</description>
+    </item>
+    <item>
+      <title>Beyond Java 9</title>
+      <link>http://adamldavis.com/blog/2018/02.html</link>
+      <pubDate>Wed, 18 Jul 2018 00:00:00 -0400</pubDate>
+      <guid isPermaLink="false">blog/2018/02.html</guid>
+      	<description>
+	&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;I’m at UberConf this week - it’s going great. Last night I sat through a talk by Venkat Subramaniam called “Beyond Java 9″. I’ve always been curious about what’s coming up (and already here in Java 10) and Venkat always is a great speaker so I was excited to go to this one. Here are my notes:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;&lt;strong&gt;CompleteableFuture&lt;/strong&gt; was added in Java 8. Many of us missed it because we were so focused on Streams. Java 9 added modules.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Oracle has decided to start releasing a new major version of Java every 6 months.Not so much for the end developers, this is to make adding new features to language easier and less stressful for the teams behind Java.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;At the same time, Oracle is changing their support of previous versions to some degree. If you do not pay for service, this doesn’t effect you except that if you want to be using a “supported” version of Java at all times, you will have to upgrade every six months.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;If you do pay for standard support, you can get up to three years of support for long-term-service (LTS) versions of which Java 11 is the next one.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;The standard reliability of Java is not changing. Despite the appearance of faster releases, the actual development of the Java the language is not getting much faster. By changing to a major release every six months, the Java language features that are in development for years (sometimes more than ten years) don’t have the added pressure of fitting into one release every three or four years. This way each release can add one or two major features, rather than cramming tons of new features into each major release - as has been the case in the past.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Meanwhile, Oracle is continuing to release OpenJDK as open source.
+This allows other companies, such as Azul, to modify it and provide their own support contracts, effectively creating a marketplace for JVMs (which is a good thing for many reasons). This allows some competition and is a force towards innovation.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Which comes to one of the most important points I took from this talk:
+“Java will not innovate on language features. It will innovate on Implementation.”&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;openblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Java has never been on the cutting edge of language features, instead the people behind Java take a long look at what works in other languages and takes time to implement these features in the best way possible. For example, Java 8 lambdas expressions use invoke-dynamic. The behind the scenes implementation allows lambdas to be extremely performant and at the same time allow for future improvements.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Venkat then went on to talk about upcoming projects in Java: Project Panama, Project Valhalla, Project Amber, and Project Loom, which I will not go into right now. This talk was both entertaining and informative (Venkat uses metaphors and jokes sprinkled throughout his talks).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Although this is a large change in the Java language development cycle, in the end this is a good thing because it will encourage Java developers to update more often and spread out new features over more time, not bundling them all at once.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+	</description>
+    </item>
+    <item>
+      <title>Reactive Streams in Java</title>
+      <link>http://adamldavis.com/blog/2018/01.html</link>
+      <pubDate>Sun, 8 Jul 2018 00:00:00 -0400</pubDate>
+      <guid isPermaLink="false">blog/2018/01.html</guid>
+      	<description>
+	&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;images/reactivebooks.jpg&quot; alt=&quot;picture of books&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;So… I’m working on a thing, Reactive Streams in Java. This has been on my back burner for a long time, and I started work on it for real early this year.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Here’s the description from the book’s landing page:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;&quot;Reactive Streams are a standard approach to handling concurrency in modern applications. The Java 9 release includes new support for reactive streams. This book attempts to provide an easy introduction to Reactive Streams in Java including in depth introductions to RxJava, Akka Streams, and Reactor and how they can be used.&quot;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;This book will cover everything you need to know about existing projects and how they translate in Java 9 (and 10 and 11). Mainly in Java 10 they’ve introduced “var” and this can be used for intermediate variables.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;This book uses a progressive publishing model. As the book grows, so does the price. This encourages early adopters, so… maybe think about buying it. I’m not expecting a lot of sales so I appreciate every reader. Feel free to ask me questions (or pester me to keep writing).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;This book has been picked up by a publisher - I’d rather not say who because I’m not sure I’m allowed to :) - and will be published in a complete, edited, and polished version later this year (winter 2018). However, the only way to get it right now is from leanpub. Thanks!&lt;/p&gt;
+&lt;/div&gt;
+	</description>
+    </item>
+    <item>
       <title>Modern Java: 2nd Edition</title>
-      <link>http://jbake.org/blog/2017/04.html</link>
+      <link>http://adamldavis.com/blog/2017/04.html</link>
       <pubDate>Thu, 7 Dec 2017 00:00:00 -0500</pubDate>
       <guid isPermaLink="false">blog/2017/04.html</guid>
       	<description>
-	&lt;div class=&quot;paragraph&quot;&gt; 
- &lt;p&gt;In case you didn’t know, I’ve been working on &lt;a href=&quot;https://leanpub.com/modernjavasecondedition/&quot;&gt;Modern Java: 2nd Edition&lt;/a&gt; for more than a year now. Over that time I’ve decided to add Java 9 and cover more libraries and frameworks like Hibernate and RxJava. I’ve also fleshed out some existing sections more fully. After many distractions and other projects getting in the way, I finally feel like I’m coming close to finishing it! It’s now more of a full introduction to Java and the Java ecosystem from features of Java 8 and 9 all the way to testing, building, web frameworks, reactive streams, and a lot more.&lt;/p&gt; 
+	&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;In case you didn’t know, I’ve been working on
+&lt;a href=&quot;https://leanpub.com/modernjavasecondedition/&quot;&gt;Modern Java: 2nd Edition&lt;/a&gt;
+ for more than a year now. Over that time I’ve decided to
+add Java 9 and cover more libraries and frameworks like Hibernate and
+RxJava. I’ve also fleshed out some existing sections more fully.
+After many distractions and other projects getting in the way,
+I finally feel like I’m coming close to finishing it!  It’s now
+more of a full introduction to Java and the Java ecosystem from
+features of Java 8 and 9 all the way to testing, building, web
+frameworks, reactive streams, and a lot more.&lt;/p&gt;
 &lt;/div&gt;
 	</description>
     </item>
     <item>
       <title>RxJava</title>
-      <link>http://jbake.org/blog/2017/03.html</link>
+      <link>http://adamldavis.com/blog/2017/03.html</link>
       <pubDate>Wed, 15 Nov 2017 00:00:00 -0500</pubDate>
       <guid isPermaLink="false">blog/2017/03.html</guid>
       	<description>
-	&lt;div id=&quot;preamble&quot;&gt; 
- &lt;div class=&quot;sectionbody&quot;&gt; 
-  &lt;div class=&quot;paragraph&quot;&gt; 
-   &lt;p&gt;&lt;em&gt;(This is an excerpt from &lt;a href=&quot;https://leanpub.com/modernjavasecondedition&quot;&gt;Modern Java: Second Edition&lt;/a&gt;)&lt;/em&gt;&lt;/p&gt; 
-  &lt;/div&gt; 
-  &lt;div class=&quot;paragraph&quot;&gt; 
-   &lt;p&gt;&lt;a href=&quot;https://github.com/ReactiveX/RxJava&quot;&gt;RxJava&lt;/a&gt; is the open-source library for reactive programming that is part of the ReactiveX project. ReactiveX includes implementations in several different languages including rxjs, RxRuby, RxSwift, RxPHP, RxGroovy and many more.&lt;/p&gt; 
-  &lt;/div&gt; 
-  &lt;div class=&quot;paragraph&quot;&gt; 
-   &lt;p&gt;RxJava 2 was rebuilt to be compatible with the Reactive Streams specification and is preferable to RxJava 1.x since it is scheduled for end-of-life. There were many changes from version 1 to 2 that could be confusing. To avoid confusion we will focus on RxJava 2.&lt;/p&gt; 
-  &lt;/div&gt; 
- &lt;/div&gt; 
-&lt;/div&gt; 
-&lt;div class=&quot;sect1&quot;&gt; 
- &lt;h2 id=&quot;_flowable&quot;&gt;Flowable&lt;/h2&gt; 
- &lt;div class=&quot;sectionbody&quot;&gt; 
-  &lt;div class=&quot;paragraph&quot;&gt; 
-   &lt;p&gt;The basic entry class in RxJava is &lt;code&gt;io.reactivex.Flowable&lt;/code&gt;. It implements the Reactive-Streams Pattern and offers factory methods, intermediate operators and the ability to consume reactive dataflows.&lt;/p&gt; 
-  &lt;/div&gt; 
-  &lt;div class=&quot;paragraph&quot;&gt; 
-   &lt;p&gt;The following example demonstrates using RxJava to do a simple calculation on a range of numbers:&lt;/p&gt; 
-  &lt;/div&gt; 
-  &lt;div class=&quot;literalblock&quot;&gt; 
-   &lt;div class=&quot;content&quot;&gt; 
-    &lt;pre&gt;public static List doSquares() {
-   List squares = new ArrayList();
-   Flowable.range(1, 64) //1
-       .observeOn(Schedulers.computation()) //2
-       .map(v -&amp;gt; v * v) //3
-       .blockingSubscribe(squares::add); //4&lt;/pre&gt; 
-   &lt;/div&gt; 
-  &lt;/div&gt; 
-  &lt;div class=&quot;literalblock&quot;&gt; 
-   &lt;div class=&quot;content&quot;&gt; 
-    &lt;pre&gt;   return squares;
-}&lt;/pre&gt; 
-   &lt;/div&gt; 
-  &lt;/div&gt; 
-  &lt;div class=&quot;olist arabic&quot;&gt; 
-   &lt;ol class=&quot;arabic&quot;&gt; 
-    &lt;li&gt; &lt;p&gt;Create a range from 1 to 64.&lt;/p&gt; &lt;/li&gt; 
-    &lt;li&gt; &lt;p&gt;Call the method &lt;code&gt;observeOn&lt;/code&gt; to determine which &lt;code&gt;Scheduler&lt;/code&gt; to use. This determines on which Thread the flow will run.&lt;/p&gt; &lt;/li&gt; 
-    &lt;li&gt; &lt;p&gt;The &lt;code&gt;map&lt;/code&gt; method transforms each value. In this case we calculate the square.&lt;/p&gt; &lt;/li&gt; 
-    &lt;li&gt; &lt;p&gt;Finally, we initiate the flow by calling a “subscribe” method. In this case, &lt;code&gt;blockingSubscribe&lt;/code&gt; blocks until the entire flow has completed. This means that the &lt;code&gt;squares&lt;/code&gt; list will be populated before the return statement. Otherwise the flow would run on a different thread and the values in the squares list would be unpredictable at any given time.&lt;/p&gt; &lt;/li&gt; 
-   &lt;/ol&gt; 
-  &lt;/div&gt; 
-  &lt;div class=&quot;paragraph&quot;&gt; 
-   &lt;p&gt;&lt;em&gt;(This is an excerpt from &lt;a href=&quot;https://leanpub.com/modernjavasecondedition&quot;&gt;Modern Java: Second Edition&lt;/a&gt;)&lt;/em&gt;&lt;/p&gt; 
-  &lt;/div&gt; 
- &lt;/div&gt; 
+	&lt;div id=&quot;preamble&quot;&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;&lt;em&gt;(This is an excerpt from &lt;a href=&quot;https://leanpub.com/modernjavasecondedition&quot;&gt;Modern Java: Second  Edition&lt;/a&gt;)&lt;/em&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/ReactiveX/RxJava&quot;&gt;RxJava&lt;/a&gt; is the open-source library for
+reactive programming that is part of the ReactiveX project. ReactiveX includes
+implementations in several different languages including rxjs, RxRuby, RxSwift,
+RxPHP, RxGroovy and many more.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;RxJava 2 was rebuilt to be compatible with the Reactive Streams specification and
+is preferable to RxJava 1.x since it is scheduled for end-of-life. There were many
+changes from version 1 to 2 that could be confusing.
+To avoid confusion we will focus on RxJava 2.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;_flowable&quot;&gt;Flowable&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;The basic entry class in RxJava is &lt;code&gt;io.reactivex.Flowable&lt;/code&gt;.
+It implements the Reactive-Streams Pattern and offers factory methods,
+intermediate operators and the ability to consume reactive dataflows.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;The following example demonstrates using RxJava to do a simple calculation on a range of numbers:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint highlight&quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;    public static List doSquares() {
+       List squares = new ArrayList();
+       Flowable.range(1, 64) //1
+           .observeOn(Schedulers.computation()) //2
+           .map(v -&amp;gt; v * v) //3
+           .blockingSubscribe(squares::add); //4
+       return squares;
+    }&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;olist arabic&quot;&gt;
+&lt;ol class=&quot;arabic&quot;&gt;
+&lt;li&gt;
+&lt;p&gt;Create a range from 1 to 64.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Call the method &lt;code&gt;observeOn&lt;/code&gt; to determine which &lt;code&gt;Scheduler&lt;/code&gt; to use.
+This determines on which Thread the flow will run.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The &lt;code&gt;map&lt;/code&gt; method transforms each value. In this case we calculate the square.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Finally, we initiate the flow by calling a “subscribe” method.
+In this case, &lt;code&gt;blockingSubscribe&lt;/code&gt; blocks until the entire flow has
+completed. This means that the &lt;code&gt;squares&lt;/code&gt; list will be populated
+before the return statement. Otherwise the flow would run on a
+different thread and the values in the squares list would be
+unpredictable at any given time.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;&lt;em&gt;(This is an excerpt from &lt;a href=&quot;https://leanpub.com/modernjavasecondedition&quot;&gt;Modern Java: Second  Edition&lt;/a&gt;)&lt;/em&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 	</description>
     </item>
     <item>
       <title>Gr8Conf US and other things…</title>
-      <link>http://jbake.org/blog/2017/02.html</link>
+      <link>http://adamldavis.com/blog/2017/02.html</link>
       <pubDate>Sat, 5 Aug 2017 00:00:00 -0400</pubDate>
       <guid isPermaLink="false">blog/2017/02.html</guid>
       	<description>
-	&lt;div class=&quot;paragraph&quot;&gt; 
- &lt;p&gt;I just back from &lt;a href=&quot;http://gr8conf.us&quot;&gt;Gr8Conf&lt;/a&gt; in Minneapolis last week and I had a great time. In case you missed it, I led a three hour workshop on Groovy and the &lt;a href=&quot;https://www.slideshare.net/AdamDavis30/learning-groovy-1-half-day-workshop&quot;&gt;slides&lt;/a&gt; and &lt;a href=&quot;https://github.com/adamldavis/2017-gr8conf-learning-groovy&quot;&gt;code&lt;/a&gt; are available (I did some practice screen-casts on youtube as well). Although I was pretty nervous leading up to it, I think it went really well. To those who attended: Thank you for listening and asking such great questions, I hope you enjoyed it! This was my first such workshop and everyone was super nice, so thank you again. I look forward to doing talks and/or workshops again in the future.&lt;/p&gt; 
-&lt;/div&gt; 
-&lt;div class=&quot;paragraph&quot;&gt; 
- &lt;p&gt;There were tons of great talks at Gr8Conf and although I didn’t get to go to all of them (I wish I could) I learned a lot and loved the energy from the conference in general. The “hallway discussions” and lunches were great as well.&lt;/p&gt; 
-&lt;/div&gt; 
-&lt;div class=&quot;paragraph&quot;&gt; 
- &lt;p&gt;In other news, “Learning Groovy” is now featured on the official &lt;a href=&quot;http://www.groovy-lang.org/learn.html&quot;&gt;Groovy website&lt;/a&gt;, and was featured in &lt;a href=&quot;http://groovycalamari.com/issues/91?#start&quot;&gt;&quot;Groovy Calamari&quot;&lt;/a&gt;! I can’t stress enough how thrilled I am about this! Meanwhile, thank you to my company the SDG for supporting me in all these endeavors as well as just being a great company.&lt;/p&gt; 
-&lt;/div&gt; 
-&lt;div class=&quot;paragraph&quot;&gt; 
- &lt;p&gt;&lt;a href=&quot;https://leanpub.com/modernjavasecondedition&quot;&gt;Modern Java: Second Edition&lt;/a&gt; is still in the works and I’ve expanded it to include Java 9. I’m sorry this one has been in production for so long. I hope to get it wrapped up before the final release of Java 9 in September. :-) There’s been a lot going on in the past year …but I won’t make excuses. The good thing is the final product is going to be great. With all the new stuff in Java 9, plus more experience with Java 8 and other things, it should be interesting. I’m also mulling over next books, but nothing to announce yet.&lt;/p&gt; 
-&lt;/div&gt; 
-&lt;div class=&quot;paragraph&quot;&gt; 
- &lt;p&gt;I met and talked with tons of people at Gr8Conf, but one in particular is Eric Helgeson @nulleric. If you’re at all interested in Grails 3, check out his book, &lt;a href=&quot;https://www.grails3book.com/&quot;&gt;Practical Grails 3&lt;/a&gt;. The cool thing about it is he’s selling his book completely on his own and the book covers the app he wrote to sell the book.&lt;/p&gt; 
-&lt;/div&gt; 
-&lt;div class=&quot;paragraph&quot;&gt; 
- &lt;p&gt;Also, I’m still working on &lt;a href=&quot;http://groocss.org&quot;&gt;GrooCSS&lt;/a&gt; and have tons of ideas for it.&lt;/p&gt; 
-&lt;/div&gt; 
-&lt;div class=&quot;paragraph&quot;&gt; 
- &lt;p&gt;Thanks for reading! Hopefully I’ll write again soon…&lt;/p&gt; 
+	&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;I just back from &lt;a href=&quot;http://gr8conf.us&quot;&gt;Gr8Conf&lt;/a&gt; in Minneapolis last week and I had a great time. In case you missed it, I led a three hour workshop on Groovy and the &lt;a href=&quot;https://www.slideshare.net/AdamDavis30/learning-groovy-1-half-day-workshop&quot;&gt;slides&lt;/a&gt; and &lt;a href=&quot;https://github.com/adamldavis/2017-gr8conf-learning-groovy&quot;&gt;code&lt;/a&gt; are available (I did some practice screen-casts on youtube as well). Although I was pretty nervous leading up to it, I think it went really well. To those who attended: Thank you for listening and asking such great questions, I hope you
+ enjoyed it! This was my first such workshop and everyone was super nice, so thank you again. I look forward to doing talks and/or
+ workshops again in the future.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;There were tons of great talks at Gr8Conf and although I didn’t get
+to go to all of them (I wish I could) I learned a lot and loved the
+ energy from the conference in general. The “hallway discussions” and lunches were great as well.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;In other news, “Learning Groovy” is now featured on the official
+&lt;a href=&quot;http://www.groovy-lang.org/learn.html&quot;&gt;Groovy website&lt;/a&gt;,
+and was featured in &lt;a href=&quot;http://groovycalamari.com/issues/91?#start&quot;&gt;&quot;Groovy Calamari&quot;&lt;/a&gt;!
+I can’t stress enough how
+thrilled I am about this! Meanwhile, thank you to my company the
+SDG for supporting me in all these endeavors as well as just being
+a great company.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;https://leanpub.com/modernjavasecondedition&quot;&gt;Modern Java: Second Edition&lt;/a&gt;
+ is still in the works
+and I’ve expanded it to include Java 9. I’m sorry this one
+has been in production for so long. I hope to get it wrapped
+up before the final release of Java 9 in September. :-)
+There’s been a lot going on in the past year …but I won’t
+make excuses. The good thing is the final product is going to
+be great. With all the new stuff in Java 9, plus more experience
+with Java 8 and other things, it should be interesting.
+ I’m also mulling over next books, but nothing to announce yet.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;I met and talked with tons of people at Gr8Conf, but one in
+particular is Eric Helgeson @nulleric. If you’re at all interested
+in Grails 3, check out his book, &lt;a href=&quot;https://www.grails3book.com/&quot;&gt;Practical Grails 3&lt;/a&gt;.
+ The cool thing about it is he’s selling his book completely on his own
+and the book covers the app he wrote to sell the book.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Also, I’m still working on &lt;a href=&quot;http://groocss.org&quot;&gt;GrooCSS&lt;/a&gt;
+ and have tons of ideas for it.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Thanks for reading! Hopefully I’ll write again soon…&lt;/p&gt;
 &lt;/div&gt;
 	</description>
     </item>
     <item>
       <title>Groovy News!</title>
-      <link>http://jbake.org/blog/2017/01.html</link>
+      <link>http://adamldavis.com/blog/2017/01.html</link>
       <pubDate>Thu, 28 Jul 2016 00:00:00 -0400</pubDate>
       <guid isPermaLink="false">blog/2017/01.html</guid>
       	<description>
-	&lt;p&gt;Great news everyone! &lt;/p&gt; 
-&lt;p&gt;I can now announce, &lt;a src=&quot;https://www.apress.com/us/book/9781484221167&quot;&gt;Learning Groovy&lt;/a&gt; is available for pre-order on Apress! They have been great to work with and it is much improved from the original version due to their feedback and the technical editor. &lt;/p&gt; 
-&lt;p&gt; &lt;a href=&quot;https://leanpub.com/modernjavasecondedition&quot;&gt;Modern Java: Second Edition&lt;/a&gt; is available in beta-mode on Leanpub! This book joins together my original Modern Java book, with all of the stuff on Java 8 and some new stuff will be coming soon! &lt;/p&gt; 
-&lt;p&gt;I’ve launched &lt;a href=&quot;http://groocss.org&quot;&gt;GrooCSS&lt;/a&gt;, a little pet project of mine. More to come on this later. Check it out!&lt;/p&gt; 
+	
+&lt;p&gt;Great news everyone! &lt;/p&gt;
+
+&lt;p&gt;I can now announce, &lt;a src=&quot;https://www.apress.com/us/book/9781484221167&quot;&gt;Learning Groovy&lt;/a&gt; is
+	available for pre-order on Apress!
+	They have been great to work with and it is much improved from the original version due to their
+	feedback and the technical editor.
+&lt;/p&gt;
+&lt;p&gt;
+	&lt;a href=&quot;https://leanpub.com/modernjavasecondedition&quot;&gt;Modern Java: Second Edition&lt;/a&gt; is available in
+	beta-mode on Leanpub! This book joins together my original
+	Modern Java book, with all of the stuff on Java 8 and some new stuff will be coming soon!
+&lt;/p&gt;
+&lt;p&gt;I’ve launched &lt;a href=&quot;http://groocss.org&quot;&gt;GrooCSS&lt;/a&gt;, a little pet project of mine. More to come on this later. Check it out!&lt;/p&gt;
+
 &lt;pre class=&quot;prettyprint&quot;&gt;
 &lt;code&gt;
 &lt;/code&gt;
 &lt;/pre&gt;
+
+
 	</description>
     </item>
 

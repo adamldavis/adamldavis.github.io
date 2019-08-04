@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Groovy 2.5 &amp; 3</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="This is my blog about building software and solving problems. Sometimes I write about Java, Groovy, programming, etc.">
+    <meta name="author" content="Adam L. Davis">
+    <meta name="keywords" content="java,reactive,groovy,java8,rxjava">
+    <meta name="generator" content="JBake">
+
+    <style>pre,p{font-size: 120%;}.red{color: red}a:hover{transition: all 1s ease;}</style>
+    
+    <!-- Le styles -->
+        <link href="../../css/normalize.css" rel="stylesheet">
+        <link href="../../css/style.css" rel="stylesheet">
+        <link href="../../css/stylesheet.css" rel="stylesheet">
+        
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/asciidoctor.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link href="../../css/prettify.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+    <link rel="shortcut icon" href="../../favicon.jpg">
+  </head>
+  <body onload="prettyPrint()">
+    <div id="wrap">
+   
+	
+	<!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- a class="navbar-brand" href="../../">JBake</a -->
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="../../index.html">Home</a></li>
+            <li><a href="../../about.html">About</a></li>
+            <li><a href="books.html">Books</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Links <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a rel=me href="https://twitter.com/adamldavis">Me on Twitter</a></li>
+                <li><a rel=me href="https://medium.com/@adamldavis#_=_">Me on Medium</a></li>
+                <li><a rel=me href="https://github.com/adamldavis">Me on Github</a></li>
+                <li><a rel=me href="https://bitbucket.org/adamldavis/">Me on Bitbucket</a></li>
+                <li><a rel=me href="https://www.buymeacoffee.com/adamldavis">Buy Me a Coffee</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Other stuff</li>
+                <li><a rel=me href="https://github.com/adamldavis/groocss">GrooCSS</a></li>
+                <li><a rel=me href="https://github.com/adamldavis/groovy-rxjava2">Groovy RxJava2</a></li>
+                <li><a rel=me href="https://github.com/adamldavis/groovy-chemistry">Groovy Chemistry</a></li>
+                <li><a rel=me href="https://github.com/adamldavis/2019-gr8conf">Code for 2019 Gr8Conf</a></li>
+                <li class="divider"></li>
+                <li><a rel=me href="https://adamldavis.us19.list-manage.com/subscribe?u=66f67d57b882cf3b7eef9257e&id=ab8ddea8e0">Newsletter</a></li>
+                <li class="divider"></li>
+                <li><a href="../../feed.xml">Atom feed for blog</a></li>
+              </ul>
+
+            </li>
+
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    <div class="container">
+	
+	<div class="page-header">
+		<h1>Groovy 2.5 &amp; 3</h1>
+	</div>
+
+	<p><em>13 February 2019</em></p>
+
+	<p><div class="paragraph">
+<p>If you have followed me for any time, you know I’m a big fan of Groovy, the super-Java-like language that runs on the JVM. You’ve probably heard of it, maybe you even use it, but what is less known is that it’s constantly evolving and has some great new features coming soon (or already here).</p>
+</div>
+<div class="paragraph">
+<p>Inspired by some recent news, here’s all about Groovy 2.5 and 3.</p>
+</div>
+<div class="sect1">
+<h2 id="_updates_in_groovy_2_5">Updates in Groovy 2.5</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Groovy 2.5 added support for JDK9+, added 11 new AST transformations, and added the macro feature which makes writing AST transformations much easier.</p>
+</div>
+<div class="paragraph">
+<p>The annotations added in Groovy 2.5 include: @AutoFinal, @AutoImplement, @ImmutableBase, @ImmutableOptions, @MapConstructor, @NamedDelegate, @NamedParam, @NamedParams, @NamedVariant, @PropertyOptions, and @VisibilityOptions.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>@AutoImplement: Automatically implements missing abstract methods (such as those from an Interface). You can specify an Exception to throw from those methods such as UnsupportedOperationException. It can be useful for generating test stubs or when you only need to implement a subset of inherited abstract methods.</p>
+</li>
+<li>
+<p>@AutoFinal: Automatically adds final modifier to method parameters.</p>
+</li>
+<li>
+<p>@MapConstructor: Adds a constructor to your class that has one Map parameter and expects field-names as keys and sets the corresponding field values.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Also many annotations were improved with additional attributes. For example, @TupleConstructor now includes seven more attributes. The @Immutable annotation was updated to recognize the Date/time classes added in Java 8 are immutable, and to handle Optional.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_updates_in_groovy_3">Updates in Groovy 3</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Groovy 3 sports a completely rewritten parser that brings Groovy up to parity with the latest Java 11 syntax along with new Groovy-only features. It runs on JDK 8 minimum and has better support for JDK 9/10/11.</p>
+</div>
+<div class="paragraph">
+<p>The Java-like syntax now includes Java-style lambda expressions and method references, array initialization, and do/while loops, which have eluded Groovy for many years.</p>
+</div>
+<div class="paragraph">
+<p><em>Edit: There is hope that in the near future after working out some issues. The new parser also compiles to “indy” by default which uses Java’s invokedynamic feature. This has been available for years, but was not the default before. This, along with other changes, makes Groovy code more performant.</em></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_new_operators">New Operators</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Identity: === can now be used to express identity-equal and !== and not identity-equal. Since Groovy interprets == as “.equals”, it used “.is” for identity-equals in the past. The support of “===” should avoid some confusion. This is similar to JavaScript’s === operator.</p>
+</div>
+<div class="paragraph">
+<p>Negative variants of operators: !instanceof and !in are now supported. This will simplify the syntax in these situations. Before you would have to type !(x instanceof Date) whereas now you can simply type x !instanceof Date.</p>
+</div>
+<div class="paragraph">
+<p>Elvis Assignment: You may be familiar with the elvis operator (?:) in Groovy. In many cases you would use this operation to provide a default when assigning a value. For example: name = name ?: ‘None’. Now you can shorten this expression to have the same meaning in Groovy 3 with the following: name ?= 'None’</p>
+</div>
+<div class="paragraph">
+<p>Safe indexing: Much like the safe-reference operator, there is now a safe-indexing operator, ?. This allows you to access an index of an array (or List), but if the array is null, it will return null instead of throwing an exception. For example the following would set the value to the first value of the array, or null if the array is null: value = array?[0]</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_java_parity">Java Parity</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Groovy 3 support new features added from Java 8 to 11, such as lambda expressions, method references, constructor references, and even local variables (var).</p>
+</div>
+<div class="paragraph">
+<p>All flavours of lambda expressions are supported (and currently compiled to Closures):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>No parameters: () &#8594; expression</p>
+</li>
+<li>
+<p>Single paramter: x &#8594; expression</p>
+</li>
+<li>
+<p>Explicit return is optional: (x, y) &#8594; { x * y }</p>
+</li>
+<li>
+<p>Types are allowed: (int x, int y) &#8594; { return x + y }</p>
+</li>
+<li>
+<p>Default values are allowed: (int x, int y = 10) &#8594; x+y</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>There’s much more….. in fact, I’m working on updating my book, <strong>Learning Groovy</strong>, and releasing a second edition later this year, so stay tuned!</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion">Conclusion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As you can see there’s a ton to be excited about with Groovy 3. Groovy 3.0.0-alpha-4 is available right now so go check it out.</p>
+</div>
+<div class="paragraph">
+<p>Learn more at <a href="http://groovy.apache.org" class="bare">http://groovy.apache.org</a></p>
+</div>
+</div>
+</div></p>
+
+    <p>
+        <ul class="tags">
+            <li><a href="../../tags/groovy.html">groovy</a></li>
+            <li><a href="../../tags/groovy3.html">groovy3</a></li>
+            <li><a href="../../tags/java9.html">java9</a></li>
+            <li><a href="../../tags/java10.html">java10</a></li>
+            <li><a href="../../tags/java11.html">java11</a></li>
+        </ul>
+    </p>
+
+	<hr />
+	
+		</div>
+		<div id="push"></div>
+    </div>
+    
+    <div id="footer">
+      <div class="container">
+        <p class="muted credit">&copy; 2019 Adam L. Davis | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.6.4</a></p>
+      </div>
+    </div>
+    
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../../js/jquery-1.11.1.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/prettify.js"></script>
+    
+  </body>
+</html>
