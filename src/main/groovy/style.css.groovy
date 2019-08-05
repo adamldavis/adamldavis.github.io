@@ -4,6 +4,13 @@
 GENERAL
 ********************/
 
+sg '.page-header', {
+    fontSize '1.2em'
+    paddingTop '4em'
+    background 'linear-gradient(45deg, black, transparent)'
+    color white
+}
+
 def boxedStyles = { foreColor, timing ->
   styles {
     transition "all $timing ease"
@@ -16,6 +23,11 @@ div.salmon %hover {
   add boxedStyles(salmon, 1.s)
   scale(1.3, 1.3)
   zIndex 99
+}
+div.blueBox %hover {
+  add boxedStyles(blue, 1.s)
+  scale(1.2, 1.2)
+  zIndex 98
 }
 
 def backColor = 'white'
@@ -867,9 +879,6 @@ body {
   background backColor
   color textColor
 }
-h1 |h2 |h3 {
-  color '#eee'
-}
 
 sg '.post-date a', {
   color '#abe'
@@ -880,7 +889,6 @@ sg 'p:hover,li:hover', {
     boxShadow '0 0 5px rgba(0,0,0,0.5)'
 }
 pre {
-  background '#345'
   padding '1em'
   boxShadow '5px 5px 5px rgba(0,0,0,0.5)'
 }
