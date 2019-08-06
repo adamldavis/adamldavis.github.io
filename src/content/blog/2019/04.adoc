@@ -1,0 +1,23 @@
+title=Learning Groovy 3 Released
+date=2019-08-05
+type=post
+tags=groovy,groovy3,books,courses
+status=published
+~~~~~~
+
+[link=//github.adamldavis.com/books.html]
+image::images/learninggroovy3.jpeg[Learning Groovy 3,350]
+
+The second edition of "Learning Groovy" (which covers Groovy 3.0 thus the name) is now available. After months of researching, writing, and editing, it has finally gone to print! I'm really excited to announce this and I hope it spreads the love of Groovy far and wide.
+
+Groovy can be used as a dynamic or static language depending on your choice, however it's hard to condense that into a short subtitle. We also wanted to include how it is closely related to Java, hence the subtitle, "Java-Based Dynamic Scripting."
+
+The twitter announcement is https://twitter.com/adamldavis/status/1157685694111932417[here]. And the book itself can be found on Apress or my http://github.adamldavis.com/books.html[books page] or wherever you prefer to purchase books.
+
+Groovy 3 beta-3 should come out shortly, with release candidates soon after, so this is book is out slightly before the final 3.0 release. However, if you like to stay ahead of the curve, now is a good time. 
+
+.Courses
+****
+I'm currently in the process of creating courses on Leanpub. Please check out these two courses: https://leanpub.com/c/learninggroovy3["Beginning Groovy 3"] and https://leanpub.com/c/advancedgroovycourse["Advanced Groovy"]. There may be more in the future but they're in the beginning stages right now. These courses will include exercises, quizes, and probably video to go along with the course. All feedback is welcome. 
+****
+

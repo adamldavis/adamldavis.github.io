@@ -54,16 +54,17 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="books.html">Books</a></li>
+            
+            <li><a rel=me href="https://github.com/adamldavis">Github</a></li>
+            
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Links <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li><a rel=me href="https://twitter.com/adamldavis">Me on Twitter</a></li>
                 <li><a rel=me href="https://medium.com/@adamldavis#_=_">Me on Medium</a></li>
-                <li><a rel=me href="https://github.com/adamldavis">Me on Github</a></li>
                 <li><a rel=me href="https://bitbucket.org/adamldavis/">Me on Bitbucket</a></li>
-                <li><a rel=me href="https://www.buymeacoffee.com/adamldavis">Buy Me a Coffee</a></li>
                 <li class="divider"></li>
-                <li class="dropdown-header">Other stuff</li>
+                <li class="dropdown-header">Open Source</li>
                 <li><a rel=me href="https://github.com/adamldavis/groocss">GrooCSS</a></li>
                 <li><a rel=me href="https://github.com/adamldavis/groovy-rxjava2">Groovy RxJava2</a></li>
                 <li><a rel=me href="https://github.com/adamldavis/groovy-chemistry">Groovy Chemistry</a></li>
@@ -85,6 +86,41 @@
 	<div class="page-header">
 		<h1>Adam L. Davis</h1>
 	</div>
+  			<a href="blog/2019/04.html"><h1>Learning Groovy 3 Released</h1></a>
+  			<p>05 August 2019</p>
+  			<p><div class="imageblock">
+<div class="content">
+<a class="image" href="//github.adamldavis.com/books.html"><img src="images/learninggroovy3.jpeg" alt="Learning Groovy 3" width="350"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>The second edition of "Learning Groovy" (which covers Groovy 3.0 thus the name) is now available. After months of researching, writing, and editing, it has finally gone to print! I&#8217;m really excited to announce this and I hope it spreads the love of Groovy far and wide.</p>
+</div>
+<div class="paragraph">
+<p>Groovy can be used as a dynamic or static language depending on your choice, however it&#8217;s hard to condense that into a short subtitle. We also wanted to include how it is closely related to Java, hence the subtitle, "Java-Based Dynamic Scripting."</p>
+</div>
+<div class="paragraph">
+<p>The twitter announcement is <a href="https://twitter.com/adamldavis/status/1157685694111932417">here</a>. And the book itself can be found on Apress or my <a href="http://github.adamldavis.com/books.html">books page</a> or wherever you prefer to purchase books.</p>
+</div>
+<div class="paragraph">
+<p>Groovy 3 beta-3 should come out shortly, with release candidates soon after, so this is book is out slightly before the final 3.0 release. However, if you like to stay ahead of the curve, now is a good time.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Courses</div>
+<div class="paragraph">
+<p>I&#8217;m currently in the process of creating courses on Leanpub. Please check out these two courses: <a href="https://leanpub.com/c/learninggroovy3">"Beginning Groovy 3"</a> and <a href="https://leanpub.com/c/advancedgroovycourse">"Advanced Groovy"</a>. There may be more in the future but they&#8217;re in the beginning stages right now. These courses will include exercises, quizes, and probably video to go along with the course. All feedback is welcome.</p>
+</div>
+</div>
+</div></p>
+  			<p>
+  			    <ul class="tags">
+                    <li><a href="tags/groovy.html">groovy</a></li>
+                    <li><a href="tags/groovy3.html">groovy3</a></li>
+                    <li><a href="tags/books.html">books</a></li>
+                    <li><a href="tags/courses.html">courses</a></li>
+  			    </ul>
+  			</p>
   			<a href="blog/2019/03.html"><h1>Gr8Conf EU 2019</h1></a>
   			<p>28 June 2019</p>
   			<p><div class="paragraph">
@@ -471,18 +507,18 @@ intermediate operators and the ability to consume reactive dataflows.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">    public static List doSquares() {
-       List squares = new ArrayList();
-       Flowable.range(1, 64) //1
-           .observeOn(Schedulers.computation()) //2
-           .map(v -&gt; v * v) //3
-           .blockingSubscribe(squares::add); //4
-       return squares;
-    }</code></pre>
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public static List doSquares() {
+   List squares = new ArrayList();
+   Flowable.range(1, 64) // <b class="conum">(1)</b>
+       .observeOn(Schedulers.computation()) // <b class="conum">(2)</b>
+       .map(v -&gt; v * v) // <b class="conum">(3)</b>
+       .blockingSubscribe(squares::add); // <b class="conum">(4)</b>
+   return squares;
+}</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+<div class="colist arabic">
+<ol>
 <li>
 <p>Create a range from 1 to 64.</p>
 </li>
@@ -613,7 +649,8 @@ and the book covers the app he wrote to sell the book.</p>
     
     <div id="footer">
       <div class="container">
-        <p class="muted credit">&copy; 2019 Adam L. Davis | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.6.4</a></p>
+        <p class="muted credit">&copy; 2019 <a rel=me href="https://github.com/adamldavis">Adam L. Davis</a> | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.6.4</a> | Hosted by <a href="https://pages.github.com/">Github</a> | <a href="about.html">About</a>
+        </p>
       </div>
     </div>
     

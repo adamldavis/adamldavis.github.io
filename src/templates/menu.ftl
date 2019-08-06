@@ -15,16 +15,17 @@
             <li><a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>index.html">Home</a></li>
             <li><a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>about.html">About</a></li>
             <li><a href="books.html">Books</a></li>
+            
+            <li><a rel=me href="https://github.com/adamldavis">Github</a></li>
+            
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Links <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li><a rel=me href="https://twitter.com/adamldavis">Me on Twitter</a></li>
                 <li><a rel=me href="https://medium.com/@adamldavis#_=_">Me on Medium</a></li>
-                <li><a rel=me href="https://github.com/adamldavis">Me on Github</a></li>
                 <li><a rel=me href="https://bitbucket.org/adamldavis/">Me on Bitbucket</a></li>
-                <li><a rel=me href="https://www.buymeacoffee.com/adamldavis">Buy Me a Coffee</a></li>
                 <li class="divider"></li>
-                <li class="dropdown-header">Other stuff</li>
+                <li class="dropdown-header">Open Source</li>
                 <li><a rel=me href="https://github.com/adamldavis/groocss">GrooCSS</a></li>
                 <li><a rel=me href="https://github.com/adamldavis/groovy-rxjava2">Groovy RxJava2</a></li>
                 <li><a rel=me href="https://github.com/adamldavis/groovy-chemistry">Groovy Chemistry</a></li>

@@ -4,7 +4,8 @@
     
     <div id="footer">
       <div class="container">
-        <p class="muted credit">&copy; 2019 Adam L. Davis | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake ${version}</a></p>
+        <p class="muted credit">&copy; 2019 <a rel=me href="https://github.com/adamldavis">Adam L. Davis</a> | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake ${version}</a> | Hosted by <a href="https://pages.github.com/">Github</a> | <a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>about.html">About</a>
+        </p>
       </div>
     </div>
     

@@ -28,20 +28,21 @@ intermediate operators and the ability to consume reactive dataflows.
 The following example demonstrates using RxJava to do a simple calculation on a range of numbers:
 
 [source,java]
-    public static List doSquares() {
-       List squares = new ArrayList();
-       Flowable.range(1, 64) //1
-           .observeOn(Schedulers.computation()) //2
-           .map(v -> v * v) //3
-           .blockingSubscribe(squares::add); //4
-       return squares;
-    }
-
-1. Create a range from 1 to 64.
-2. Call the method `observeOn` to determine which `Scheduler` to use.
+----
+public static List doSquares() {
+   List squares = new ArrayList();
+   Flowable.range(1, 64) // <1>
+       .observeOn(Schedulers.computation()) // <2>
+       .map(v -> v * v) // <3>
+       .blockingSubscribe(squares::add); // <4>
+   return squares;
+}
+----
+<1> Create a range from 1 to 64.
+<2> Call the method `observeOn` to determine which `Scheduler` to use.
 This determines on which Thread the flow will run.
-3. The `map` method transforms each value. In this case we calculate the square.
-4. Finally, we initiate the flow by calling a “subscribe” method.
+<3> The `map` method transforms each value. In this case we calculate the square.
+<4> Finally, we initiate the flow by calling a “subscribe” method.
 In this case, `blockingSubscribe` blocks until the entire flow has
 completed. This means that the `squares` list will be populated
 before the return statement. Otherwise the flow would run on a

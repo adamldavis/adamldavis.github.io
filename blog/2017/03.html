@@ -54,16 +54,17 @@
             <li><a href="../../index.html">Home</a></li>
             <li><a href="../../about.html">About</a></li>
             <li><a href="books.html">Books</a></li>
+            
+            <li><a rel=me href="https://github.com/adamldavis">Github</a></li>
+            
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Links <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li><a rel=me href="https://twitter.com/adamldavis">Me on Twitter</a></li>
                 <li><a rel=me href="https://medium.com/@adamldavis#_=_">Me on Medium</a></li>
-                <li><a rel=me href="https://github.com/adamldavis">Me on Github</a></li>
                 <li><a rel=me href="https://bitbucket.org/adamldavis/">Me on Bitbucket</a></li>
-                <li><a rel=me href="https://www.buymeacoffee.com/adamldavis">Buy Me a Coffee</a></li>
                 <li class="divider"></li>
-                <li class="dropdown-header">Other stuff</li>
+                <li class="dropdown-header">Open Source</li>
                 <li><a rel=me href="https://github.com/adamldavis/groocss">GrooCSS</a></li>
                 <li><a rel=me href="https://github.com/adamldavis/groovy-rxjava2">Groovy RxJava2</a></li>
                 <li><a rel=me href="https://github.com/adamldavis/groovy-chemistry">Groovy Chemistry</a></li>
@@ -120,18 +121,18 @@ intermediate operators and the ability to consume reactive dataflows.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">    public static List doSquares() {
-       List squares = new ArrayList();
-       Flowable.range(1, 64) //1
-           .observeOn(Schedulers.computation()) //2
-           .map(v -&gt; v * v) //3
-           .blockingSubscribe(squares::add); //4
-       return squares;
-    }</code></pre>
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public static List doSquares() {
+   List squares = new ArrayList();
+   Flowable.range(1, 64) // <b class="conum">(1)</b>
+       .observeOn(Schedulers.computation()) // <b class="conum">(2)</b>
+       .map(v -&gt; v * v) // <b class="conum">(3)</b>
+       .blockingSubscribe(squares::add); // <b class="conum">(4)</b>
+   return squares;
+}</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+<div class="colist arabic">
+<ol>
 <li>
 <p>Create a range from 1 to 64.</p>
 </li>
@@ -174,7 +175,8 @@ unpredictable at any given time.</p>
     
     <div id="footer">
       <div class="container">
-        <p class="muted credit">&copy; 2019 Adam L. Davis | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.6.4</a></p>
+        <p class="muted credit">&copy; 2019 <a rel=me href="https://github.com/adamldavis">Adam L. Davis</a> | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.6.4</a> | Hosted by <a href="https://pages.github.com/">Github</a> | <a href="../../about.html">About</a>
+        </p>
       </div>
     </div>
     

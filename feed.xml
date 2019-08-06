@@ -6,9 +6,42 @@
     <atom:link href="http://adamldavis.com/feed.xml" rel="self" type="application/rss+xml" />
     <description>JBake Bootstrap Template</description>
     <language>en-gb</language>
-    <pubDate>Sun, 4 Aug 2019 20:14:28 -0400</pubDate>
-    <lastBuildDate>Sun, 4 Aug 2019 20:14:28 -0400</lastBuildDate>
+    <pubDate>Mon, 5 Aug 2019 09:45:10 -0400</pubDate>
+    <lastBuildDate>Mon, 5 Aug 2019 09:45:10 -0400</lastBuildDate>
 
+    <item>
+      <title>Learning Groovy 3 Released</title>
+      <link>http://adamldavis.com/blog/2019/04.html</link>
+      <pubDate>Mon, 5 Aug 2019 00:00:00 -0400</pubDate>
+      <guid isPermaLink="false">blog/2019/04.html</guid>
+      	<description>
+	&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;a class=&quot;image&quot; href=&quot;//github.adamldavis.com/books.html&quot;&gt;&lt;img src=&quot;images/learninggroovy3.jpeg&quot; alt=&quot;Learning Groovy 3&quot; width=&quot;350&quot;&gt;&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;The second edition of &quot;Learning Groovy&quot; (which covers Groovy 3.0 thus the name) is now available. After months of researching, writing, and editing, it has finally gone to print! I&amp;#8217;m really excited to announce this and I hope it spreads the love of Groovy far and wide.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Groovy can be used as a dynamic or static language depending on your choice, however it&amp;#8217;s hard to condense that into a short subtitle. We also wanted to include how it is closely related to Java, hence the subtitle, &quot;Java-Based Dynamic Scripting.&quot;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;The twitter announcement is &lt;a href=&quot;https://twitter.com/adamldavis/status/1157685694111932417&quot;&gt;here&lt;/a&gt;. And the book itself can be found on Apress or my &lt;a href=&quot;http://github.adamldavis.com/books.html&quot;&gt;books page&lt;/a&gt; or wherever you prefer to purchase books.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Groovy 3 beta-3 should come out shortly, with release candidates soon after, so this is book is out slightly before the final 3.0 release. However, if you like to stay ahead of the curve, now is a good time.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sidebarblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;Courses&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;I&amp;#8217;m currently in the process of creating courses on Leanpub. Please check out these two courses: &lt;a href=&quot;https://leanpub.com/c/learninggroovy3&quot;&gt;&quot;Beginning Groovy 3&quot;&lt;/a&gt; and &lt;a href=&quot;https://leanpub.com/c/advancedgroovycourse&quot;&gt;&quot;Advanced Groovy&quot;&lt;/a&gt;. There may be more in the future but they&amp;#8217;re in the beginning stages right now. These courses will include exercises, quizes, and probably video to go along with the course. All feedback is welcome.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+	</description>
+    </item>
     <item>
       <title>Gr8Conf EU 2019</title>
       <link>http://adamldavis.com/blog/2019/03.html</link>
@@ -384,18 +417,18 @@ intermediate operators and the ability to consume reactive dataflows.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;listingblock&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;prettyprint highlight&quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;    public static List doSquares() {
-       List squares = new ArrayList();
-       Flowable.range(1, 64) //1
-           .observeOn(Schedulers.computation()) //2
-           .map(v -&amp;gt; v * v) //3
-           .blockingSubscribe(squares::add); //4
-       return squares;
-    }&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&quot;prettyprint highlight&quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;public static List doSquares() {
+   List squares = new ArrayList();
+   Flowable.range(1, 64) // &lt;b class=&quot;conum&quot;&gt;(1)&lt;/b&gt;
+       .observeOn(Schedulers.computation()) // &lt;b class=&quot;conum&quot;&gt;(2)&lt;/b&gt;
+       .map(v -&amp;gt; v * v) // &lt;b class=&quot;conum&quot;&gt;(3)&lt;/b&gt;
+       .blockingSubscribe(squares::add); // &lt;b class=&quot;conum&quot;&gt;(4)&lt;/b&gt;
+   return squares;
+}&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&quot;olist arabic&quot;&gt;
-&lt;ol class=&quot;arabic&quot;&gt;
+&lt;div class=&quot;colist arabic&quot;&gt;
+&lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;Create a range from 1 to 64.&lt;/p&gt;
 &lt;/li&gt;
