@@ -1,0 +1,34 @@
+title=Groovy 3 Course and Gradle
+date=2019-09-30
+type=post
+tags=groovy,groovy3,gradle,spock,courses
+status=published
+~~~~~~
+
+As I've mentioned I've been working on courses on Leanpub.
+I'm happy to announce that the first one is complete!
+
+It has changed a lot since my initial thought process.
+Among other things, it has a new subtitle,
+"Go from beginner to expert Groovy Programmer with Groovy 3.0 and Gradle 5".
+I decided that it needed more specifics than "just Groovy" and Gradle
+is a popular build tool and a good reason to start learning Groovy.
+Check it out: https://leanpub.com/c/learninggroovy3["Groovy 3 Course"].
+
+In case you're curious, this course contains tons of new material
+and is not simply a copy of _Learning Groovy 3_ - far from it.
+It could be seen as a companion but covers more of some topics and less of others.
+
+I've also decided to launch it with a very low introduction price.
+I want the barrier to entry to be very low.
+Please share it someone you think might benefit from it if not yourself.
+As always, all feedback is welcome (adamd @ this website).
+Let me know what you'd like to see more about or less about.
+
+Due to other projects I'm working on, I'm going to postpone for now
+working on https://leanpub.com/c/advancedgroovycourse["Advanced Groovy"]
+(I hope to cover not just advanced Groovy but also some other projects
+in greater detail).
+I have a lot going on (including yet another second edition book) but I hope
+to get to it eventually.
+
