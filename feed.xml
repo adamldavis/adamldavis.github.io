@@ -6,9 +6,49 @@
     <atom:link href="http://adamldavis.com/feed.xml" rel="self" type="application/rss+xml" />
     <description>JBake Bootstrap Template</description>
     <language>en-gb</language>
-    <pubDate>Mon, 5 Aug 2019 09:45:10 -0400</pubDate>
-    <lastBuildDate>Mon, 5 Aug 2019 09:45:10 -0400</lastBuildDate>
+    <pubDate>Mon, 30 Sep 2019 21:03:31 -0400</pubDate>
+    <lastBuildDate>Mon, 30 Sep 2019 21:03:31 -0400</lastBuildDate>
 
+    <item>
+      <title>Groovy 3 Course and Gradle</title>
+      <link>http://adamldavis.com/blog/2019/05.html</link>
+      <pubDate>Mon, 30 Sep 2019 00:00:00 -0400</pubDate>
+      <guid isPermaLink="false">blog/2019/05.html</guid>
+      	<description>
+	&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;As I&amp;#8217;ve mentioned I&amp;#8217;ve been working on courses on Leanpub.
+I&amp;#8217;m happy to announce that the first one is complete!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;It has changed a lot since my initial thought process.
+Among other things, it has a new subtitle,
+&quot;Go from beginner to expert Groovy Programmer with Groovy 3.0 and Gradle 5&quot;.
+I decided that it needed more specifics than &quot;just Groovy&quot; and Gradle
+is a popular build tool and a good reason to start learning Groovy.
+Check it out: &lt;a href=&quot;https://leanpub.com/c/learninggroovy3&quot;&gt;&quot;Groovy 3 Course&quot;&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;In case you&amp;#8217;re curious, this course contains tons of new material
+and is not simply a copy of &lt;em&gt;Learning Groovy 3&lt;/em&gt; - far from it.
+It could be seen as a companion but covers more of some topics and less of others.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;I&amp;#8217;ve also decided to launch it with a very low introduction price.
+I want the barrier to entry to be very low.
+Please share it someone you think might benefit from it if not yourself.
+As always, all feedback is welcome (adamd @ this website).
+Let me know what you&amp;#8217;d like to see more about or less about.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Due to other projects I&amp;#8217;m working on, I&amp;#8217;m going to postpone for now
+working on &lt;a href=&quot;https://leanpub.com/c/advancedgroovycourse&quot;&gt;&quot;Advanced Groovy&quot;&lt;/a&gt;
+(I hope to cover not just advanced Groovy but also some other projects
+in greater detail).
+I have a lot going on (including yet another second edition book) but I hope
+to get to it eventually.&lt;/p&gt;
+&lt;/div&gt;
+	</description>
+    </item>
     <item>
       <title>Learning Groovy 3 Released</title>
       <link>http://adamldavis.com/blog/2019/04.html</link>
