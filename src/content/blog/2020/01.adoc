@@ -16,7 +16,7 @@ I've been using Spring for a long, long time (since 2005).
 It's been there throughout almost my entire Java development career and it's evolved substantially over the years.
 I've had "Spring Handbook" on my check-list of books to write for a long time.
 
-https://leanpub.com/springhandbook/
+https://leanpub.com/springhandbook/[Spring Handbook]
 
 It's going to be picked up by Apress, and is currently under development.
 I'm really excited about this one - there is so much to cover and it's so relevant to software development today especially with Java.
@@ -31,9 +31,9 @@ I'm going to cover so many things:
 
 == GraphQL
 
-In other news, I've learned a lot about [GraphQL](https://graphql.org/) at my new job.
+In other news, I've learned a lot about https://graphql.org/[GraphQL] at my new job.
 
 It's combines a typed schema with the ability for clients to tell the server exactly what they want.
 This reduces the amount of unnecessary data requested, the number of HTTP requests needed, thereby increasing performance overall of a software system.
-Although I was suspect at first, it's actually very clever. I've learned a lot about and hope that I can share more about it later on.
+Although I was suspect at first, it's actually very clever. I've learned a lot about it and hope that I can share more about it later on.
 

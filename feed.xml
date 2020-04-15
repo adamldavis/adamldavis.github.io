@@ -6,9 +6,77 @@
     <atom:link href="http://adamldavis.com/feed.xml" rel="self" type="application/rss+xml" />
     <description>JBake Bootstrap Template</description>
     <language>en-gb</language>
-    <pubDate>Mon, 30 Sep 2019 21:03:31 -0400</pubDate>
-    <lastBuildDate>Mon, 30 Sep 2019 21:03:31 -0400</lastBuildDate>
+    <pubDate>Tue, 14 Apr 2020 21:00:21 -0400</pubDate>
+    <lastBuildDate>Tue, 14 Apr 2020 21:00:21 -0400</lastBuildDate>
 
+    <item>
+      <title>Spring Handbook</title>
+      <link>http://adamldavis.com/blog/2020/01.html</link>
+      <pubDate>Sun, 1 Mar 2020 00:00:00 -0500</pubDate>
+      <guid isPermaLink="false">blog/2020/01.html</guid>
+      	<description>
+	&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;It&amp;#8217;s been a while since I&amp;#8217;ve posted. There&amp;#8217;s been a lot going on (I&amp;#8217;ve been very busy).
+I started a new position at a large corporation here near Orlando (a mouse-themed amusement park; more on this later).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Meanwhile, I&amp;#8217;ve finally started work on &quot;Spring Handbook&quot;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;_spring_handbook&quot;&gt;Spring Handbook&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;I&amp;#8217;ve been using Spring for a long, long time (since 2005).
+It&amp;#8217;s been there throughout almost my entire Java development career and it&amp;#8217;s evolved substantially over the years.
+I&amp;#8217;ve had &quot;Spring Handbook&quot; on my check-list of books to write for a long time.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;https://leanpub.com/springhandbook/&quot;&gt;Spring Handbook&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;It&amp;#8217;s going to be picked up by Apress, and is currently under development.
+I&amp;#8217;m really excited about this one - there is so much to cover and it&amp;#8217;s so relevant to software development today especially with Java.
+I&amp;#8217;m going to cover so many things:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Core Spring&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Spring Data&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Spring Security&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Spring Boot&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Webflux and Reactor&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;and tons more&amp;#8230;&amp;#8203;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;_graphql&quot;&gt;GraphQL&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;In other news, I&amp;#8217;ve learned a lot about &lt;a href=&quot;https://graphql.org/&quot;&gt;GraphQL&lt;/a&gt; at my new job.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;It&amp;#8217;s combines a typed schema with the ability for clients to tell the server exactly what they want.
+This reduces the amount of unnecessary data requested, the number of HTTP requests needed, thereby increasing performance overall of a software system.
+Although I was suspect at first, it&amp;#8217;s actually very clever. I&amp;#8217;ve learned a lot about it and hope that I can share more about it later on.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+	</description>
+    </item>
     <item>
       <title>Groovy 3 Course and Gradle</title>
       <link>http://adamldavis.com/blog/2019/05.html</link>
