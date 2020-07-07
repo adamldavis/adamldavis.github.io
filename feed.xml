@@ -6,9 +6,231 @@
     <atom:link href="http://adamldavis.com/feed.xml" rel="self" type="application/rss+xml" />
     <description>JBake Bootstrap Template</description>
     <language>en-gb</language>
-    <pubDate>Thu, 14 May 2020 11:12:25 -0400</pubDate>
-    <lastBuildDate>Thu, 14 May 2020 11:12:25 -0400</lastBuildDate>
+    <pubDate>Tue, 7 Jul 2020 08:09:43 -0400</pubDate>
+    <lastBuildDate>Tue, 7 Jul 2020 08:09:43 -0400</lastBuildDate>
 
+    <item>
+      <title>Project Reactor (Part 1)</title>
+      <link>http://adamldavis.com/blog/2020/02.html</link>
+      <pubDate>Tue, 7 Jul 2020 00:00:00 -0400</pubDate>
+      <guid isPermaLink="false">blog/2020/02.html</guid>
+      	<description>
+	&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;_what_is_reactor&quot;&gt;What is Reactor?&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;The purpose of Reactor, and reactive steams in general is to enable operations on large amounts of data to be broken down and executed on many different threads (multi-threading) in the most efficient, scalable, and fast way possible. Although parallel processing can be achieved simply using Java 8’s parallel stream, reactive streams add a plethora of additional functionality and customization such as error handling, retry, caching and replaying streams, handling backpressure, and more.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;You can think of a reactive stream as having three rails, the data rail, the completion rail (whether or not the stream has completed), and the error rail. Also, each of the rails can be converted into the other: complete streams could be replaced, an operation could throw an Exception, or an Exception could be handled and replaced with more data.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;In addition, Reactor adds the concept of Context, which we will explore later on.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;_getting_started&quot;&gt;Getting Started&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;If you have a Maven build, add the following to your pom file:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint highlight&quot;&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&amp;lt;dependency&amp;gt;
+  &amp;lt;groupId&amp;gt;io.projectreactor&amp;lt;/groupId&amp;gt;
+  &amp;lt;artifactId&amp;gt;reactor-core&amp;lt;/artifactId&amp;gt;
+  &amp;lt;version&amp;gt;3.3.5.RELEASE&amp;lt;/version&amp;gt;
+&amp;lt;/dependency&amp;gt;
+&amp;lt;dependency&amp;gt;
+  &amp;lt;groupId&amp;gt;io.projectreactor&amp;lt;/groupId&amp;gt;
+  &amp;lt;artifactId&amp;gt;reactor-test&amp;lt;/artifactId&amp;gt;
+  &amp;lt;version&amp;gt;3.3.5.RELEASE&amp;lt;/version&amp;gt;
+  &amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt;
+&amp;lt;/dependency&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;For Gradle builds, add the following to your Gradle build file’s dependencies:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint highlight&quot;&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;implementation &apos;io.projectreactor:reactor-core:3.3.5.RELEASE&apos;
+testImplementation &apos;io.projectreactor:reactor-test:3.3.5.RELEASE&apos;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;_creating_a_flux_or_mono&quot;&gt;Creating a Flux or Mono&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;You can create a Flux from fixed data (cold) or programmatically from dynamic data (hot).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;The following are some different way to create a cold Flux:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint highlight&quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;Flux&amp;lt;String&amp;gt; flux1 = Flux.just(&quot;a&quot;, &quot;b&quot;, &quot;foobar&quot;); //1
+
+List&amp;lt;String&amp;gt; iterable = Arrays.asList(&quot;a&quot;, &quot;b&quot;, &quot;foobar&quot;);
+
+Flux&amp;lt;String&amp;gt; flux2 = Flux.fromIterable(iterable); //2
+
+Flux&amp;lt;Integer&amp;gt; numbers = Flux.range(1, 64); //3&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;olist arabic&quot;&gt;
+&lt;ol class=&quot;arabic&quot;&gt;
+&lt;li&gt;
+&lt;p&gt;Create a Flux from a list of values.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Create a Flux from an iterable.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Create a range from 1 to 64.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;You can create a simple Mono that is empty or has just one element like the following:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint highlight&quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;Mono&amp;lt;String&amp;gt; noData = Mono.empty(); //1
+
+Mono&amp;lt;String&amp;gt; data = Mono.just(&quot;foo&quot;); //2
+
+Mono&amp;lt;String&amp;gt; monoError = Mono.error(new RuntimeException(&quot;error&quot;)); //3&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;olist arabic&quot;&gt;
+&lt;ol class=&quot;arabic&quot;&gt;
+&lt;li&gt;
+&lt;p&gt;Create an empty Mono.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Create a Mono with one element.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Create a Mono wrapping a RuntimeException.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;You can also programmatically create a (hot) Flux using one of the generate, create, or push methods.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;_tuples_and_zip&quot;&gt;Tuples and Zip&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Tuples are strongly typed collections of two or more elements and Reactor comes with them built in. Some operations such as zipWith, return reactive streams of Tuples.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Flux has an instance method &lt;code&gt;zipWith(Publisher&amp;lt;? extends T2&amp;gt; source2)&lt;/code&gt; which has a return type of &lt;code&gt;Flux&amp;lt;Tuple2&amp;lt;T,T2&amp;gt;&amp;gt;&lt;/code&gt;. It waits for both Fluxes (the initial flux and source2) to emit an element and then combines the two into a Tuple. There’s also static method Flux.zip which is overloaded to take from two to eight Publishers and zip them together.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Zipping is useful when you want to perform multiple operations that return reactive results (Flux or Mono).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Mono has two main flavors of zipping (which both have a return type of &lt;code&gt;Mono&amp;lt;Tuple2&amp;lt;T,T2&amp;gt;&amp;gt;&lt;/code&gt;):&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;zipWith(Mono&amp;lt;? extends T2&amp;gt; other) – Zips the current stream with another stream, giving the combination of each corresponding element in the form of Tuple2.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;zipWhen(Function&amp;lt;T,Mono&amp;lt;? extends T2&amp;gt;&amp;gt; rightGenerator) – Zips the current Mono with another Mono, giving the combination of each corresponding element in the form of Tuple2, but only after the first stream’s operation has completed.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;For example, given you have two methods which perform asynchronous operations &lt;code&gt;Mono&amp;lt;Course&amp;gt; getCourse(Long id)&lt;/code&gt; and Mono&amp;lt;Integer&amp;gt; getStudentCount(Course course), imagine you want to get the student count from the course Id you could do the following:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint highlight&quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;Mono&amp;lt;Integer&amp;gt; getStudentCount(Long id) {
+return getCourse(id)
+.zipWhen(course -&amp;gt; getStudentCount(course))
+.map(tuple2 -&amp;gt; tuple2.getT2());
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;This is a simple example but you can imagine combining two different entities, or performing logic on them before returning, or calling another method which takes two arguments, and so on.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;_reactor_addons&quot;&gt;Reactor Addons&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Project Reactor provides additional functionality under the io.projectreactor.addons groupId. Reactor extra includes additional math functions, different ways to retry including Jitter and Backoff, and TupleUtils.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint highlight&quot;&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&amp;lt;dependency&amp;gt;
+  &amp;lt;groupId&amp;gt;io.projectreactor.addons&amp;lt;/groupId&amp;gt;
+  &amp;lt;artifactId&amp;gt;reactor-extra&amp;lt;/artifactId&amp;gt;
+  &amp;lt;version&amp;gt;3.3.3.RELEASE&amp;lt;/version&amp;gt;
+&amp;lt;/dependency&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;For Gradle builds, add the following to your Gradle build file’s dependencies:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint highlight&quot;&gt;&lt;code&gt;implementation &apos;io.projectreactor.addons:reactor-extra:3.3.3.RELEASE&apos;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;When your application fails at an integration point, such as when calling another RESTful service, to make your overall system reliable you might want to retry the call some number of times. However, to keep from overloading the failing service, you should employ Backoff, or increasing the time between each retry, and Jitter, randomly modifying the time so that the retries from many different instances do not happen at the same time (correlate). For example take a look at the following code:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint highlight&quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;var retry = Retry.anyOf(IOException.class) \\1
+ .exponentialBackoff(Duration.ofMillis(100), \\2
+    Duration.ofSeconds(60))
+ .jitter(Jitter.random()) \\3
+ .retryMax(5)
+ .withApplicationContext(appContext) \\4
+ .doOnRetry(context -&amp;gt;
+    context.applicationContext().rollback()); return flux.retryWhen(retry); \\5&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;olist arabic&quot;&gt;
+&lt;ol class=&quot;arabic&quot;&gt;
+&lt;li&gt;
+&lt;p&gt;We create the Retry with exception value of IOException, meaning it will retry only when that exception is thrown.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;We define exponential backoff with a starting value of 100 ms and maximum value of 60 seconds.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;We add random Jitter and set the retry max to 5, meaning it retry at most 5 times.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;We add the Spring ApplicationContext and use it to apply rollback after each failure.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Finally we call retryWhen(retry) on a Flux instance to apply the Retry to that Flux.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;For more information on retries, backoff, and jitter see this excellent article from
+&lt;a href=&quot;https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/&quot;&gt;Amazon’s builder library.&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+	</description>
+    </item>
     <item>
       <title>Spring Handbook</title>
       <link>http://adamldavis.com/blog/2020/01.html</link>
