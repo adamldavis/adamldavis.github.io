@@ -81,3 +81,6 @@ task beforeCss doLast {
 }
 tasks['convertCss'].dependsOn beforeCss
 
+wrapper {
+    gradleVersion = '6.2.2'
+}

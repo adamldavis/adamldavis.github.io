@@ -14,7 +14,7 @@
           <ul class="nav navbar-nav">
             <li><a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>index.html">Home</a></li>
             <li><a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>about.html">About</a></li>
-            <li><a href="books.html">Books</a></li>
+            <li><a href="https://www.adamldavis.com/books.html">Books</a></li>
             
             <li><a rel=me href="https://github.com/adamldavis">Github</a></li>
             
