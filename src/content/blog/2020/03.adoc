@@ -1,8 +1,8 @@
 title=Project Reactor (Part 2)
-date=2020-07-25
+date=2020-07-29
 type=post
 tags=spring,reactor,reactive,java
-status=draft
+status=published
 ~~~~~~
 
 In the https://www.adamldavis.com/blog/2020/02.html[previous] post we introduced Reactor and covered why reactor is important and some of the basics.
@@ -91,31 +91,53 @@ StepVerifier.create(foo)             //2
 3. Expect onNext is called with “foo”.
 4. Call verifyComplete() has the same effect as verify() but also expects onComplete was called.
 
-Here we will test a Flux with three values and timeout if it takes too long:
+== Verifying Backpressure
+
+Next we'll test a Flux with four values and verify any additional values are dropped using backpressure handling.
 
 
-```
-@Test public void testStepVerifier_Flux() {
-Flux<Integer> flux = Flux.just(1, 4, 9); //1
-StepVerifier.create(flux)                //2
- .expectNext(1)                         //3
- .expectNext(4)
- .expectNext(9)
- .expectComplete()                      //4
- .verify(Duration.ofSeconds(10));       //5
+```java
+@Test
+public void testStepVerifier_Flux_backpressure() {
+    Flux<Integer> source = Flux.<Integer>create(emitter -> { //1
+        emitter.next(1);
+        emitter.next(2);
+        emitter.next(3);
+        emitter.next(4);
+        emitter.complete();
+    }).onBackpressureDrop();                            //2
+
+    StepVerifier.withVirtualTime(() -> source, 3)      //3
+            .expectNext(1)
+            .expectNext(2)
+            .expectNext(3)
+            .expectComplete()                       //4
+            .verifyThenAssertThat()
+            .tookLessThan(Duration.ofMillis(50));   //5
 }
 ```
 
-1. Create a Flux of just three numbers.
-2. Create a StepVerifier wrapping that Flux.
-3. Call expectNext for each value expected.
-4. Call expectComplete to expect onComplete to be called.
-5. Finally, you must call verify() at the end. This variation of verify takes a Duration timeout value. Here it is 10 seconds. This can be useful to prevent the Test from hanging in cases were a Publisher might never call onComplete.
+1. Create a Flux of just four numbers using an emitter (this is a "hot" flux meaning it is time sensitive).
+2. Using `onBackpressureDrop` to drop any items that aren't handled fast enough.
+3. Create a StepVerifier with the Flux using `withVirtualTime` and requesting only 3 items. Then call expectNext for each value expected.
+4. Then call `expectComplete` thus verifying that the backpressure logic worked!
+5. Finally, we verify that the Flux is complete and the whole process took less than a 50 milliseconds.
 
+The main point of using `withVirtualTime` here is to specify that we only request three elements.
+This emulates the real-world experience that would happen if a down-stream (Subscriber) could not keep up
+with the upstream (Publisher), since the down-stream is what causes items to be requested in Reactive Streams.
+
+Although this example only uses 1,2,3,4 you can imagine
+the stream (Flux) could be composed of any objects.
+
+Virtual time (with StepVerifier) can also be useful for testing things like the `Flux.interval`.
 
 == TestPublisher
 
-The `TestPublisher<T>` class offers the ability to provide finely tuned data for test purposes. TestPublisher<T> is a reactive-streams Publisher<T> but can be converted to either a Flux or Mono using flux() or mono() methods.
+The `TestPublisher<T>` class offers the ability to provide
+finely tuned data for test purposes.
+`TestPublisher<T>` is a reactive-streams Publisher<T> but can be converted to
+either a Flux or Mono.
 
 TextPublisher has the following methods:
 
@@ -147,7 +169,8 @@ assertEquals("bar", list.get(1));
 
 Note that you must subscribe to the TestPublisher (which is done by subscribing to the stringFlux in the above example) before emitting any values.
 
-== Reactor next...
+== Coming Next...
 
+In this article I've shown how Reactor can be used to handle backpressure and how to test it.
 In my next article, we'll look into how Reactor integrates with the whole Spring ecosystem - especially with WebFlux and WebClient.
 

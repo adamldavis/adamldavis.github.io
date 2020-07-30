@@ -96,6 +96,311 @@
 	<div class="page-header">
 		<h1>Adam L. Davis</h1>
 	</div>
+  			<a href="blog/2020/03.html"><h1>Project Reactor (Part 2)</h1></a>
+  			<p>29 July 2020</p>
+  			<p><div class="paragraph">
+<p>In the <a href="https://www.adamldavis.com/blog/2020/02.html">previous</a> post we introduced Reactor and covered why reactor is important and some of the basics.
+We talked about Flux, Mono, zipping, Tuples, and retry.
+However, one of the most important aspects of reactive streams, is the ability to handle backpressure.</p>
+</div>
+<div class="paragraph">
+<p><em>Backpressure</em> is a mechanism for explicitly handling the problem of having too many items to process in real time.
+Without such a mechanism, you typically see the problem of services timing out and eventually
+the user sees either a very slow or unresponsive system.
+This is compounded by the fact that users will give up quickly if a system is slow to respond.</p>
+</div>
+<div class="paragraph">
+<p>Many other techniques for handling concurrency do not have explicit mechanisms for handling backpressure.
+Instead, system engineers and architects must hope to scale the system either horizontally
+(more) servers, or vertically (a faster CPU/more cores/more memory).</p>
+</div>
+<div class="sect1">
+<h2 id="_handling_backpressure_in_reactor">Handling Backpressure in Reactor</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Reactor, like all implementations of Reactive Streams, has the ability to handle backpressure.
+Use one of the following methods on a Flux (or others not listed) to specify which backpressure strategy you want to use:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>onBackpressureBuffer(): Buffers all items until they can be handled downstream.</p>
+</li>
+<li>
+<p>onBackpressureBuffer(maxSize): Buffers items up to the given count.</p>
+</li>
+<li>
+<p>onBackpressureBuffer(maxSize, BufferOverflowStrategy): Buffers items up to the given count and allows you to specify the BufferOverflowStrategy, such as onBackpressureBuffer(100, BufferOverflowStrategy.DROP_OLDEST)</p>
+</li>
+<li>
+<p>onBackpressureLatest(): Similar to keeping a buffer of only the last item added. If the downstream does not keep up with upstream, only the latest element will be given downstream.</p>
+</li>
+<li>
+<p>onBackpressureError(): Ends the Flux with an error (calling the downstream Subscriber’s onError) with an IllegalStateException from Exceptions.failWithOverflow() if more items were produced upstream than requested downstream.</p>
+</li>
+<li>
+<p>onBackpressureDrop(): Drops any items produced above what was requested.</p>
+</li>
+<li>
+<p>onBackpressureDrop(Consumer): Drops any items produced above what was requested and calls the given Consumer for each dropped item.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>With each of these methods, the strategy only applies when the stream produces items faster than they can be handled.
+If that’s not the case, for example with a cold stream, no backpressure strategy is necessary.</p>
+</div>
+<div class="paragraph">
+<p>Also, keep in mind that Reactor is not magic and some care should be taken when considering backpressure strategies.
+For example, if each item in the stream is critical, do not use onBackpressureDrop().
+If you use onBackpressureError(), you will cause an Exception to be thrown when there are too many items, so use this with extreme caution.</p>
+</div>
+<div class="paragraph">
+<p>If you use any backpressure strategy, you should consider writing a test to validate
+that your whole system will work as expected.
+One way you could do this is to simulate a very slow downstream by using <code>Thread.sleep(1000)</code> for example.</p>
+</div>
+<div class="paragraph">
+<p>Luckily, Project Reactor supplies us with some great testing features.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_testing">Testing</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Automated testing is always a good idea, and it would be nice to have tools to directly test Reactive Streams.
+Luckily, Reactor comes with a few elements dedicated to testing which are gathered into their own artifact we already included: <code>reactor-test</code>.
+The two main uses of reactor-test are the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Testing a sequence follows a given scenario with StepVerifier.</p>
+</li>
+<li>
+<p>Producing data to test the behavior of operators (including you own operators) downstream with TestPublisher.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_stepverifier">StepVerifier</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Reactor’s StepVerifier can be used to verify the behavior of a Reactor Publisher (Flux or Mono).</p>
+</div>
+<div class="paragraph">
+<p>Here’s a simple example of a Junit test utilizing StepVerifier:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code>@Test
+public void testStepVerifier_Mono_error() {
+  Mono&lt;String&gt; monoError = Mono.error(new RuntimeException("error")); //1
+  StepVerifier.create(monoError) //2
+    .expectErrorMessage("error") //3
+    .verify(); //4
+}</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a Mono wrapping a RuntimeException imitating an actual error state.</p>
+</li>
+<li>
+<p>Create a StepVerifier wrapping that Mono.</p>
+</li>
+<li>
+<p>Declare that an onError event is expected and the Exception’s error message is “error”.</p>
+</li>
+<li>
+<p>We call verify() at the end. This will throw an AssertionError if any expectations are not met.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Next, we’ll create a Mono of just one string and verify it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code>@Test public void testStepVerifier_Mono_foo() {
+Mono&lt;String&gt; foo = Mono.just(“foo”); //1
+StepVerifier.create(foo)             //2
+.expectNext(“foo”)                 //3
+.verifyComplete();                 //4
+}</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a Mono wrapping one value, “foo”.</p>
+</li>
+<li>
+<p>Create a StepVerifier wrapping that Mono.</p>
+</li>
+<li>
+<p>Expect onNext is called with “foo”.</p>
+</li>
+<li>
+<p>Call verifyComplete() has the same effect as verify() but also expects onComplete was called.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_verifying_backpressure">Verifying Backpressure</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Next we&#8217;ll test a Flux with four values and verify any additional values are dropped using backpressure handling.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">@Test
+public void testStepVerifier_Flux_backpressure() {
+    Flux&lt;Integer&gt; source = Flux.&lt;Integer&gt;create(emitter -&gt; { //1
+        emitter.next(1);
+        emitter.next(2);
+        emitter.next(3);
+        emitter.next(4);
+        emitter.complete();
+    }).onBackpressureDrop();                            //2
+
+    StepVerifier.withVirtualTime(() -&gt; source, 3)      //3
+            .expectNext(1)
+            .expectNext(2)
+            .expectNext(3)
+            .expectComplete()                       //4
+            .verifyThenAssertThat()
+            .tookLessThan(Duration.ofMillis(50));   //5
+}</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a Flux of just four numbers using an emitter (this is a "hot" flux meaning it is time sensitive).</p>
+</li>
+<li>
+<p>Using <code>onBackpressureDrop</code> to drop any items that aren&#8217;t handled fast enough.</p>
+</li>
+<li>
+<p>Create a StepVerifier with the Flux using <code>withVirtualTime</code> and requesting only 3 items. Then call expectNext for each value expected.</p>
+</li>
+<li>
+<p>Then call <code>expectComplete</code> thus verifying that the backpressure logic worked!</p>
+</li>
+<li>
+<p>Finally, we verify that the Flux is complete and the whole process took less than a 50 milliseconds.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The main point of using <code>withVirtualTime</code> here is to specify that we only request three elements.
+This emulates the real-world experience that would happen if a down-stream (Subscriber) could not keep up
+with the upstream (Publisher), since the down-stream is what causes items to be requested in Reactive Streams.</p>
+</div>
+<div class="paragraph">
+<p>Although this example only uses 1,2,3,4 you can imagine
+the stream (Flux) could be composed of any objects.</p>
+</div>
+<div class="paragraph">
+<p>Virtual time (with StepVerifier) can also be useful for testing things like the <code>Flux.interval</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_testpublisher">TestPublisher</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <code>TestPublisher&lt;T&gt;</code> class offers the ability to provide
+finely tuned data for test purposes.
+<code>TestPublisher&lt;T&gt;</code> is a reactive-streams Publisher&lt;T&gt; but can be converted to
+either a Flux or Mono.</p>
+</div>
+<div class="paragraph">
+<p>TextPublisher has the following methods:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>next(T) and next(T, T&#8230;&#8203;) : Triggers 1-n onNext signals.</p>
+</li>
+<li>
+<p>emit(T&#8230;&#8203;) : Does the same as next and terminates with an onComplete signal.</p>
+</li>
+<li>
+<p>complete() : Terminates with an onComplete signal.</p>
+</li>
+<li>
+<p>error(Throwable) : Terminates with an onError signal.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The following demonstrates how you might use <code>TestPublisher&lt;T&gt;</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code>TestPublisher&lt;Object&gt; publisher = TestPublisher.create(); //1
+Flux&lt;Object&gt; stringFlux = publisher.flux();               //2
+List list = new ArrayList();                              //3
+stringFlux.subscribe(next -&gt; list.add(next),
+                     ex -&gt; ex.printStackTrace());         //4
+publisher.emit("foo", "bar");                             //5
+assertEquals(2, list.size());                             //6
+assertEquals("foo", list.get(0));
+assertEquals("bar", list.get(1));</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create the TestPublisher instance.</p>
+</li>
+<li>
+<p>Convert it to a Flux.</p>
+</li>
+<li>
+<p>Create a new List. For test purposes we will use this list to collect values from the publisher.</p>
+</li>
+<li>
+<p>Subscribe to the publisher using two lambda expressions for onNext and onError. This will add each value emitted from the publisher to the list.</p>
+</li>
+<li>
+<p>Finally, emit the values “foo” and “bar” from the TestPublisher.</p>
+</li>
+<li>
+<p>Assert the list’s size is two as expected.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Note that you must subscribe to the TestPublisher (which is done by subscribing to the stringFlux in the above example) before emitting any values.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_coming_next">Coming Next&#8230;&#8203;</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this article I&#8217;ve shown how Reactor can be used to handle backpressure and how to test it.
+In my next article, we&#8217;ll look into how Reactor integrates with the whole Spring ecosystem - especially with WebFlux and WebClient.</p>
+</div>
+</div>
+</div></p>
+  			<p>
+  			    <ul class="tags">
+                    <li><a href="tags/spring.html">spring</a></li>
+                    <li><a href="tags/reactor.html">reactor</a></li>
+                    <li><a href="tags/reactive.html">reactive</a></li>
+                    <li><a href="tags/java.html">java</a></li>
+  			    </ul>
+  			</p>
   			<a href="blog/2020/02.html"><h1>Project Reactor (Part 1)</h1></a>
   			<p>07 July 2020</p>
   			<p><div class="sect1">

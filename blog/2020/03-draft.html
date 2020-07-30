@@ -256,33 +256,49 @@ StepVerifier.create(foo)             //2
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint highlight"><code>@Test public void testStepVerifier_Flux() {
-Flux&lt;Integer&gt; flux = Flux.just(1, 4, 9); //1
-StepVerifier.create(flux)                //2
- .expectNext(1)                         //3
- .expectNext(4)
- .expectNext(9)
- .expectComplete()                      //4
- .verify(Duration.ofSeconds(10));       //5
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">@Test
+public void testStepVerifier_Flux_backpressure() {
+    Flux&lt;Integer&gt; source = Flux.&lt;Integer&gt;create(emitter -&gt; { //1
+        emitter.next(1);
+        emitter.next(2);
+        emitter.next(3);
+        emitter.next(4);
+        emitter.complete();
+    }).onBackpressureDrop();                            //2
+
+    StepVerifier.withVirtualTime(() -&gt; source, 3)      //3
+            .expectNext(1)
+            .expectNext(2)
+            .expectNext(3)
+            .then(() -&gt; {                              //4
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            })
+            .expectComplete()
+            .verifyThenAssertThat()
+            .tookLessThan(Duration.ofMillis(1050));   //5
 }</code></pre>
 </div>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Create a Flux of just three numbers.</p>
+<p>Create a Flux of just four numbers using an emitter (this is a "hot" flux meaning it is time sensitive).</p>
 </li>
 <li>
-<p>Create a StepVerifier wrapping that Flux.</p>
+<p>Using <code>onBackpressureDrop</code> to drop any items that aren&#8217;t handled fast enough.</p>
 </li>
 <li>
-<p>Call expectNext for each value expected.</p>
+<p>Create a StepVerifier with the Flux using <code>withVirtualTime</code> and requesting only 3 items. Then call expectNext for each value expected.</p>
 </li>
 <li>
-<p>Call expectComplete to expect onComplete to be called.</p>
+<p>Then call a Runnable that sleeps for one second, thus triggering the backpressure logic.</p>
 </li>
 <li>
-<p>Finally, you must call verify() at the end. This variation of verify takes a Duration timeout value. Here it is 10 seconds. This can be useful to prevent the Test from hanging in cases were a Publisher might never call onComplete.</p>
+<p>Finally, we verify that the Flux is complete and the whole process took less than a 1050 milliseconds.</p>
 </li>
 </ol>
 </div>

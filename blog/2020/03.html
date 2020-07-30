@@ -53,7 +53,7 @@
           <ul class="nav navbar-nav">
             <li><a href="../../index.html">Home</a></li>
             <li><a href="../../about.html">About</a></li>
-            <li><a href="https://github.adamldavis.com/books.html">Books</a></li>
+            <li><a href="https://www.adamldavis.com/books.html">Books</a></li>
             
             <li><a rel=me href="https://github.com/adamldavis">Github</a></li>
             
@@ -76,6 +76,16 @@
               </ul>
 
             </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Projects <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="https://bitbucket.org/adamldavis/dollar-lang/wiki/Home">Dollar-lang</a></li>
+                <li><a href="https://github.com/adamldavis/z">Zeta-code</a></li>
+                <li><a href="https://github.com/adamldavis/humblecode">Humblecode</a></li>
+                <li><a href="https://www.groocss.org/">GrooCSS</a></li>
+                <li><a href="https://github.com/adamldavis/graphql-java-immutables">graphql-java-immutables</a></li>
+              </ul>
+            </li>
 
           </ul>
         </div><!--/.nav-collapse -->
@@ -87,10 +97,10 @@
 		<h1>Project Reactor (Part 2)</h1>
 	</div>
 
-	<p><em>25 July 2020</em></p>
+	<p><em>29 July 2020</em></p>
 
 	<p><div class="paragraph">
-<p>In the <a href="http://github.adamldavis.com/blog/2020/02.html">previous</a> post we introduced Reactor and covered why reactor is important and some of the basics.
+<p>In the <a href="https://www.adamldavis.com/blog/2020/02.html">previous</a> post we introduced Reactor and covered why reactor is important and some of the basics.
 We talked about Flux, Mono, zipping, Tuples, and retry.
 However, one of the most important aspects of reactive streams, is the ability to handle backpressure.</p>
 </div>
@@ -241,40 +251,66 @@ StepVerifier.create(foo)             //2
 </li>
 </ol>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_verifying_backpressure">Verifying Backpressure</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Here we will test a Flux with three values and timeout if it takes too long:</p>
+<p>Next we&#8217;ll test a Flux with four values and verify any additional values are dropped using backpressure handling.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint highlight"><code>@Test public void testStepVerifier_Flux() {
-Flux&lt;Integer&gt; flux = Flux.just(1, 4, 9); //1
-StepVerifier.create(flux)                //2
- .expectNext(1)                         //3
- .expectNext(4)
- .expectNext(9)
- .expectComplete()                      //4
- .verify(Duration.ofSeconds(10));       //5
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">@Test
+public void testStepVerifier_Flux_backpressure() {
+    Flux&lt;Integer&gt; source = Flux.&lt;Integer&gt;create(emitter -&gt; { //1
+        emitter.next(1);
+        emitter.next(2);
+        emitter.next(3);
+        emitter.next(4);
+        emitter.complete();
+    }).onBackpressureDrop();                            //2
+
+    StepVerifier.withVirtualTime(() -&gt; source, 3)      //3
+            .expectNext(1)
+            .expectNext(2)
+            .expectNext(3)
+            .expectComplete()                       //4
+            .verifyThenAssertThat()
+            .tookLessThan(Duration.ofMillis(50));   //5
 }</code></pre>
 </div>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Create a Flux of just three numbers.</p>
+<p>Create a Flux of just four numbers using an emitter (this is a "hot" flux meaning it is time sensitive).</p>
 </li>
 <li>
-<p>Create a StepVerifier wrapping that Flux.</p>
+<p>Using <code>onBackpressureDrop</code> to drop any items that aren&#8217;t handled fast enough.</p>
 </li>
 <li>
-<p>Call expectNext for each value expected.</p>
+<p>Create a StepVerifier with the Flux using <code>withVirtualTime</code> and requesting only 3 items. Then call expectNext for each value expected.</p>
 </li>
 <li>
-<p>Call expectComplete to expect onComplete to be called.</p>
+<p>Then call <code>expectComplete</code> thus verifying that the backpressure logic worked!</p>
 </li>
 <li>
-<p>Finally, you must call verify() at the end. This variation of verify takes a Duration timeout value. Here it is 10 seconds. This can be useful to prevent the Test from hanging in cases were a Publisher might never call onComplete.</p>
+<p>Finally, we verify that the Flux is complete and the whole process took less than a 50 milliseconds.</p>
 </li>
 </ol>
+</div>
+<div class="paragraph">
+<p>The main point of using <code>withVirtualTime</code> here is to specify that we only request three elements.
+This emulates the real-world experience that would happen if a down-stream (Subscriber) could not keep up
+with the upstream (Publisher), since the down-stream is what causes items to be requested in Reactive Streams.</p>
+</div>
+<div class="paragraph">
+<p>Although this example only uses 1,2,3,4 you can imagine
+the stream (Flux) could be composed of any objects.</p>
+</div>
+<div class="paragraph">
+<p>Virtual time (with StepVerifier) can also be useful for testing things like the <code>Flux.interval</code>.</p>
 </div>
 </div>
 </div>
@@ -282,7 +318,10 @@ StepVerifier.create(flux)                //2
 <h2 id="_testpublisher">TestPublisher</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <code>TestPublisher&lt;T&gt;</code> class offers the ability to provide finely tuned data for test purposes. TestPublisher&lt;T&gt; is a reactive-streams Publisher&lt;T&gt; but can be converted to either a Flux or Mono using flux() or mono() methods.</p>
+<p>The <code>TestPublisher&lt;T&gt;</code> class offers the ability to provide
+finely tuned data for test purposes.
+<code>TestPublisher&lt;T&gt;</code> is a reactive-streams Publisher&lt;T&gt; but can be converted to
+either a Flux or Mono.</p>
 </div>
 <div class="paragraph">
 <p>TextPublisher has the following methods:</p>
@@ -312,7 +351,7 @@ StepVerifier.create(flux)                //2
 Flux&lt;Object&gt; stringFlux = publisher.flux();               //2
 List list = new ArrayList();                              //3
 stringFlux.subscribe(next -&gt; list.add(next),
-ex -&gt; ex.printStackTrace());         //4
+                     ex -&gt; ex.printStackTrace());         //4
 publisher.emit("foo", "bar");                             //5
 assertEquals(2, list.size());                             //6
 assertEquals("foo", list.get(0));
@@ -347,10 +386,11 @@ assertEquals("bar", list.get(1));</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_reactor_next">Reactor next&#8230;&#8203;</h2>
+<h2 id="_coming_next">Coming Next&#8230;&#8203;</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In my next article, we&#8217;ll look into how Reactor integrates with the whole Spring ecosystem - especially with WebFlux and WebClient.</p>
+<p>In this article I&#8217;ve shown how Reactor can be used to handle backpressure and how to test it.
+In my next article, we&#8217;ll look into how Reactor integrates with the whole Spring ecosystem - especially with WebFlux and WebClient.</p>
 </div>
 </div>
 </div></p>
