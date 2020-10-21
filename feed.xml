@@ -6,9 +6,61 @@
     <atom:link href="http://adamldavis.com/feed.xml" rel="self" type="application/rss+xml" />
     <description>JBake Bootstrap Template</description>
     <language>en-gb</language>
-    <pubDate>Wed, 29 Jul 2020 21:40:40 -0400</pubDate>
-    <lastBuildDate>Wed, 29 Jul 2020 21:40:40 -0400</lastBuildDate>
+    <pubDate>Tue, 20 Oct 2020 21:36:35 -0400</pubDate>
+    <lastBuildDate>Tue, 20 Oct 2020 21:36:35 -0400</lastBuildDate>
 
+    <item>
+      <title>Project Reactor (Part 3 of 3)</title>
+      <link>http://adamldavis.com/blog/2020/04.html</link>
+      <pubDate>Tue, 20 Oct 2020 00:00:00 -0400</pubDate>
+      <guid isPermaLink="false">blog/2020/04.html</guid>
+      	<description>
+	&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;_so_far&quot;&gt;So far&amp;#8230;&amp;#8203;&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;In the &lt;a href=&quot;https://www.adamldavis.com/blog/2020/03.html&quot;&gt;previous&lt;/a&gt; post we introduced Reactor testing and backpressure.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;To summarize:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;olist arabic&quot;&gt;
+&lt;ol class=&quot;arabic&quot;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.adamldavis.com/blog/2020/01.html&quot;&gt;Part 1&lt;/a&gt;: Getting started with Reactor&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.adamldavis.com/blog/2020/02.html&quot;&gt;Part 2&lt;/a&gt;: Flux, Mono, zipping, Tuples, and retry&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Part 3: Now we&amp;#8217;ll cover WebFlux and WebClient with a dip into JHipster&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;_jhipster&quot;&gt;JHipster&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;JHipster is a code generation tool primarily for building Spring-Boot based projects
+with either a React or Angular front end - although it can be extended via blueprints and
+there are several that allow you to create a Vue.js front end or Micronaut back-end for two examples.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;It also has a feature allowing you to create a Spring Boot WebFlux project.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;WebFlux is Spring&amp;#8217;s framework for asynchronous, non-blocking web applications - and it works with
+Reactive types, especially project Reactor (Flux, Mono, etc.).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;To get started, install &lt;a href=&quot;https://nodejs.org/en/&quot;&gt;Node&lt;/a&gt; and &lt;a href=&quot;https://www.jhipster.tech/installation/&quot;&gt;JHipster&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+	</description>
+    </item>
     <item>
       <title>Project Reactor (Part 2)</title>
       <link>http://adamldavis.com/blog/2020/03.html</link>
@@ -556,10 +608,11 @@ It&amp;#8217;s been there throughout almost my entire Java development career an
 I&amp;#8217;ve had &quot;Spring Handbook&quot; on my check-list of books to write for a long time.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;&lt;a href=&quot;https://leanpub.com/springhandbook/&quot;&gt;Spring Handbook&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.apress.com/us/book/9781484261439&quot;&gt;Spring Quick Reference Guide&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
 &lt;p&gt;It&amp;#8217;s going to be picked up by Apress, and is currently under development.
+(&lt;strong&gt;*Edit\&lt;/strong&gt;* It&amp;#8217;s published!)
 I&amp;#8217;m really excited about this one - there is so much to cover and it&amp;#8217;s so relevant to software development today especially with Java.
 I&amp;#8217;m going to cover so many things:&lt;/p&gt;
 &lt;/div&gt;

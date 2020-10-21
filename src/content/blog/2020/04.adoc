@@ -1,0 +1,30 @@
+title=Project Reactor (Part 3 of 3)
+date=2020-10-20
+type=post
+tags=spring,reactor,java,webflux,jhipster
+status=published
+~~~~~~
+
+== So far...
+
+In the https://www.adamldavis.com/blog/2020/03.html[previous] post we introduced Reactor testing and backpressure.
+
+To summarize:
+
+1. https://www.adamldavis.com/blog/2020/01.html[Part 1]: Getting started with Reactor
+2. https://www.adamldavis.com/blog/2020/02.html[Part 2]: Flux, Mono, zipping, Tuples, and retry
+3. Part 3: Now we'll cover WebFlux and WebClient with a dip into JHipster
+
+== JHipster
+
+JHipster is a code generation tool primarily for building Spring-Boot based projects
+with either a React or Angular front end - although it can be extended via blueprints and
+there are several that allow you to create a Vue.js front end or Micronaut back-end for two examples.
+
+It also has a feature allowing you to create a Spring Boot WebFlux project.
+
+WebFlux is Spring's framework for asynchronous, non-blocking web applications - and it works with
+Reactive types, especially project Reactor (Flux, Mono, etc.).
+
+To get started, install https://nodejs.org/en/[Node] and https://www.jhipster.tech/installation/[JHipster].
+

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
-    <title>Adam L. Davis</title>
+    <title>Project Reactor (Part 3 of 3)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="This is my blog about building software and solving problems. Sometimes I write about Java, Groovy, programming, etc.">
     <meta name="author" content="Adam L. Davis">
@@ -10,20 +10,20 @@
     <meta name="generator" content="JBake">
     
     <!-- Le styles -->
-        <link href="../css/normalize.css" rel="stylesheet">
+        <link href="../../css/normalize.css" rel="stylesheet">
         
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/asciidoctor.css" rel="stylesheet">
-    <link href="../css/base.css" rel="stylesheet">
-    <link href="../css/prettify.css" rel="stylesheet">
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/asciidoctor.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link href="../../css/prettify.css" rel="stylesheet">
 
-        <link href="../css/style.css" rel="stylesheet">
-        <link href="../css/stylesheet.css" rel="stylesheet">        
+        <link href="../../css/style.css" rel="stylesheet">
+        <link href="../../css/stylesheet.css" rel="stylesheet">        
     <style>pre,p{font-size: 120%;}.red{color: red}a:hover{transition: all 1s ease;}</style>
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-      <script src="../js/html5shiv.min.js"></script>
+      <script src="../../js/html5shiv.min.js"></script>
     <![endif]-->
 
     <!-- Fav and touch icons -->
@@ -31,12 +31,12 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
-    <link rel="shortcut icon" href="../favicon.jpg">
+    <link rel="shortcut icon" href="../../favicon.jpg">
   </head>
   <body onload="prettyPrint()">
     <div id="wrap">
    
-
+	
 	<!-- Fixed navbar -->
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
@@ -47,12 +47,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <!-- a class="navbar-brand" href="../">JBake</a -->
+          <!-- a class="navbar-brand" href="../../">JBake</a -->
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="../about.html">About</a></li>
+            <li><a href="../../index.html">Home</a></li>
+            <li><a href="../../about.html">About</a></li>
             <li><a href="https://www.adamldavis.com/books.html">Books</a></li>
             
             <li><a rel=me href="https://github.com/adamldavis">Github</a></li>
@@ -73,7 +73,7 @@
                 <li class="dropdown-header">Sign up and get a free ebook</li>
                 <li><a rel=me href="https://adamldavis.us19.list-manage.com/subscribe?u=66f67d57b882cf3b7eef9257e&id=ab8ddea8e0">Newsletter</a></li>
                 <li class="divider"></li>
-                <li><a href="../feed.xml">Atom feed for blog</a></li>
+                <li><a href="../../feed.xml">Atom feed for blog</a></li>
               </ul>
 
             </li>
@@ -95,32 +95,67 @@
     <div class="container">
 	
 	<div class="page-header">
-		<h1>Tag: java</h1>
+		<h1>Project Reactor (Part 3 of 3)</h1>
 	</div>
-	
-	<!--<ul>-->
-			<h4>October 2020</h4>
-			<ul>
-		
-		<li>20 - <a href="../blog/2020/04.html">Project Reactor (Part 3 of 3)</a></li>
-				</ul>
-				<h4>July 2020</h4>
-				<ul>
-		
-		<li>29 - <a href="../blog/2020/03.html">Project Reactor (Part 2)</a></li>
-		
-		<li>07 - <a href="../blog/2020/02.html">Project Reactor (Part 1)</a></li>
-				</ul>
-				<h4>November 2017</h4>
-				<ul>
-		
-		<li>15 - <a href="../blog/2017/03.html">RxJava</a></li>
-				</ul>
-				<h4>July 2016</h4>
-				<ul>
-		
-		<li>28 - <a href="../blog/2017/01.html">Groovy News!</a></li>
-	</ul>
+
+	<p><em>20 October 2020</em></p>
+
+	<p><div class="sect1">
+<h2 id="_so_far">So far&#8230;&#8203;</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In the <a href="https://www.adamldavis.com/blog/2020/03.html">previous</a> post we introduced Reactor testing and backpressure.</p>
+</div>
+<div class="paragraph">
+<p>To summarize:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="https://www.adamldavis.com/blog/2020/01.html">Part 1</a>: Getting started with Reactor</p>
+</li>
+<li>
+<p><a href="https://www.adamldavis.com/blog/2020/02.html">Part 2</a>: Flux, Mono, zipping, Tuples, and retry</p>
+</li>
+<li>
+<p>Part 3: Now we&#8217;ll cover WebFlux and WebClient with a dip into JHipster</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_jhipster">JHipster</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>JHipster is a code generation tool primarily for building Spring-Boot based projects
+with either a React or Angular front end - although it can be extended via blueprints and
+there are several that allow you to create a Vue.js front end or Micronaut back-end for two examples.</p>
+</div>
+<div class="paragraph">
+<p>It also has a feature allowing you to create a Spring Boot WebFlux project.</p>
+</div>
+<div class="paragraph">
+<p>WebFlux is Spring&#8217;s framework for asynchronous, non-blocking web applications - and it works with
+Reactive types, especially project Reactor (Flux, Mono, etc.).</p>
+</div>
+<div class="paragraph">
+<p>To get started, install <a href="https://nodejs.org/en/">Node</a> and <a href="https://www.jhipster.tech/installation/">JHipster</a>.</p>
+</div>
+</div>
+</div></p>
+
+    <p>
+        <ul class="tags">
+            <li><a href="../../tags/spring.html">spring</a></li>
+            <li><a href="../../tags/reactor.html">reactor</a></li>
+            <li><a href="../../tags/java.html">java</a></li>
+            <li><a href="../../tags/webflux.html">webflux</a></li>
+            <li><a href="../../tags/jhipster.html">jhipster</a></li>
+        </ul>
+    </p>
+
+	<hr />
 	
 		</div>
 		<div id="push"></div>
@@ -128,7 +163,7 @@
     
     <div id="footer">
       <div class="container">
-        <p class="muted credit">&copy; 2019 <a rel=me href="https://github.com/adamldavis">Adam L. Davis</a> | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.6.4</a> | Hosted by <a href="https://pages.github.com/">Github</a> | <a href="../about.html">About</a>
+        <p class="muted credit">&copy; 2019 <a rel=me href="https://github.com/adamldavis">Adam L. Davis</a> | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.6.4</a> | Hosted by <a href="https://pages.github.com/">Github</a> | <a href="../../about.html">About</a>
         </p>
       </div>
     </div>
@@ -136,9 +171,9 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../js/jquery-1.11.1.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/prettify.js"></script>
+    <script src="../../js/jquery-1.11.1.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/prettify.js"></script>
     
   </body>
 </html>

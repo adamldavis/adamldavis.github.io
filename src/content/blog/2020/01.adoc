@@ -16,9 +16,10 @@ I've been using Spring for a long, long time (since 2005).
 It's been there throughout almost my entire Java development career and it's evolved substantially over the years.
 I've had "Spring Handbook" on my check-list of books to write for a long time.
 
-https://leanpub.com/springhandbook/[Spring Handbook]
+https://www.apress.com/us/book/9781484261439[Spring Quick Reference Guide]
 
 It's going to be picked up by Apress, and is currently under development.
+(\**Edit\** It's published!)
 I'm really excited about this one - there is so much to cover and it's so relevant to software development today especially with Java.
 I'm going to cover so many things:
 
