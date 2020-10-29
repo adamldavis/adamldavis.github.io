@@ -112,15 +112,26 @@
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><a href="https://www.adamldavis.com/blog/2020/01.html">Part 1</a>: Getting started with Reactor</p>
+<p><a href="https://www.adamldavis.com/blog/2020/02.html">Part 1</a>: Getting started with Reactor</p>
 </li>
 <li>
-<p><a href="https://www.adamldavis.com/blog/2020/02.html">Part 2</a>: Flux, Mono, zipping, Tuples, and retry</p>
+<p><a href="https://www.adamldavis.com/blog/2020/03.html">Part 2</a>: Flux, Mono, zipping, Tuples, and retry</p>
 </li>
 <li>
-<p>Part 3: Now we&#8217;ll cover WebFlux and WebClient with a dip into JHipster</p>
+<p>Part 3: WebFlux and WebClient with a dip into JHipster</p>
 </li>
 </ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites">Prerequisites</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For this post you should have a good understanding of
+<a href="https://leanpub.com/modernjavasecondedition/">Java</a>
+and <a href="https://spring.io/projects/spring-boot">Spring Boot</a>
+and have read the previous posts about Reactor.</p>
 </div>
 </div>
 </div>
@@ -140,7 +151,214 @@ there are several that allow you to create a Vue.js front end or Micronaut back-
 Reactive types, especially project Reactor (Flux, Mono, etc.).</p>
 </div>
 <div class="paragraph">
-<p>To get started, install <a href="https://nodejs.org/en/">Node</a> and <a href="https://www.jhipster.tech/installation/">JHipster</a>.</p>
+<p>To get started, install <a href="https://nodejs.org/en/">Node</a> (&gt;10.20.1) and <a href="https://www.jhipster.tech/installation/">JHipster</a> (latest)</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Then, from the terminal, make a new directory (named "hip-webflux"), and run <code>jhipster</code></p>
+</li>
+<li>
+<p>Follow the prompts, and choose monolith and then <em>Reactive</em> (this will create a Spring Boot WebFlux project)</p>
+</li>
+<li>
+<p>For database, you can pick MongoDB, or Cassandra (the reactive generator doesn&#8217;t support SQL at the moment)</p>
+</li>
+<li>
+<p>For front end, you can pick React or Angular</p>
+</li>
+<li>
+<p>Pick Maven or Gradle</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>&#8230;&#8203;This takes a while since it has to load a bunch of dependencies&#8230;&#8203;</p>
+</div>
+<div class="paragraph">
+<p>Then you should see output like the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code>Server application generated successfully.
+
+Run your Spring Boot application:
+./mvnw
+
+Client application generated successfully.
+
+Start your Webpack development server with:
+ npm start
+
+
+&gt; hip@0.0.1-SNAPSHOT cleanup /home/adavis/github/adamldavis/hip-webflux
+&gt; rimraf target/classes/static/
+
+INFO! Congratulations, JHipster execution is complete!</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_jdl">JDL</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>After creating the basic project, let&#8217;s add some entities.</p>
+</div>
+<div class="paragraph">
+<p>One of the cool things about JHipster is JDL (Jhipster Domain Language).
+Its a DSL for creating projects and entities.
+Create a file named "hip.jdl" and put in the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code>entity Person {
+  name String required
+  age Integer min(0) max(142)
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>(Feel free to mess around with your JDL and make it more complicated, but for this example, let&#8217;s keep it simple)</p>
+</div>
+<div class="paragraph">
+<p>Import the JDL by running <code>jhipster import-jdl hip.jdl</code></p>
+</div>
+<div class="paragraph">
+<p>Now open the project with your favorite IDE (like IntelliJ IDEA for example) and take
+a look at the PersonController.</p>
+</div>
+<div class="paragraph">
+<p>JHipster automatically creates an AuditEvent database for auditing (create, update, delete record events).
+Open up the file named "AuditResource" under the "com.mycompany.myapp.web.rest" package (Under src/main/java/).
+It should have a "getAll" method that looks something like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">@GetMapping
+public Mono&lt;ResponseEntity&lt;Flux&lt;AuditEvent&gt;&gt;&gt; getAll(ServerHttpRequest request, Pageable pageable) {
+    return auditEventService.count()
+        .map(total -&gt; new PageImpl&lt;&gt;(new ArrayList&lt;&gt;(), pageable, total))
+        .map(page -&gt; PaginationUtil.generatePaginationHttpHeaders(UriComponentsBuilder.fromHttpRequest(request), page))
+        .map(headers -&gt; ResponseEntity.ok().headers(headers).body(auditEventService.findAll(pageable)));
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>WebFlux allows you to return Reactor types like Mono and Flux from controller methods
+and implements a reactive, asynchronous web server using <a href="https://netty.io/">Netty</a> by default.</p>
+</div>
+<div class="paragraph">
+<p>A typical web server uses a large number of Threads and handles each request in one thread.
+The problem with this is that Threads in Java are kind of heavy weight in Java
+(this should be fixed by project Loom and virtual threads in Java 15+).
+This allows a single Thread to block without holding back the entire application,
+however if you have a lot of blocking threads, it can starve your application of available Threads.</p>
+</div>
+<div class="paragraph">
+<p>Netty instead uses an <a href="http://normanmaurer.me/presentations/2014-netflix-netty/slides.html#11.0">EventLoop</a>
+per Thread for I/O.
+WebFlux enables and simplifies the Java API using Reactive Streams (of which Reactor is one implementation).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_no_blocking">No Blocking!</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Since the threads in WebFlux are meant to be non-blocking, you must be careful not to block them.
+For example, don&#8217;t call <code>block()</code> or <code>Thread.sleep</code>.
+There&#8217;s a project called <a href="https://github.com/reactor/BlockHound">BlockHound</a> to help enforce this
+rule throughout your application.
+(This doesn&#8217;t mean <em>no</em> threads can block; only blocking should happen in dedicated threads)</p>
+</div>
+<div class="paragraph">
+<p>To implement this, your application should be reactive "all the way down".
+So if you have a database, reading from it should also be reactive and non-blocking.
+Projects like <a href="https://r2dbc.io/">r2dbc</a> and Spring <a href="https://spring.io/projects/spring-data-r2dbc">spring-data-r2dbc</a>
+help, among others.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_webclient">WebClient</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>WebFlux also includes
+<a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/reactive/function/client/WebClient.html">WebClient</a>
+which is a reactive replacement for RestTemplate.
+It makes asynchronous, non-blocking HTTP requests.</p>
+</div>
+<div class="paragraph">
+<p>You can create an instance of WebClient using the builder pattern starting from the static WebClient.builder() method.
+For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+// later on...
+WebClient myWebClient = WebClient.builder()
+ .baseUrl("http://localhost:8080/api-to-call/")
+ .defaultCookie("cookieKey", "cookieValue")
+ .defaultHeader(HttpHeaders.CONTENT_TYPE,
+   MediaType.APPLICATION_JSON_VALUE)
+ .build();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This builds a WebClient with given baseUrl.
+It also provides a cookie and header to use for every request.
+There are many more methods to configure the WebClient.
+Each request starts with defining the HTTP method,
+then you can specify an additional URL path (with or without path variables) and call
+exchange which returns a Mono&lt;ClientResponse&gt;.
+For example, to get a person from some <code>/v1/persons</code> REST api:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code>// get the Course with ID=1 and print it out:
+myWebClient.get()
+    .uri("/v1/persons/{id}", 1L)
+    .exchange()
+    .flatMap((ClientResponse response) -&gt;
+      response.bodyToMono(Person.class))
+    .subscribe(person -&gt; System.out.println("person = " + person));</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The WebClient thus enables all of your HTTP calls to be reactive.
+The Spring team likes WebClient so much, they  recommend everyone use it over RestTemplate.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion">Conclusion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>I hope you got something from this three part series.
+Reactive programming in Java isn&#8217;t always necessary - it&#8217;s for enabling thousands of
+transactions a second, so you might not need it - but when any
+application becomes popular enough, you tend to need high throughput and performance.</p>
+</div>
+<div class="paragraph">
+<p>Eventually when Java has virtual threads it will make threads more lightweight, however,
+Reactive will still be useful due to its backpressure handling, retry logic,
+and other benefits.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="https://www.adamldavis.com/blog/2020/02.html">Part 1</a>: Getting started with Reactor</p>
+</li>
+<li>
+<p><a href="https://www.adamldavis.com/blog/2020/03.html">Part 2</a>: Flux, Mono, zipping, Tuples, and retry</p>
+</li>
+<li>
+<p><a href="https://www.adamldavis.com/blog/2020/04.html">Part 3</a>: WebFlux and WebClient</p>
+</li>
+</ol>
 </div>
 </div>
 </div></p>
