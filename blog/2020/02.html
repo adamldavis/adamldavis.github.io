@@ -104,13 +104,19 @@
 <h2 id="_what_is_reactor">What is Reactor?</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The purpose of Reactor, and reactive steams in general is to enable operations on large amounts of data to be broken down and executed on many different threads (multi-threading) in the most efficient, scalable, and fast way possible. Although parallel processing can be achieved simply using Java 8’s parallel stream, reactive streams add a plethora of additional functionality and customization such as error handling, retry, caching and replaying streams, handling backpressure, and more.</p>
+<p>The purpose of <a href="https://projectreactor.io/">Reactor</a>,
+and <a href="https://www.reactive-streams.org/">reactive steams</a> in general is to enable operations on large amounts of data
+to be broken down and executed on many different threads (multi-threading)
+in the most efficient, scalable, and fast way possible.
+Although parallel processing can be achieved simply using Java 8’s parallel stream, reactive streams add a plethora of additional functionality and customization such as error handling, retry, caching and replaying streams, handling backpressure, and more.</p>
 </div>
 <div class="paragraph">
-<p>You can think of a reactive stream as having three rails, the data rail, the completion rail (whether or not the stream has completed), and the error rail. Also, each of the rails can be converted into the other: complete streams could be replaced, an operation could throw an Exception, or an Exception could be handled and replaced with more data.</p>
+<p>You can think of a reactive stream as having three rails, the data rail, the completion rail (whether or not the stream has completed), and the error rail. Also, each of the rails can be converted into the other: complete streams could be replaced,
+an operation could throw an Exception, or an Exception could be handled and replaced with more data.</p>
 </div>
 <div class="paragraph">
-<p>In addition, Reactor adds the concept of Context, which we will explore later on.</p>
+<p>The core types of Reactor are <em>Flux</em> (a stream of zero to any number of items) and
+<em>Mono</em> (a stream of zero or one item).</p>
 </div>
 </div>
 </div>
@@ -286,7 +292,9 @@ return getCourse(id)
  .retryMax(5)
  .withApplicationContext(appContext) \\4
  .doOnRetry(context -&gt;
-    context.applicationContext().rollback()); return flux.retryWhen(retry); \\5</code></pre>
+    context.applicationContext().rollback());
+
+return flux.retryWhen(retry); \\5</code></pre>
 </div>
 </div>
 <div class="olist arabic">
@@ -311,6 +319,9 @@ return getCourse(id)
 <div class="paragraph">
 <p>For more information on retries, backoff, and jitter see this excellent article from
 <a href="https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/">Amazon’s builder library.</a></p>
+</div>
+<div class="paragraph">
+<p>&#8594; <a href="https://www.adamldavis.com/blog/2020/03.html">Part 2</a></p>
 </div>
 </div>
 </div></p>

@@ -1,5 +1,5 @@
 title=Project Reactor (Part 3 of 3)
-date=2020-10-20
+date=2020-11-01
 type=post
 tags=spring,reactor,java,webflux,jhipster
 status=published
@@ -9,11 +9,11 @@ status=published
 
 In the https://www.adamldavis.com/blog/2020/03.html[previous] post we introduced Reactor testing and backpressure.
 
-To summarize:
+To summarize all three parts:
 
-1. https://www.adamldavis.com/blog/2020/02.html[Part 1]: Getting started with Reactor
-2. https://www.adamldavis.com/blog/2020/03.html[Part 2]: Flux, Mono, zipping, Tuples, and retry
-3. Part 3: WebFlux and WebClient with a dip into JHipster
+1. https://www.adamldavis.com/blog/2020/02.html[Part 1]: Getting started with Reactor: Flux, Mono, zipping, Tuples, and retry
+2. https://www.adamldavis.com/blog/2020/03.html[Part 2]: Backpressure and testing with Reactor
+3. Part 3: Spring WebFlux, Netty, and WebClient with a dip into JHipster
 
 == Prerequisites
 
@@ -24,9 +24,10 @@ and have read the previous posts about Reactor.
 
 == JHipster
 
-JHipster is a code generation tool primarily for building Spring-Boot based projects
+https://www.jhipster.tech[JHipster] is a code generation tool primarily for building Spring-Boot based projects
 with either a React or Angular front end - although it can be extended via blueprints and
-there are several that allow you to create a Vue.js front end or Micronaut back-end for two examples.
+there are several (one allows you to create a Vue.js front-end
+and one a Micronaut back-end for example).
 
 It also has a feature allowing you to create a Spring Boot WebFlux project.
 
@@ -103,10 +104,12 @@ WebFlux allows you to return Reactor types like Mono and Flux from controller me
 and implements a reactive, asynchronous web server using https://netty.io/[Netty] by default.
 
 A typical web server uses a large number of Threads and handles each request in one thread.
-The problem with this is that Threads in Java are kind of heavy weight in Java
-(this should be fixed by project Loom and virtual threads in Java 15+).
-This allows a single Thread to block without holding back the entire application,
-however if you have a lot of blocking threads, it can starve your application of available Threads.
+The problem with this is Threads in Java are kind of heavyweight
+(this should be fixed by project
+https://cr.openjdk.java.net/~rpressler/loom/loom/sol1_part1.html[Loom] and virtual threads in Java 15+).
+This allows a single Thread to block without holding back the entire application;
+however, the number of concurrent requests you can handle is limited by the number of threads
+your server can support.
 
 Netty instead uses an http://normanmaurer.me/presentations/2014-netflix-netty/slides.html#11.0[EventLoop]
 per Thread for I/O.
@@ -167,11 +170,25 @@ myWebClient.get()
 ```
 
 The WebClient thus enables all of your HTTP calls to be reactive.
-The Spring team likes WebClient so much, they  recommend everyone use it over RestTemplate.
+The Spring team likes WebClient so much, they recommend everyone uses it over RestTemplate.
+
+== Schedulers
+
+One important type in Reactor is https://projectreactor.io/docs/core/release/api/reactor/core/scheduler/Schedulers.html[Schedulers].
+Schedulers provides various Scheduler flavors usable by publishOn or subscribeOn
+for a Flux or Mono. For example:
+
+```java
+mono.publishOn(Schedulers.elastic())
+```
+
+Makes a Mono suitable for running blocking tasks like HTTP calls.
 
 == Conclusion
 
 I hope you got something from this three part series.
+There's much much more to learn about Reactor, but I hope this is a good introduction.
+
 Reactive programming in Java isn't always necessary - it's for enabling thousands of
 transactions a second, so you might not need it - but when any
 application becomes popular enough, you tend to need high throughput and performance.
@@ -180,6 +197,6 @@ Eventually when Java has virtual threads it will make threads more lightweight, 
 Reactive will still be useful due to its backpressure handling, retry logic,
 and other benefits.
 
-1. https://www.adamldavis.com/blog/2020/02.html[Part 1]: Getting started with Reactor
-2. https://www.adamldavis.com/blog/2020/03.html[Part 2]: Flux, Mono, zipping, Tuples, and retry
-3. https://www.adamldavis.com/blog/2020/04.html[Part 3]: WebFlux and WebClient
+1. https://www.adamldavis.com/blog/2020/02.html[Part 1]: Getting started with Reactor, Flux, Mono, zipping, Tuples, and retry
+2. https://www.adamldavis.com/blog/2020/03.html[Part 2]: Backpressure and testing with Reactor
+3. https://www.adamldavis.com/blog/2020/04.html[Part 3]: Spring WebFlux, Netty, and WebClient (and JHipster)

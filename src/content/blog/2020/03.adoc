@@ -174,3 +174,4 @@ Note that you must subscribe to the TestPublisher (which is done by subscribing 
 In this article I've shown how Reactor can be used to handle backpressure and how to test it.
 In my next article, we'll look into how Reactor integrates with the whole Spring ecosystem - especially with WebFlux and WebClient.
 
+-> https://www.adamldavis.com/blog/2020/04.html[Part 3]

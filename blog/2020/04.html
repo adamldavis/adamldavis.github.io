@@ -98,7 +98,7 @@
 		<h1>Project Reactor (Part 3 of 3)</h1>
 	</div>
 
-	<p><em>20 October 2020</em></p>
+	<p><em>01 November 2020</em></p>
 
 	<p><div class="sect1">
 <h2 id="_so_far">So far&#8230;&#8203;</h2>
@@ -107,18 +107,18 @@
 <p>In the <a href="https://www.adamldavis.com/blog/2020/03.html">previous</a> post we introduced Reactor testing and backpressure.</p>
 </div>
 <div class="paragraph">
-<p>To summarize:</p>
+<p>To summarize all three parts:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><a href="https://www.adamldavis.com/blog/2020/02.html">Part 1</a>: Getting started with Reactor</p>
+<p><a href="https://www.adamldavis.com/blog/2020/02.html">Part 1</a>: Getting started with Reactor: Flux, Mono, zipping, Tuples, and retry</p>
 </li>
 <li>
-<p><a href="https://www.adamldavis.com/blog/2020/03.html">Part 2</a>: Flux, Mono, zipping, Tuples, and retry</p>
+<p><a href="https://www.adamldavis.com/blog/2020/03.html">Part 2</a>: Backpressure and testing with Reactor</p>
 </li>
 <li>
-<p>Part 3: WebFlux and WebClient with a dip into JHipster</p>
+<p>Part 3: Spring WebFlux, Netty, and WebClient with a dip into JHipster</p>
 </li>
 </ol>
 </div>
@@ -139,9 +139,10 @@ and have read the previous posts about Reactor.</p>
 <h2 id="_jhipster">JHipster</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>JHipster is a code generation tool primarily for building Spring-Boot based projects
+<p><a href="https://www.jhipster.tech">JHipster</a> is a code generation tool primarily for building Spring-Boot based projects
 with either a React or Angular front end - although it can be extended via blueprints and
-there are several that allow you to create a Vue.js front end or Micronaut back-end for two examples.</p>
+there are several (one allows you to create a Vue.js front-end
+and one a Micronaut back-end for example).</p>
 </div>
 <div class="paragraph">
 <p>It also has a feature allowing you to create a Spring Boot WebFlux project.</p>
@@ -250,10 +251,12 @@ and implements a reactive, asynchronous web server using <a href="https://netty.
 </div>
 <div class="paragraph">
 <p>A typical web server uses a large number of Threads and handles each request in one thread.
-The problem with this is that Threads in Java are kind of heavy weight in Java
-(this should be fixed by project Loom and virtual threads in Java 15+).
-This allows a single Thread to block without holding back the entire application,
-however if you have a lot of blocking threads, it can starve your application of available Threads.</p>
+The problem with this is Threads in Java are kind of heavyweight
+(this should be fixed by project
+<a href="https://cr.openjdk.java.net/~rpressler/loom/loom/sol1_part1.html">Loom</a> and virtual threads in Java 15+).
+This allows a single Thread to block without holding back the entire application;
+however, the number of concurrent requests you can handle is limited by the number of threads
+your server can support.</p>
 </div>
 <div class="paragraph">
 <p>Netty instead uses an <a href="http://normanmaurer.me/presentations/2014-netflix-netty/slides.html#11.0">EventLoop</a>
@@ -329,7 +332,25 @@ myWebClient.get()
 </div>
 <div class="paragraph">
 <p>The WebClient thus enables all of your HTTP calls to be reactive.
-The Spring team likes WebClient so much, they  recommend everyone use it over RestTemplate.</p>
+The Spring team likes WebClient so much, they recommend everyone uses it over RestTemplate.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_schedulers">Schedulers</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>One important type in Reactor is <a href="https://projectreactor.io/docs/core/release/api/reactor/core/scheduler/Schedulers.html">Schedulers</a>.
+Schedulers provides various Scheduler flavors usable by publishOn or subscribeOn
+for a Flux or Mono. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">mono.publishOn(Schedulers.elastic())</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Makes a Mono suitable for running blocking tasks like HTTP calls.</p>
 </div>
 </div>
 </div>
@@ -338,7 +359,10 @@ The Spring team likes WebClient so much, they  recommend everyone use it over Re
 <div class="sectionbody">
 <div class="paragraph">
 <p>I hope you got something from this three part series.
-Reactive programming in Java isn&#8217;t always necessary - it&#8217;s for enabling thousands of
+There&#8217;s much much more to learn about Reactor, but I hope this is a good introduction.</p>
+</div>
+<div class="paragraph">
+<p>Reactive programming in Java isn&#8217;t always necessary - it&#8217;s for enabling thousands of
 transactions a second, so you might not need it - but when any
 application becomes popular enough, you tend to need high throughput and performance.</p>
 </div>
@@ -350,13 +374,13 @@ and other benefits.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><a href="https://www.adamldavis.com/blog/2020/02.html">Part 1</a>: Getting started with Reactor</p>
+<p><a href="https://www.adamldavis.com/blog/2020/02.html">Part 1</a>: Getting started with Reactor, Flux, Mono, zipping, Tuples, and retry</p>
 </li>
 <li>
-<p><a href="https://www.adamldavis.com/blog/2020/03.html">Part 2</a>: Flux, Mono, zipping, Tuples, and retry</p>
+<p><a href="https://www.adamldavis.com/blog/2020/03.html">Part 2</a>: Backpressure and testing with Reactor</p>
 </li>
 <li>
-<p><a href="https://www.adamldavis.com/blog/2020/04.html">Part 3</a>: WebFlux and WebClient</p>
+<p><a href="https://www.adamldavis.com/blog/2020/04.html">Part 3</a>: Spring WebFlux, Netty, and WebClient (and JHipster)</p>
 </li>
 </ol>
 </div>

@@ -6,13 +6,13 @@
     <atom:link href="http://adamldavis.com/feed.xml" rel="self" type="application/rss+xml" />
     <description>JBake Bootstrap Template</description>
     <language>en-gb</language>
-    <pubDate>Thu, 29 Oct 2020 22:25:03 -0400</pubDate>
-    <lastBuildDate>Thu, 29 Oct 2020 22:25:03 -0400</lastBuildDate>
+    <pubDate>Sun, 1 Nov 2020 21:14:42 -0500</pubDate>
+    <lastBuildDate>Sun, 1 Nov 2020 21:14:42 -0500</lastBuildDate>
 
     <item>
       <title>Project Reactor (Part 3 of 3)</title>
       <link>http://adamldavis.com/blog/2020/04.html</link>
-      <pubDate>Tue, 20 Oct 2020 00:00:00 -0400</pubDate>
+      <pubDate>Sun, 1 Nov 2020 00:00:00 -0400</pubDate>
       <guid isPermaLink="false">blog/2020/04.html</guid>
       	<description>
 	&lt;div class=&quot;sect1&quot;&gt;
@@ -22,18 +22,18 @@
 &lt;p&gt;In the &lt;a href=&quot;https://www.adamldavis.com/blog/2020/03.html&quot;&gt;previous&lt;/a&gt; post we introduced Reactor testing and backpressure.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;To summarize:&lt;/p&gt;
+&lt;p&gt;To summarize all three parts:&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;olist arabic&quot;&gt;
 &lt;ol class=&quot;arabic&quot;&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;https://www.adamldavis.com/blog/2020/02.html&quot;&gt;Part 1&lt;/a&gt;: Getting started with Reactor&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.adamldavis.com/blog/2020/02.html&quot;&gt;Part 1&lt;/a&gt;: Getting started with Reactor: Flux, Mono, zipping, Tuples, and retry&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;https://www.adamldavis.com/blog/2020/03.html&quot;&gt;Part 2&lt;/a&gt;: Flux, Mono, zipping, Tuples, and retry&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.adamldavis.com/blog/2020/03.html&quot;&gt;Part 2&lt;/a&gt;: Backpressure and testing with Reactor&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Part 3: WebFlux and WebClient with a dip into JHipster&lt;/p&gt;
+&lt;p&gt;Part 3: Spring WebFlux, Netty, and WebClient with a dip into JHipster&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
@@ -54,9 +54,10 @@ and have read the previous posts about Reactor.&lt;/p&gt;
 &lt;h2 id=&quot;_jhipster&quot;&gt;JHipster&lt;/h2&gt;
 &lt;div class=&quot;sectionbody&quot;&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;JHipster is a code generation tool primarily for building Spring-Boot based projects
+&lt;p&gt;&lt;a href=&quot;https://www.jhipster.tech&quot;&gt;JHipster&lt;/a&gt; is a code generation tool primarily for building Spring-Boot based projects
 with either a React or Angular front end - although it can be extended via blueprints and
-there are several that allow you to create a Vue.js front end or Micronaut back-end for two examples.&lt;/p&gt;
+there are several (one allows you to create a Vue.js front-end
+and one a Micronaut back-end for example).&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
 &lt;p&gt;It also has a feature allowing you to create a Spring Boot WebFlux project.&lt;/p&gt;
@@ -165,10 +166,12 @@ and implements a reactive, asynchronous web server using &lt;a href=&quot;https:
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
 &lt;p&gt;A typical web server uses a large number of Threads and handles each request in one thread.
-The problem with this is that Threads in Java are kind of heavy weight in Java
-(this should be fixed by project Loom and virtual threads in Java 15+).
-This allows a single Thread to block without holding back the entire application,
-however if you have a lot of blocking threads, it can starve your application of available Threads.&lt;/p&gt;
+The problem with this is Threads in Java are kind of heavyweight
+(this should be fixed by project
+&lt;a href=&quot;https://cr.openjdk.java.net/~rpressler/loom/loom/sol1_part1.html&quot;&gt;Loom&lt;/a&gt; and virtual threads in Java 15+).
+This allows a single Thread to block without holding back the entire application;
+however, the number of concurrent requests you can handle is limited by the number of threads
+your server can support.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
 &lt;p&gt;Netty instead uses an &lt;a href=&quot;http://normanmaurer.me/presentations/2014-netflix-netty/slides.html#11.0&quot;&gt;EventLoop&lt;/a&gt;
@@ -244,7 +247,25 @@ myWebClient.get()
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
 &lt;p&gt;The WebClient thus enables all of your HTTP calls to be reactive.
-The Spring team likes WebClient so much, they  recommend everyone use it over RestTemplate.&lt;/p&gt;
+The Spring team likes WebClient so much, they recommend everyone uses it over RestTemplate.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;_schedulers&quot;&gt;Schedulers&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;One important type in Reactor is &lt;a href=&quot;https://projectreactor.io/docs/core/release/api/reactor/core/scheduler/Schedulers.html&quot;&gt;Schedulers&lt;/a&gt;.
+Schedulers provides various Scheduler flavors usable by publishOn or subscribeOn
+for a Flux or Mono. For example:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint highlight&quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;mono.publishOn(Schedulers.elastic())&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Makes a Mono suitable for running blocking tasks like HTTP calls.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -253,7 +274,10 @@ The Spring team likes WebClient so much, they  recommend everyone use it over Re
 &lt;div class=&quot;sectionbody&quot;&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
 &lt;p&gt;I hope you got something from this three part series.
-Reactive programming in Java isn&amp;#8217;t always necessary - it&amp;#8217;s for enabling thousands of
+There&amp;#8217;s much much more to learn about Reactor, but I hope this is a good introduction.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Reactive programming in Java isn&amp;#8217;t always necessary - it&amp;#8217;s for enabling thousands of
 transactions a second, so you might not need it - but when any
 application becomes popular enough, you tend to need high throughput and performance.&lt;/p&gt;
 &lt;/div&gt;
@@ -265,13 +289,13 @@ and other benefits.&lt;/p&gt;
 &lt;div class=&quot;olist arabic&quot;&gt;
 &lt;ol class=&quot;arabic&quot;&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;https://www.adamldavis.com/blog/2020/02.html&quot;&gt;Part 1&lt;/a&gt;: Getting started with Reactor&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.adamldavis.com/blog/2020/02.html&quot;&gt;Part 1&lt;/a&gt;: Getting started with Reactor, Flux, Mono, zipping, Tuples, and retry&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;https://www.adamldavis.com/blog/2020/03.html&quot;&gt;Part 2&lt;/a&gt;: Flux, Mono, zipping, Tuples, and retry&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.adamldavis.com/blog/2020/03.html&quot;&gt;Part 2&lt;/a&gt;: Backpressure and testing with Reactor&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;https://www.adamldavis.com/blog/2020/04.html&quot;&gt;Part 3&lt;/a&gt;: WebFlux and WebClient&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.adamldavis.com/blog/2020/04.html&quot;&gt;Part 3&lt;/a&gt;: Spring WebFlux, Netty, and WebClient (and JHipster)&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
@@ -578,6 +602,9 @@ assertEquals(&quot;bar&quot;, list.get(1));&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;In this article I&amp;#8217;ve shown how Reactor can be used to handle backpressure and how to test it.
 In my next article, we&amp;#8217;ll look into how Reactor integrates with the whole Spring ecosystem - especially with WebFlux and WebClient.&lt;/p&gt;
 &lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;&amp;#8594; &lt;a href=&quot;https://www.adamldavis.com/blog/2020/04.html&quot;&gt;Part 3&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 	</description>
@@ -592,13 +619,19 @@ In my next article, we&amp;#8217;ll look into how Reactor integrates with the wh
 &lt;h2 id=&quot;_what_is_reactor&quot;&gt;What is Reactor?&lt;/h2&gt;
 &lt;div class=&quot;sectionbody&quot;&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;The purpose of Reactor, and reactive steams in general is to enable operations on large amounts of data to be broken down and executed on many different threads (multi-threading) in the most efficient, scalable, and fast way possible. Although parallel processing can be achieved simply using Java 8’s parallel stream, reactive streams add a plethora of additional functionality and customization such as error handling, retry, caching and replaying streams, handling backpressure, and more.&lt;/p&gt;
+&lt;p&gt;The purpose of &lt;a href=&quot;https://projectreactor.io/&quot;&gt;Reactor&lt;/a&gt;,
+and &lt;a href=&quot;https://www.reactive-streams.org/&quot;&gt;reactive steams&lt;/a&gt; in general is to enable operations on large amounts of data
+to be broken down and executed on many different threads (multi-threading)
+in the most efficient, scalable, and fast way possible.
+Although parallel processing can be achieved simply using Java 8’s parallel stream, reactive streams add a plethora of additional functionality and customization such as error handling, retry, caching and replaying streams, handling backpressure, and more.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;You can think of a reactive stream as having three rails, the data rail, the completion rail (whether or not the stream has completed), and the error rail. Also, each of the rails can be converted into the other: complete streams could be replaced, an operation could throw an Exception, or an Exception could be handled and replaced with more data.&lt;/p&gt;
+&lt;p&gt;You can think of a reactive stream as having three rails, the data rail, the completion rail (whether or not the stream has completed), and the error rail. Also, each of the rails can be converted into the other: complete streams could be replaced,
+an operation could throw an Exception, or an Exception could be handled and replaced with more data.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;In addition, Reactor adds the concept of Context, which we will explore later on.&lt;/p&gt;
+&lt;p&gt;The core types of Reactor are &lt;em&gt;Flux&lt;/em&gt; (a stream of zero to any number of items) and
+&lt;em&gt;Mono&lt;/em&gt; (a stream of zero or one item).&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -774,7 +807,9 @@ return getCourse(id)
  .retryMax(5)
  .withApplicationContext(appContext) \\4
  .doOnRetry(context -&amp;gt;
-    context.applicationContext().rollback()); return flux.retryWhen(retry); \\5&lt;/code&gt;&lt;/pre&gt;
+    context.applicationContext().rollback());
+
+return flux.retryWhen(retry); \\5&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;olist arabic&quot;&gt;
@@ -799,6 +834,9 @@ return getCourse(id)
 &lt;div class=&quot;paragraph&quot;&gt;
 &lt;p&gt;For more information on retries, backoff, and jitter see this excellent article from
 &lt;a href=&quot;https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/&quot;&gt;Amazon’s builder library.&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;&amp;#8594; &lt;a href=&quot;https://www.adamldavis.com/blog/2020/03.html&quot;&gt;Part 2&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
