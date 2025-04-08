@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EG9X16P2V6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-EG9X16P2V6');
+    </script>
     <meta charset="utf-8"/>
     <title><#if (content.title)??><#escape x as x?xml>${content.title}</#escape><#else>Adam L. Davis</#if></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="This is my blog about building software and solving problems. Sometimes I write about Java, Groovy, programming, etc.">
     <meta name="author" content="Adam L. Davis">
-    <meta name="keywords" content="java,reactive,groovy,java8,rxjava">
+    <meta name="keywords" content="java,reactive,groovy,css,react,java8,rxjava">
     <meta name="generator" content="JBake">
     
     <!-- Le styles -->
