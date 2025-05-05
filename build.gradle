@@ -1,5 +1,5 @@
 /**
-   Copyright 2016-2019, Adam L. Davis
+   Copyright 2016-2025, Adam L. Davis
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -13,28 +13,28 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-/** -------------------------> Build works using Gradle 5.4.1 and Java 8.0.202 */
+/** -------------------------> Build works using Gradle 8.10.1 and Java JDK 21 */
 plugins {
-    id "org.groocss.groocss-gradle-plugin" version "1.0-RC1-groovy2.4"
-    id 'org.jbake.site' version '5.0.0'
+    //id "org.groocss.groocss-gradle-plugin" version "1.0-RC1-groovy2.4"
+    id("org.jbake.site") version "5.5.0"
     id "java"
     id "groovy"
 }
 def cssDir = "src/assets/css/"
 
-groocss {
-    charset = 'UTF-8'
-    prettyPrint = true
-    convertUnderline = true
-    processors = []
-    variables = [buildDir: project.buildDir]
-}
-groocssfiles {
-    allfiles {
-        inFile = file('src/main/groovy/')
-        outFile = file("$cssDir")
-    }
-}
+// groocss {
+//     charset = 'UTF-8'
+//     prettyPrint = true
+//     convertUnderline = true
+//     processors = []
+//     variables = [buildDir: project.buildDir]
+// }
+// groocssfiles {
+//     allfiles {
+//         inFile = file('src/main/groovy/')
+//         outFile = file("$cssDir")
+//     }
+// }
 
 ext {
     groocssVer = "1.0-RC1"
@@ -44,11 +44,11 @@ configurations {
 }
 repositories {
     mavenLocal()
-    jcenter()
+    mavenCentral()
 }
 dependencies {
-    compile "org.groocss:groocss:$groocssVer"
-    sources "org.groocss:groocss:$groocssVer:sources"
+    implementation  "org.groocss:groocss:$groocssVer"
+    //sources "org.groocss:groocss:$groocssVer:sources"
 }
 sourceSets {
     main {
@@ -71,7 +71,7 @@ task copySite(type: Copy) {
     exclude '**/*.bak'
 }
 
-task site(dependsOn: ['convertCss', 'bake', 'copySite'], description: 'Builds the site') doLast {
+task site(dependsOn: ['bake', 'copySite'], description: 'Builds the site') doLast {
     println 'done'
 }
 
@@ -79,8 +79,8 @@ task beforeCss doLast {
     file(cssDir).mkdirs()
 	println 'Processing groocss'
 }
-tasks['convertCss'].dependsOn beforeCss
+//tasks['convertCss'].dependsOn beforeCss
 
 wrapper {
-    gradleVersion = '6.2.2'
+    gradleVersion = '8.10.1'
 }
