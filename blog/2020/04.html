@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EG9X16P2V6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-EG9X16P2V6');
+    </script>
     <meta charset="utf-8"/>
     <title>Project Reactor (Part 3 of 3)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="This is my blog about building software and solving problems. Sometimes I write about Java, Groovy, programming, etc.">
     <meta name="author" content="Adam L. Davis">
-    <meta name="keywords" content="java,reactive,groovy,java8,rxjava">
+    <meta name="keywords" content="java,reactive,groovy,css,react,java8,rxjava">
     <meta name="generator" content="JBake">
     
     <!-- Le styles -->
@@ -60,18 +69,13 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Links <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a rel=me href="https://twitter.com/adamldavis">Me on Twitter</a></li>
                 <li><a rel=me href="https://medium.com/@adamldavis#_=_">Me on Medium</a></li>
-                <li><a rel=me href="https://bitbucket.org/adamldavis/">Me on Bitbucket</a></li>
                 <li class="divider"></li>
                 <li class="dropdown-header">Open Source</li>
                 <li><a rel=me href="https://github.com/adamldavis/groocss">GrooCSS</a></li>
                 <li><a rel=me href="https://github.com/adamldavis/groovy-rxjava2">Groovy RxJava2</a></li>
                 <li><a rel=me href="https://github.com/adamldavis/groovy-chemistry">Groovy Chemistry</a></li>
                 <li><a rel=me href="https://github.com/adamldavis/2019-gr8conf">Code for 2019 Gr8Conf</a></li>
-                <li class="divider"></li>
-                <li class="dropdown-header">Sign up and get a free ebook</li>
-                <li><a rel=me href="https://adamldavis.us19.list-manage.com/subscribe?u=66f67d57b882cf3b7eef9257e&id=ab8ddea8e0">Newsletter</a></li>
                 <li class="divider"></li>
                 <li><a href="../../feed.xml">Atom feed for blog</a></li>
               </ul>
@@ -236,7 +240,7 @@ It should have a "getAll" method that looks something like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">@GetMapping
+<pre class="prettyprint highlight"><code data-lang="java">@GetMapping
 public Mono&lt;ResponseEntity&lt;Flux&lt;AuditEvent&gt;&gt;&gt; getAll(ServerHttpRequest request, Pageable pageable) {
     return auditEventService.count()
         .map(total -&gt; new PageImpl&lt;&gt;(new ArrayList&lt;&gt;(), pageable, total))
@@ -298,7 +302,7 @@ For example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">import org.springframework.web.reactive.function.client.WebClient;
+<pre class="prettyprint highlight"><code data-lang="java">import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 // later on...
@@ -346,7 +350,7 @@ for a Flux or Mono. For example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">mono.publishOn(Schedulers.elastic())</code></pre>
+<pre class="prettyprint highlight"><code data-lang="java">mono.publishOn(Schedulers.elastic())</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -405,7 +409,7 @@ and other benefits.</p>
     
     <div id="footer">
       <div class="container">
-        <p class="muted credit">&copy; 2019 <a rel=me href="https://github.com/adamldavis">Adam L. Davis</a> | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.6.4</a> | Hosted by <a href="https://pages.github.com/">Github</a> | <a href="../../about.html">About</a>
+        <p class="muted credit">&copy; 2026 <a rel=me href="https://github.com/adamldavis">Adam L. Davis</a> | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.6.7</a> | Hosted by <a href="https://pages.github.com/">Github</a> | <a href="../../about.html">About</a>
         </p>
       </div>
     </div>

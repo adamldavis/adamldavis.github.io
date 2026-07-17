@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EG9X16P2V6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-EG9X16P2V6');
+    </script>
     <meta charset="utf-8"/>
     <title>Project Reactor (Part 1)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="This is my blog about building software and solving problems. Sometimes I write about Java, Groovy, programming, etc.">
     <meta name="author" content="Adam L. Davis">
-    <meta name="keywords" content="java,reactive,groovy,java8,rxjava">
+    <meta name="keywords" content="java,reactive,groovy,css,react,java8,rxjava">
     <meta name="generator" content="JBake">
     
     <!-- Le styles -->
@@ -60,18 +69,13 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Links <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a rel=me href="https://twitter.com/adamldavis">Me on Twitter</a></li>
                 <li><a rel=me href="https://medium.com/@adamldavis#_=_">Me on Medium</a></li>
-                <li><a rel=me href="https://bitbucket.org/adamldavis/">Me on Bitbucket</a></li>
                 <li class="divider"></li>
                 <li class="dropdown-header">Open Source</li>
                 <li><a rel=me href="https://github.com/adamldavis/groocss">GrooCSS</a></li>
                 <li><a rel=me href="https://github.com/adamldavis/groovy-rxjava2">Groovy RxJava2</a></li>
                 <li><a rel=me href="https://github.com/adamldavis/groovy-chemistry">Groovy Chemistry</a></li>
                 <li><a rel=me href="https://github.com/adamldavis/2019-gr8conf">Code for 2019 Gr8Conf</a></li>
-                <li class="divider"></li>
-                <li class="dropdown-header">Sign up and get a free ebook</li>
-                <li><a rel=me href="https://adamldavis.us19.list-manage.com/subscribe?u=66f67d57b882cf3b7eef9257e&id=ab8ddea8e0">Newsletter</a></li>
                 <li class="divider"></li>
                 <li><a href="../../feed.xml">Atom feed for blog</a></li>
               </ul>
@@ -128,7 +132,7 @@ an operation could throw an Exception, or an Exception could be handled and repl
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+<pre class="prettyprint highlight"><code data-lang="xml">&lt;dependency&gt;
   &lt;groupId&gt;io.projectreactor&lt;/groupId&gt;
   &lt;artifactId&gt;reactor-core&lt;/artifactId&gt;
   &lt;version&gt;3.3.5.RELEASE&lt;/version&gt;
@@ -146,7 +150,7 @@ an operation could throw an Exception, or an Exception could be handled and repl
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">implementation 'io.projectreactor:reactor-core:3.3.5.RELEASE'
+<pre class="prettyprint highlight"><code data-lang="groovy">implementation 'io.projectreactor:reactor-core:3.3.5.RELEASE'
 testImplementation 'io.projectreactor:reactor-test:3.3.5.RELEASE'</code></pre>
 </div>
 </div>
@@ -163,7 +167,7 @@ testImplementation 'io.projectreactor:reactor-test:3.3.5.RELEASE'</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">Flux&lt;String&gt; flux1 = Flux.just("a", "b", "foobar"); //1
+<pre class="prettyprint highlight"><code data-lang="java">Flux&lt;String&gt; flux1 = Flux.just("a", "b", "foobar"); //1
 
 List&lt;String&gt; iterable = Arrays.asList("a", "b", "foobar");
 
@@ -190,7 +194,7 @@ Flux&lt;Integer&gt; numbers = Flux.range(1, 64); //3</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">Mono&lt;String&gt; noData = Mono.empty(); //1
+<pre class="prettyprint highlight"><code data-lang="java">Mono&lt;String&gt; noData = Mono.empty(); //1
 
 Mono&lt;String&gt; data = Mono.just("foo"); //2
 
@@ -245,7 +249,7 @@ Mono&lt;String&gt; monoError = Mono.error(new RuntimeException("error")); //3</c
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">Mono&lt;Integer&gt; getStudentCount(Long id) {
+<pre class="prettyprint highlight"><code data-lang="java">Mono&lt;Integer&gt; getStudentCount(Long id) {
 return getCourse(id)
 .zipWhen(course -&gt; getStudentCount(course))
 .map(tuple2 -&gt; tuple2.getT2());
@@ -265,7 +269,7 @@ return getCourse(id)
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+<pre class="prettyprint highlight"><code data-lang="xml">&lt;dependency&gt;
   &lt;groupId&gt;io.projectreactor.addons&lt;/groupId&gt;
   &lt;artifactId&gt;reactor-extra&lt;/artifactId&gt;
   &lt;version&gt;3.3.3.RELEASE&lt;/version&gt;
@@ -285,7 +289,7 @@ return getCourse(id)
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">var retry = Retry.anyOf(IOException.class) \\1
+<pre class="prettyprint highlight"><code data-lang="java">var retry = Retry.anyOf(IOException.class) \\1
  .exponentialBackoff(Duration.ofMillis(100), \\2
     Duration.ofSeconds(60))
  .jitter(Jitter.random()) \\3
@@ -343,7 +347,7 @@ return flux.retryWhen(retry); \\5</code></pre>
     
     <div id="footer">
       <div class="container">
-        <p class="muted credit">&copy; 2019 <a rel=me href="https://github.com/adamldavis">Adam L. Davis</a> | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.6.4</a> | Hosted by <a href="https://pages.github.com/">Github</a> | <a href="../../about.html">About</a>
+        <p class="muted credit">&copy; 2026 <a rel=me href="https://github.com/adamldavis">Adam L. Davis</a> | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.6.7</a> | Hosted by <a href="https://pages.github.com/">Github</a> | <a href="../../about.html">About</a>
         </p>
       </div>
     </div>
